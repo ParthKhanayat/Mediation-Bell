@@ -160,7 +160,7 @@ export default function App() {
       </nav>
 
       {/* Main Responsive Layout */}
-      <main className="zen-main-container">
+      <main className={`zen-main-container ${viewMode === 'both' ? 'dual-mode' : ''}`}>
         {viewMode === 'both' ? (
           <div className="zen-dual-layout">
             <div className="zen-secondary-dim zen-config-wrapper">
