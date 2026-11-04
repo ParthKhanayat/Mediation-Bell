@@ -1,5 +1,6 @@
 import React from 'react';
-import { Bell, Sparkles } from 'lucide-react';
+import { Bell } from 'lucide-react';
+import LotusIcon from './LotusIcon';
 
 export default function Header({ completedSessionsCount = 0 }) {
   return (
@@ -16,7 +17,7 @@ export default function Header({ completedSessionsCount = 0 }) {
         title="Lifetime meditation sessions completed"
         aria-label={`${completedSessionsCount} lifetime sessions completed`}
       >
-        <Sparkles size={12} />
+        <LotusIcon size={14} strokeWidth={1.8} />
         <span>
           {completedSessionsCount} {completedSessionsCount === 1 ? 'session' : 'sessions'} done
         </span>

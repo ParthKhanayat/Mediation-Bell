@@ -261,7 +261,7 @@ body {
 }
 
 .zen-header-lifetime-pill:hover svg {
-  transform: rotate(15deg) scale(1.1);
+  transform: scale(1.15) translateY(-1px);
 }
 
 /* Mode Switcher Tabs (Frosted Capsule Pill) */

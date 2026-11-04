@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import CircularProgress from './CircularProgress';
 import ZenControls from './ZenControls';
-import { Bell, Disc, Sun, Sparkles, RotateCcw, Eye, EyeOff, ChevronDown, ChevronUp, Wrench } from 'lucide-react';
+import LotusIcon from './LotusIcon';
+import { Bell, Disc, Sun, RotateCcw, Eye, EyeOff, ChevronDown, ChevronUp, Wrench } from 'lucide-react';
 import { playBell } from '../services/zenAudio';
 
 export default function ActiveTimer({
@@ -75,7 +76,7 @@ export default function ActiveTimer({
       {isCompleted ? (
         <div className="zen-completed-view">
           <div className="zen-completed-icon-wrap" aria-hidden="true">
-            <Sparkles size={36} strokeWidth={1.5} />
+            <LotusIcon size={40} strokeWidth={1.6} />
           </div>
           <h3 className="zen-completed-title">Session Complete</h3>
           <p className="zen-completed-subtitle">
@@ -84,7 +85,7 @@ export default function ActiveTimer({
 
           {/* Lifetime Sessions Counter Display */}
           <div className="zen-completed-lifetime-badge">
-            <Sparkles size={13} />
+            <LotusIcon size={14} strokeWidth={1.8} />
             <span>
               Lifetime: <strong>{completedSessionsCount}</strong> {completedSessionsCount === 1 ? 'session' : 'sessions'} done
             </span>
