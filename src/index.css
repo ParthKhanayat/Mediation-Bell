@@ -71,6 +71,45 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* Global Thin & Rounded Scrollbars matching Coral-Peach / Lavender Glassmorphic Palette */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 110, 64, 0.38) rgba(255, 255, 255, 0.35);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 110, 64, 0.35) transparent;
+}
+
+/* WebKit-based browsers (Chrome, Edge, Safari, Brave) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(255, 138, 101, 0.45) 0%, rgba(255, 110, 64, 0.55) 100%);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: var(--transition-gentle);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(255, 138, 101, 0.8) 0%, rgba(255, 110, 64, 0.9) 100%);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 8px rgba(255, 110, 64, 0.35);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 html, body {
   height: 100%;
   width: 100%;
