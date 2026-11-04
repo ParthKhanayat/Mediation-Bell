@@ -17,6 +17,7 @@ export function useIntervalTimer({
   customDurations = null,
   soundEnabled = true,
   doubleStrike = true,
+  onSessionComplete,
 }) {
   // Timer lifecycle status: 'idle' | 'running' | 'paused' | 'completed'
   const [status, setStatus] = useState('idle');
@@ -165,7 +166,11 @@ export function useIntervalTimer({
     if (soundEnabled) {
       playBell('final', { doubleStrike });
     }
-  }, [stopTick, releaseWakeLock, totalSessionDurationMs, soundEnabled, doubleStrike, triggerBellPulse]);
+
+    if (onSessionComplete) {
+      onSessionComplete();
+    }
+  }, [stopTick, releaseWakeLock, totalSessionDurationMs, soundEnabled, doubleStrike, triggerBellPulse, onSessionComplete]);
 
   const tick = useCallback(() => {
     if (!startTimeRef.current) return;

@@ -227,6 +227,43 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* Lifetime Sessions Pill in Header */
+.zen-header-lifetime-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  padding: 0.32rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border-glass);
+  box-shadow: 0 2px 8px rgba(30, 20, 50, 0.04);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  transition: var(--transition-gentle);
+  user-select: none;
+}
+
+.zen-header-lifetime-pill:hover {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-pill);
+}
+
+.zen-header-lifetime-pill svg {
+  color: var(--color-coral);
+  transition: transform 0.3s ease;
+}
+
+.zen-header-lifetime-pill:hover svg {
+  transform: rotate(15deg) scale(1.1);
+}
+
 /* Mode Switcher Tabs (Frosted Capsule Pill) */
 .zen-view-switcher {
   display: inline-flex;
@@ -1792,6 +1829,40 @@ body {
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
   font-weight: 500;
+}
+
+/* Lifetime Sessions Milestone Badge on Session Complete Screen */
+.zen-completed-lifetime-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.45rem 0 1.25rem;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 110, 64, 0.25);
+  box-shadow: 0 4px 16px rgba(255, 110, 64, 0.08), var(--shadow-inner);
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  animation: zen-badge-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+@keyframes zen-badge-pop {
+  0% { opacity: 0; transform: scale(0.9) translateY(4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.zen-completed-lifetime-badge svg {
+  color: var(--color-coral);
+  flex-shrink: 0;
+}
+
+.zen-completed-lifetime-badge strong {
+  color: var(--color-coral);
+  font-weight: 700;
 }
 
 .zen-completed-blessing {

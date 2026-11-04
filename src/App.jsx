@@ -14,6 +14,7 @@ const STORAGE_KEY_DOUBLE_STRIKE = 'zen_bell_double_strike';
 const STORAGE_KEY_HIDE_DIGITS = 'zen_bell_hide_digits';
 const STORAGE_KEY_IS_CUSTOM = 'zen_bell_is_custom';
 const STORAGE_KEY_CUSTOM_DURATIONS = 'zen_bell_custom_durations';
+const STORAGE_KEY_LIFETIME_SESSIONS = 'zen_bell_lifetime_sessions';
 
 export default function App() {
   // 1. Session Configuration Parameters (Loaded from localStorage)
@@ -87,6 +88,17 @@ export default function App() {
     }
   });
 
+  // Lifetime Completed Meditation Sessions Counter (stored in localStorage)
+  const [completedSessionsCount, setCompletedSessionsCount] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_LIFETIME_SESSIONS);
+      const parsed = parseInt(saved, 10);
+      return !isNaN(parsed) && parsed >= 0 ? parsed : 0;
+    } catch {
+      return 0;
+    }
+  });
+
   // View state: 'config' | 'timer' | 'both'
   const [viewMode, setViewMode] = useState('both');
 
@@ -147,6 +159,20 @@ export default function App() {
     } catch {}
   }, [customDurations]);
 
+  // Persist lifetime completed sessions count in localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY_LIFETIME_SESSIONS,
+        String(completedSessionsCount)
+      );
+    } catch {}
+  }, [completedSessionsCount]);
+
+  const handleSessionComplete = () => {
+    setCompletedSessionsCount((prev) => prev + 1);
+  };
+
   // Synchronize master sound settings with audio singleton
   useEffect(() => {
     AUDIO_CONFIG.soundEnabled = soundEnabled;
@@ -161,6 +187,7 @@ export default function App() {
     customDurations,
     soundEnabled,
     doubleStrike,
+    onSessionComplete: handleSessionComplete,
   });
 
   const handleStartSession = async () => {
@@ -200,7 +227,7 @@ export default function App() {
 
       {/* Header - Dims gently during active sitting */}
       <div className="zen-header-container zen-secondary-dim">
-        <Header />
+        <Header completedSessionsCount={completedSessionsCount} />
       </div>
 
       {/* View Mode Switcher - Dims gently during active sitting */}
@@ -278,6 +305,7 @@ export default function App() {
               isWakeLockActive={timer.isWakeLockActive}
               isBellRinging={timer.isBellRinging}
               hideDigits={hideDigits}
+              completedSessionsCount={completedSessionsCount}
               onToggleHideDigits={() => setHideDigits((prev) => !prev)}
               onTogglePlay={timer.togglePlay}
               onReset={timer.resetTimer}
@@ -325,6 +353,7 @@ export default function App() {
             isWakeLockActive={timer.isWakeLockActive}
             isBellRinging={timer.isBellRinging}
             hideDigits={hideDigits}
+            completedSessionsCount={completedSessionsCount}
             onToggleHideDigits={() => setHideDigits((prev) => !prev)}
             onTogglePlay={timer.togglePlay}
             onReset={timer.resetTimer}

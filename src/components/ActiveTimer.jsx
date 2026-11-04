@@ -16,6 +16,7 @@ export default function ActiveTimer({
   isWakeLockActive = false,
   isBellRinging = false,
   hideDigits = false,
+  completedSessionsCount = 0,
   onToggleHideDigits,
   onTogglePlay,
   onReset,
@@ -80,6 +81,15 @@ export default function ActiveTimer({
           <p className="zen-completed-subtitle">
             {totalIntervals} intervals of mindful stillness completed.
           </p>
+
+          {/* Lifetime Sessions Counter Display */}
+          <div className="zen-completed-lifetime-badge">
+            <Sparkles size={13} />
+            <span>
+              Lifetime: <strong>{completedSessionsCount}</strong> {completedSessionsCount === 1 ? 'session' : 'sessions'} done
+            </span>
+          </div>
+
           <p className="zen-completed-blessing">
             May the calm and clarity of this practice accompany you.
           </p>
