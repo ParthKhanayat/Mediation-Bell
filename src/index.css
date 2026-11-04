@@ -574,7 +574,16 @@ body {
   position: relative;
 }
 
-/* Interval Pill Indicator */
+/* Interval Pill & Screen Wake Lock Header */
+.zen-timer-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
 .zen-interval-badge {
   display: inline-flex;
   align-items: center;
@@ -588,7 +597,114 @@ body {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-bottom: 2rem;
+}
+
+.zen-wakelock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(223, 213, 198, 0.08);
+  border: 1px solid rgba(223, 213, 198, 0.18);
+  color: var(--color-sand-light);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  animation: fade-in 0.3s ease-out;
+}
+
+.zen-wakelock-pill svg {
+  color: var(--color-sage);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Session Completed Calm View */
+.zen-completed-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+  animation: zen-bloom 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zen-bloom {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.zen-completed-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(156, 177, 151, 0.2) 0%, rgba(156, 177, 151, 0.04) 70%);
+  border: 1px solid rgba(156, 177, 151, 0.35);
+  color: var(--color-sage-light);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 35px -5px rgba(156, 177, 151, 0.3);
+}
+
+.zen-completed-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--color-sand-light);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.5rem;
+}
+
+.zen-completed-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-sand);
+  margin-bottom: 0.5rem;
+}
+
+.zen-completed-blessing {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-sand-muted);
+  max-width: 380px;
+  margin: 0 auto 2.25rem;
+  line-height: 1.5;
+}
+
+.zen-completed-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(156, 177, 151, 0.35);
+  background: linear-gradient(135deg, rgba(156, 177, 151, 0.2) 0%, rgba(156, 177, 151, 0.1) 100%);
+  color: var(--color-sand-light);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  min-height: 50px;
+}
+
+.zen-completed-reset-btn:hover {
+  background: linear-gradient(135deg, rgba(156, 177, 151, 0.3) 0%, rgba(156, 177, 151, 0.18) 100%);
+  border-color: var(--color-sage-light);
+  box-shadow: 0 0 25px -4px rgba(156, 177, 151, 0.35);
+  transform: translateY(-2px);
+}
+
+.zen-completed-reset-btn:active {
+  transform: scale(0.98);
 }
 
 .zen-interval-dot {

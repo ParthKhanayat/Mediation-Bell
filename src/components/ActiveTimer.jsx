@@ -1,69 +1,103 @@
 import React from 'react';
 import CircularProgress from './CircularProgress';
 import ZenControls from './ZenControls';
-import { Bell, Disc } from 'lucide-react';
-import { playBell, unlockAudio } from '../services/zenAudio';
+import { Bell, Disc, Sun, Sparkles, RotateCcw } from 'lucide-react';
+import { playBell } from '../services/zenAudio';
 
 export default function ActiveTimer({
-  currentInterval = 2,
+  status = 'idle',
+  isPlaying = false,
+  isCompleted = false,
+  currentInterval = 1,
   totalIntervals = 4,
   minutesPerInterval = 5,
-  mockSecondsRemaining = 225, // e.g. 3m 45s out of 5m
-  isPlaying = false,
+  formattedTime = '05:00',
+  intervalProgress = 1.0,
+  isWakeLockActive = false,
   onTogglePlay,
   onReset,
   onOpenSettings,
-  // Mock inspection controls
-  onMockIntervalChange,
-  onMockSecondsChange,
+  // Inspection / scrub controls
+  onSeekInterval,
+  onSeekProgress,
 }) {
-  // Format MM:SS with leading zeroes
-  const totalSecondsInInterval = Math.max(1, minutesPerInterval * 60);
-  const minutes = Math.floor(mockSecondsRemaining / 60);
-  const seconds = mockSecondsRemaining % 60;
-  const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
-  // Progress depleting smoothly: 1 (full) down to 0 (empty)
-  const progress = Math.max(0, Math.min(1, mockSecondsRemaining / totalSecondsInInterval));
-
-  const handleControlPlayToggle = async () => {
-    await unlockAudio();
-    onTogglePlay();
-  };
-
   return (
     <section className="zen-card zen-timer-card" aria-label="Active Meditation Timer">
-      {/* Subtle current interval indicator */}
-      <div className="zen-interval-badge" aria-live="polite">
-        <span className="zen-interval-dot" aria-hidden="true" />
-        <span>
-          Interval {currentInterval} of {totalIntervals}
-        </span>
+      {/* Top Meta: Interval Badge & Screen Wake Lock Status */}
+      <div className="zen-timer-top-meta">
+        <div className="zen-interval-badge" aria-live="polite">
+          <span className={`zen-interval-dot ${isPlaying ? 'pulsing' : ''}`} aria-hidden="true" />
+          <span>
+            {isCompleted
+              ? 'Session Complete'
+              : `Interval ${currentInterval} of ${totalIntervals}`}
+          </span>
+        </div>
+
+        {isWakeLockActive && (
+          <div className="zen-wakelock-pill" title="Screen Wake Lock is active - display will stay awake">
+            <Sun size={12} />
+            <span>Screen Awake</span>
+          </div>
+        )}
       </div>
 
-      {/* Central Circular Dial with Large Calm Countdown */}
-      <CircularProgress progress={progress}>
-        <time className="zen-countdown-digits" dateTime={`PT${minutes}M${seconds}S`}>
-          {formattedTime}
-        </time>
-        <span className="zen-dial-subtext">
-          {isPlaying ? 'Breathing in Stillness' : 'Session Paused'}
-        </span>
-      </CircularProgress>
+      {/* Central Dial Area */}
+      {isCompleted ? (
+        <div className="zen-completed-view">
+          <div className="zen-completed-icon-wrap" aria-hidden="true">
+            <Sparkles size={36} strokeWidth={1.5} />
+          </div>
+          <h3 className="zen-completed-title">Session Complete</h3>
+          <p className="zen-completed-subtitle">
+            {totalIntervals} intervals of mindful stillness completed.
+          </p>
+          <p className="zen-completed-blessing">
+            May the calm and clarity of this practice accompany you.
+          </p>
 
-      {/* Large Tap-Target Controls */}
-      <ZenControls
-        isPlaying={isPlaying}
-        onTogglePlay={handleControlPlayToggle}
-        onReset={onReset}
-        onOpenSettings={onOpenSettings}
-      />
+          <button
+            type="button"
+            className="zen-completed-reset-btn"
+            onClick={onReset}
+            aria-label="Start a new meditation session"
+          >
+            <RotateCcw size={16} />
+            <span>Sit Again</span>
+          </button>
+        </div>
+      ) : (
+        <>
+          <CircularProgress progress={intervalProgress}>
+            <time className="zen-countdown-digits" dateTime={formattedTime}>
+              {formattedTime}
+            </time>
+            <span className="zen-dial-subtext">
+              {isPlaying
+                ? `Interval ${currentInterval} in Progress`
+                : status === 'paused'
+                ? 'Session Paused'
+                : 'Ready to Begin'}
+            </span>
+          </CircularProgress>
 
-      {/* Mock State Interactive Testing Bar */}
-      <div className="zen-mock-toolbar" role="region" aria-label="Mock state inspection tools">
+          {/* Large Tap-Target Controls */}
+          <ZenControls
+            isPlaying={isPlaying}
+            onTogglePlay={onTogglePlay}
+            onReset={onReset}
+            onOpenSettings={onOpenSettings}
+          />
+        </>
+      )}
+
+      {/* Mock & Fast-Forward Testing Bar */}
+      <div className="zen-mock-toolbar" role="region" aria-label="Timer testing tools">
         <div className="mock-toolbar-header">
-          <span>Mock State Playground</span>
-          <span className="mock-toolbar-badge">Interactive Sound &amp; Timer</span>
+          <span>Drift-Free Engine Testing</span>
+          <span className="mock-toolbar-badge">
+            {isWakeLockActive ? 'WakeLock: ON' : 'WakeLock: Ready'}
+          </span>
         </div>
 
         <div className="mock-toolbar-actions">
@@ -71,36 +105,33 @@ export default function ActiveTimer({
             <button
               type="button"
               className="mock-toolbar-btn"
-              onClick={() => onMockIntervalChange(Math.max(1, currentInterval - 1))}
-              disabled={currentInterval <= 1}
+              onClick={() => onSeekInterval && onSeekInterval(Math.max(1, currentInterval - 1))}
+              disabled={currentInterval <= 1 || isCompleted}
             >
               Prev Interval
             </button>
             <button
               type="button"
               className="mock-toolbar-btn"
-              onClick={() => onMockIntervalChange(Math.min(totalIntervals, currentInterval + 1))}
-              disabled={currentInterval >= totalIntervals}
+              onClick={() =>
+                onSeekInterval && onSeekInterval(Math.min(totalIntervals, currentInterval + 1))
+              }
+              disabled={currentInterval >= totalIntervals || isCompleted}
             >
               Next Interval
             </button>
             <button
               type="button"
               className="mock-toolbar-btn"
-              onClick={() => onMockSecondsChange(Math.round(totalSecondsInInterval * 0.75))}
+              onClick={() => onSeekProgress && onSeekProgress(0.02)} // Jump to last 2% (near 00:00)
+              disabled={isCompleted}
+              title="Jump to last few seconds of interval to hear transition chime"
             >
-              75% Ring
-            </button>
-            <button
-              type="button"
-              className="mock-toolbar-btn"
-              onClick={() => onMockSecondsChange(Math.round(totalSecondsInInterval * 0.25))}
-            >
-              25% Ring
+              Near 00:00 (Test Chime)
             </button>
           </div>
 
-          {/* Sound trigger test buttons inside active timer view */}
+          {/* Direct Sound Test Buttons */}
           <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.35rem', width: '100%' }}>
             <button
               type="button"
@@ -110,7 +141,7 @@ export default function ActiveTimer({
               title="Ring 528Hz Interval Bell"
             >
               <Bell size={12} />
-              <span>Ring Chime</span>
+              <span>Interval Chime (528Hz)</span>
             </button>
             <button
               type="button"
@@ -120,26 +151,31 @@ export default function ActiveTimer({
               title="Ring Deep Singing Bowl"
             >
               <Disc size={12} />
-              <span>Ring Final Bowl</span>
+              <span>Final Bowl (256Hz)</span>
             </button>
           </div>
         </div>
 
-        <div className="mock-slider-wrap">
-          <span style={{ fontSize: '0.72rem', color: 'var(--color-sand-muted)' }}>Progress:</span>
-          <input
-            type="range"
-            min="0"
-            max={totalSecondsInInterval}
-            value={mockSecondsRemaining}
-            onChange={(e) => onMockSecondsChange(Number(e.target.value))}
-            className="mock-slider"
-            aria-label="Simulate remaining time in current interval"
-          />
-          <span style={{ fontSize: '0.72rem', color: 'var(--color-sage-light)', minWidth: '32px' }}>
-            {Math.round(progress * 100)}%
-          </span>
-        </div>
+        {!isCompleted && (
+          <div className="mock-slider-wrap">
+            <span style={{ fontSize: '0.72rem', color: 'var(--color-sand-muted)' }}>Progress:</span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.005"
+              value={intervalProgress}
+              onChange={(e) => onSeekProgress && onSeekProgress(parseFloat(e.target.value))}
+              className="mock-slider"
+              aria-label="Scrub progress within current interval"
+            />
+            <span
+              style={{ fontSize: '0.72rem', color: 'var(--color-sage-light)', minWidth: '32px' }}
+            >
+              {Math.round(intervalProgress * 100)}%
+            </span>
+          </div>
+        )}
       </div>
     </section>
   );

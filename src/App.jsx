@@ -3,10 +3,11 @@ import Header from './components/Header';
 import IntervalConfig from './components/IntervalConfig';
 import ActiveTimer from './components/ActiveTimer';
 import { Sliders, Timer, Columns } from 'lucide-react';
-import { playBell, unlockAudio, AUDIO_CONFIG } from './services/zenAudio';
+import { AUDIO_CONFIG } from './services/zenAudio';
+import { useIntervalTimer } from './hooks/useIntervalTimer';
 
 export default function App() {
-  // Session Configuration State
+  // Session Configuration Parameters
   const [intervals, setIntervals] = useState(4);
   const [minutes, setMinutes] = useState(5);
 
@@ -14,76 +15,25 @@ export default function App() {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [doubleStrike, setDoubleStrike] = useState(true);
 
-  // Active Timer Mocked State
-  const [currentInterval, setCurrentInterval] = useState(2);
-  const [mockSecondsRemaining, setMockSecondsRemaining] = useState(225); // 03:45 remaining
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  // View state: 'config', 'timer', or 'both' (desktop dual-view)
+  // View state: 'config' | 'timer' | 'both'
   const [viewMode, setViewMode] = useState('both');
 
-  // Sync sound settings to AUDIO_CONFIG singleton
+  // Synchronize master sound settings with audio singleton
   useEffect(() => {
     AUDIO_CONFIG.soundEnabled = soundEnabled;
     AUDIO_CONFIG.finalBell.doubleStrike = doubleStrike;
   }, [soundEnabled, doubleStrike]);
 
-  // Keep mock seconds in sync if user changes minutes per interval
-  useEffect(() => {
-    const totalSec = minutes * 60;
-    // Default to ~75% elapsed mock state (e.g. 3m 45s for 5m)
-    setMockSecondsRemaining(Math.round(totalSec * 0.75));
-  }, [minutes]);
-
-  // Ensure currentInterval doesn't exceed total intervals
-  useEffect(() => {
-    if (currentInterval > intervals) {
-      setCurrentInterval(intervals);
-    }
-  }, [intervals, currentInterval]);
-
-  // Simulated tick when mock playing is active, playing bells on interval boundaries
-  useEffect(() => {
-    let intervalId;
-    if (isPlaying) {
-      intervalId = setInterval(() => {
-        setMockSecondsRemaining((prev) => {
-          if (prev <= 1) {
-            // Check if this was the final interval or an intermediate interval
-            if (currentInterval >= intervals) {
-              // Final Session Bell: Deep Singing Bowl
-              playBell('final');
-              setCurrentInterval(1);
-              setIsPlaying(false);
-              return minutes * 60;
-            } else {
-              // Interval Bell: Gentle 528Hz Chime
-              playBell('interval');
-              setCurrentInterval((curr) => curr + 1);
-              return minutes * 60;
-            }
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(intervalId);
-  }, [isPlaying, intervals, minutes, currentInterval]);
-
-  const handleTogglePlay = async () => {
-    await unlockAudio();
-    setIsPlaying((prev) => !prev);
-  };
-
-  const handleReset = () => {
-    setIsPlaying(false);
-    setMockSecondsRemaining(minutes * 60);
-    setCurrentInterval(1);
-  };
+  // High-Precision Drift-Free Interval Timer Engine
+  const timer = useIntervalTimer({
+    intervals,
+    minutes,
+    soundEnabled,
+    doubleStrike,
+  });
 
   const handleStartSession = async () => {
-    await unlockAudio();
-    setIsPlaying(true);
+    await timer.startTimer();
     setViewMode('timer');
   };
 
@@ -110,7 +60,11 @@ export default function App() {
           onClick={() => setViewMode('timer')}
         >
           <Timer size={15} />
-          <span>Active Timer</span>
+          <span>
+            {timer.status === 'running'
+              ? `Timer (${timer.formattedTime})`
+              : 'Active Timer'}
+          </span>
         </button>
 
         <button
@@ -130,8 +84,14 @@ export default function App() {
             <IntervalConfig
               intervals={intervals}
               minutes={minutes}
-              onIntervalsChange={setIntervals}
-              onMinutesChange={setMinutes}
+              onIntervalsChange={(val) => {
+                setIntervals(val);
+                if (timer.status !== 'running') timer.resetTimer();
+              }}
+              onMinutesChange={(val) => {
+                setMinutes(val);
+                if (timer.status !== 'running') timer.resetTimer();
+              }}
               onStartSession={handleStartSession}
               soundEnabled={soundEnabled}
               onToggleSound={() => setSoundEnabled((prev) => !prev)}
@@ -140,24 +100,34 @@ export default function App() {
             />
 
             <ActiveTimer
-              currentInterval={currentInterval}
-              totalIntervals={intervals}
-              minutesPerInterval={minutes}
-              mockSecondsRemaining={mockSecondsRemaining}
-              isPlaying={isPlaying}
-              onTogglePlay={handleTogglePlay}
-              onReset={handleReset}
+              status={timer.status}
+              isPlaying={timer.isPlaying}
+              isCompleted={timer.isCompleted}
+              currentInterval={timer.currentInterval}
+              totalIntervals={timer.totalIntervals}
+              minutesPerInterval={timer.minutesPerInterval}
+              formattedTime={timer.formattedTime}
+              intervalProgress={timer.intervalProgress}
+              isWakeLockActive={timer.isWakeLockActive}
+              onTogglePlay={timer.togglePlay}
+              onReset={timer.resetTimer}
               onOpenSettings={() => setViewMode('config')}
-              onMockIntervalChange={setCurrentInterval}
-              onMockSecondsChange={setMockSecondsRemaining}
+              onSeekInterval={timer.seekToInterval}
+              onSeekProgress={timer.seekIntervalProgress}
             />
           </div>
         ) : viewMode === 'config' ? (
           <IntervalConfig
             intervals={intervals}
             minutes={minutes}
-            onIntervalsChange={setIntervals}
-            onMinutesChange={setMinutes}
+            onIntervalsChange={(val) => {
+              setIntervals(val);
+              if (timer.status !== 'running') timer.resetTimer();
+            }}
+            onMinutesChange={(val) => {
+              setMinutes(val);
+              if (timer.status !== 'running') timer.resetTimer();
+            }}
             onStartSession={handleStartSession}
             soundEnabled={soundEnabled}
             onToggleSound={() => setSoundEnabled((prev) => !prev)}
@@ -166,22 +136,26 @@ export default function App() {
           />
         ) : (
           <ActiveTimer
-            currentInterval={currentInterval}
-            totalIntervals={intervals}
-            minutesPerInterval={minutes}
-            mockSecondsRemaining={mockSecondsRemaining}
-            isPlaying={isPlaying}
-            onTogglePlay={handleTogglePlay}
-            onReset={handleReset}
+            status={timer.status}
+            isPlaying={timer.isPlaying}
+            isCompleted={timer.isCompleted}
+            currentInterval={timer.currentInterval}
+            totalIntervals={timer.totalIntervals}
+            minutesPerInterval={timer.minutesPerInterval}
+            formattedTime={timer.formattedTime}
+            intervalProgress={timer.intervalProgress}
+            isWakeLockActive={timer.isWakeLockActive}
+            onTogglePlay={timer.togglePlay}
+            onReset={timer.resetTimer}
             onOpenSettings={() => setViewMode('config')}
-            onMockIntervalChange={setCurrentInterval}
-            onMockSecondsChange={setMockSecondsRemaining}
+            onSeekInterval={timer.seekToInterval}
+            onSeekProgress={timer.seekIntervalProgress}
           />
         )}
       </main>
 
       <footer className="zen-footer">
-        <p>Distraction-free interval bell with pure Web Audio harmonic synthesis.</p>
+        <p>Distraction-free interval bell with drift-free Web Audio timing and Screen Wake Lock.</p>
       </footer>
     </div>
   );
