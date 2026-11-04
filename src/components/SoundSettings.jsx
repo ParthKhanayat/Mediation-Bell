@@ -6,15 +6,12 @@ import {
   Disc,
   Play,
   Square,
-  Sparkles,
-  Music,
   Check,
 } from 'lucide-react';
 import {
   testBellSound,
   stopAllSounds,
   unlockAudio,
-  AUDIO_CONFIG,
 } from '../services/zenAudio';
 
 export default function SoundSettings({
@@ -24,7 +21,6 @@ export default function SoundSettings({
   onToggleDoubleStrike,
 }) {
   const [playingType, setPlayingType] = useState(null); // 'interval' | 'final' | null
-  const [activeSource, setActiveSource] = useState('synth'); // 'synth' | 'custom'
 
   const handleTestSound = async (type) => {
     // 1. Mobile unlock
@@ -52,12 +48,6 @@ export default function SoundSettings({
     setPlayingType(null);
   };
 
-  const handleSourceToggle = (source) => {
-    setActiveSource(source);
-    AUDIO_CONFIG.intervalBell.source = source;
-    AUDIO_CONFIG.finalBell.source = source;
-  };
-
   return (
     <div className="zen-sound-section">
       <div className="zen-sound-header">
@@ -67,9 +57,6 @@ export default function SoundSettings({
           </div>
           <div>
             <h3 className="zen-sound-heading">Meditation Bells & Acoustics</h3>
-            <p className="zen-sound-subheading">
-              Pure Web Audio synthesis • No audio files required
-            </p>
           </div>
         </div>
 
@@ -196,37 +183,6 @@ export default function SoundSettings({
             </label>
           </div>
         </div>
-      </div>
-
-      {/* Audio Source Extensibility Note */}
-      <div className="zen-audio-extensibility-note">
-        <div className="zen-audio-source-switch">
-          <span className="zen-source-label">Audio Engine:</span>
-          <button
-            type="button"
-            className={`zen-source-pill ${activeSource === 'synth' ? 'active' : ''}`}
-            onClick={() => handleSourceToggle('synth')}
-          >
-            <Sparkles size={12} />
-            <span>Web Audio Synth</span>
-          </button>
-          <button
-            type="button"
-            className={`zen-source-pill ${activeSource === 'custom' ? 'active' : ''}`}
-            onClick={() => handleSourceToggle('custom')}
-            title="Swap in local .mp3 file paths"
-          >
-            <Music size={12} />
-            <span>Custom MP3 Files</span>
-          </button>
-        </div>
-
-        {activeSource === 'custom' && (
-          <div className="zen-custom-audio-hint">
-            Configured to load local audio from <code>/audio/interval-chime.mp3</code> &amp;{' '}
-            <code>/audio/singing-bowl.mp3</code> (automatically falls back to Web Audio if files are absent).
-          </div>
-        )}
       </div>
     </div>
   );
