@@ -3,11 +3,16 @@ import Header from './components/Header';
 import IntervalConfig from './components/IntervalConfig';
 import ActiveTimer from './components/ActiveTimer';
 import { Sliders, Timer, Columns } from 'lucide-react';
+import { playBell, unlockAudio, AUDIO_CONFIG } from './services/zenAudio';
 
 export default function App() {
   // Session Configuration State
   const [intervals, setIntervals] = useState(4);
   const [minutes, setMinutes] = useState(5);
+
+  // Sound Synthesizer Options
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [doubleStrike, setDoubleStrike] = useState(true);
 
   // Active Timer Mocked State
   const [currentInterval, setCurrentInterval] = useState(2);
@@ -16,6 +21,12 @@ export default function App() {
 
   // View state: 'config', 'timer', or 'both' (desktop dual-view)
   const [viewMode, setViewMode] = useState('both');
+
+  // Sync sound settings to AUDIO_CONFIG singleton
+  useEffect(() => {
+    AUDIO_CONFIG.soundEnabled = soundEnabled;
+    AUDIO_CONFIG.finalBell.doubleStrike = doubleStrike;
+  }, [soundEnabled, doubleStrike]);
 
   // Keep mock seconds in sync if user changes minutes per interval
   useEffect(() => {
@@ -31,25 +42,36 @@ export default function App() {
     }
   }, [intervals, currentInterval]);
 
-  // Optional subtle simulated tick when mock playing is active
+  // Simulated tick when mock playing is active, playing bells on interval boundaries
   useEffect(() => {
     let intervalId;
     if (isPlaying) {
       intervalId = setInterval(() => {
         setMockSecondsRemaining((prev) => {
           if (prev <= 1) {
-            // Mock chime cycle: proceed to next interval or loop
-            setCurrentInterval((curr) => (curr >= intervals ? 1 : curr + 1));
-            return minutes * 60;
+            // Check if this was the final interval or an intermediate interval
+            if (currentInterval >= intervals) {
+              // Final Session Bell: Deep Singing Bowl
+              playBell('final');
+              setCurrentInterval(1);
+              setIsPlaying(false);
+              return minutes * 60;
+            } else {
+              // Interval Bell: Gentle 528Hz Chime
+              playBell('interval');
+              setCurrentInterval((curr) => curr + 1);
+              return minutes * 60;
+            }
           }
           return prev - 1;
         });
       }, 1000);
     }
     return () => clearInterval(intervalId);
-  }, [isPlaying, intervals, minutes]);
+  }, [isPlaying, intervals, minutes, currentInterval]);
 
-  const handleTogglePlay = () => {
+  const handleTogglePlay = async () => {
+    await unlockAudio();
     setIsPlaying((prev) => !prev);
   };
 
@@ -57,6 +79,12 @@ export default function App() {
     setIsPlaying(false);
     setMockSecondsRemaining(minutes * 60);
     setCurrentInterval(1);
+  };
+
+  const handleStartSession = async () => {
+    await unlockAudio();
+    setIsPlaying(true);
+    setViewMode('timer');
   };
 
   return (
@@ -73,7 +101,7 @@ export default function App() {
           onClick={() => setViewMode('config')}
         >
           <Sliders size={15} />
-          <span>Setup</span>
+          <span>Setup &amp; Sounds</span>
         </button>
 
         <button
@@ -104,9 +132,11 @@ export default function App() {
               minutes={minutes}
               onIntervalsChange={setIntervals}
               onMinutesChange={setMinutes}
-              onStartSession={() => {
-                setIsPlaying(true);
-              }}
+              onStartSession={handleStartSession}
+              soundEnabled={soundEnabled}
+              onToggleSound={() => setSoundEnabled((prev) => !prev)}
+              doubleStrike={doubleStrike}
+              onToggleDoubleStrike={() => setDoubleStrike((prev) => !prev)}
             />
 
             <ActiveTimer
@@ -128,7 +158,11 @@ export default function App() {
             minutes={minutes}
             onIntervalsChange={setIntervals}
             onMinutesChange={setMinutes}
-            onStartSession={() => setViewMode('timer')}
+            onStartSession={handleStartSession}
+            soundEnabled={soundEnabled}
+            onToggleSound={() => setSoundEnabled((prev) => !prev)}
+            doubleStrike={doubleStrike}
+            onToggleDoubleStrike={() => setDoubleStrike((prev) => !prev)}
           />
         ) : (
           <ActiveTimer
@@ -147,7 +181,7 @@ export default function App() {
       </main>
 
       <footer className="zen-footer">
-        <p>Distraction-free interval bell for mindfulness and Zazen practice.</p>
+        <p>Distraction-free interval bell with pure Web Audio harmonic synthesis.</p>
       </footer>
     </div>
   );

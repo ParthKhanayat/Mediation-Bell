@@ -1,7 +1,9 @@
 import React from 'react';
-import { Clock, Play, Sparkles } from 'lucide-react';
+import { Clock, Play } from 'lucide-react';
 import Stepper from './Stepper';
 import PresetPills from './PresetPills';
+import SoundSettings from './SoundSettings';
+import { unlockAudio } from '../services/zenAudio';
 
 export default function IntervalConfig({
   intervals,
@@ -9,8 +11,20 @@ export default function IntervalConfig({
   onIntervalsChange,
   onMinutesChange,
   onStartSession,
+  soundEnabled,
+  onToggleSound,
+  doubleStrike,
+  onToggleDoubleStrike,
 }) {
   const totalMinutes = intervals * minutes;
+
+  const handleBeginClick = async () => {
+    // Crucial for iOS Safari & Android Chrome: unlock AudioContext during tap gesture
+    await unlockAudio();
+    if (onStartSession) {
+      onStartSession();
+    }
+  };
 
   return (
     <section className="zen-card" aria-labelledby="config-heading">
@@ -19,7 +33,7 @@ export default function IntervalConfig({
           Session Configuration
         </h2>
         <p className="zen-card-description">
-          Set your intervals and interval length for mindful practice
+          Set intervals and sound acoustics for your mindful practice
         </p>
       </div>
 
@@ -83,10 +97,18 @@ export default function IntervalConfig({
         }}
       />
 
+      {/* Dedicated Meditation Sound Synthesizer & Testing Module */}
+      <SoundSettings
+        soundEnabled={soundEnabled}
+        onToggleSound={onToggleSound}
+        doubleStrike={doubleStrike}
+        onToggleDoubleStrike={onToggleDoubleStrike}
+      />
+
       <button
         type="button"
         className="zen-start-session-btn"
-        onClick={onStartSession}
+        onClick={handleBeginClick}
         aria-label="Begin meditation and view active timer"
       >
         <Play size={18} fill="currentColor" />

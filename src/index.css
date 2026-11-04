@@ -824,6 +824,331 @@ body {
   cursor: pointer;
 }
 
+/* ==========================================================================
+   Sound & Acoustics Synthesizer Section
+   ========================================================================== */
+.zen-sound-section {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.zen-sound-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.zen-sound-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.zen-sound-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: rgba(156, 177, 151, 0.1);
+  color: var(--color-sage);
+  flex-shrink: 0;
+}
+
+.zen-sound-heading {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-sand-light);
+  letter-spacing: 0.02em;
+}
+
+.zen-sound-subheading {
+  font-size: 0.75rem;
+  color: var(--color-sand-dim);
+}
+
+.zen-sound-mute-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: var(--color-sand);
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  user-select: none;
+}
+
+.zen-sound-mute-toggle.active {
+  background: rgba(156, 177, 151, 0.12);
+  border-color: rgba(156, 177, 151, 0.35);
+  color: var(--color-sage-light);
+}
+
+.zen-sound-mute-toggle.muted {
+  opacity: 0.7;
+  color: var(--color-sand-dim);
+  border-color: rgba(223, 213, 198, 0.06);
+}
+
+.zen-sound-mute-toggle:hover {
+  transform: translateY(-1px);
+}
+
+/* Sound Cards Grid */
+.zen-sound-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.zen-sound-card {
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-md);
+  background: rgba(20, 24, 20, 0.6);
+  border: 1px solid var(--color-border);
+  transition: var(--transition-gentle);
+  position: relative;
+  overflow: hidden;
+}
+
+.zen-sound-card.is-playing {
+  border-color: rgba(156, 177, 151, 0.5);
+  background: rgba(28, 36, 28, 0.7);
+  box-shadow: 0 0 20px -3px rgba(156, 177, 151, 0.2);
+}
+
+.zen-sound-card.is-playing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-sage), transparent);
+  animation: sound-shine 2s infinite ease-in-out;
+}
+
+@keyframes sound-shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.zen-sound-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.zen-sound-card-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.zen-sound-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: rgba(156, 177, 151, 0.08);
+  color: var(--color-sage);
+  flex-shrink: 0;
+}
+
+.zen-sound-card.is-playing .zen-sound-card-icon {
+  background: rgba(156, 177, 151, 0.2);
+  animation: pulse-icon 1.5s infinite alternate;
+}
+
+@keyframes pulse-icon {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); filter: drop-shadow(0 0 6px var(--color-sage)); }
+}
+
+.zen-sound-card-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-sand-light);
+}
+
+.zen-sound-card-specs {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--color-sand-muted);
+}
+
+.zen-test-sound-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.95rem;
+  min-height: 40px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: rgba(156, 177, 151, 0.1);
+  border: 1px solid rgba(156, 177, 151, 0.25);
+  color: var(--color-sand-light);
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.zen-test-sound-btn:hover:not(:disabled) {
+  background: rgba(156, 177, 151, 0.2);
+  border-color: var(--color-sage);
+  transform: translateY(-1px);
+}
+
+.zen-test-sound-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.zen-test-sound-btn.active {
+  background: rgba(156, 177, 151, 0.3);
+  border-color: var(--color-sage-light);
+  color: var(--color-sand-light);
+}
+
+.zen-test-sound-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.zen-sound-card-desc {
+  font-size: 0.78rem;
+  color: var(--color-sand-dim);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+.zen-sound-card-option {
+  margin-top: 0.65rem;
+  padding-top: 0.55rem;
+  border-top: 1px dashed rgba(223, 213, 198, 0.08);
+}
+
+.zen-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.zen-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.zen-checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(156, 177, 151, 0.35);
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-sage-light);
+  transition: var(--transition-gentle);
+}
+
+.zen-checkbox:checked + .zen-checkbox-custom {
+  background: rgba(156, 177, 151, 0.2);
+  border-color: var(--color-sage);
+}
+
+.zen-checkbox-text {
+  font-size: 0.78rem;
+  color: var(--color-sand-muted);
+}
+
+/* Extensibility switch */
+.zen-audio-extensibility-note {
+  margin-top: 0.35rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: rgba(18, 20, 18, 0.45);
+  border: 1px dashed rgba(223, 213, 198, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.zen-audio-source-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.zen-source-label {
+  font-size: 0.74rem;
+  color: var(--color-sand-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.zen-source-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  color: var(--color-sand-muted);
+  cursor: pointer;
+  transition: var(--transition-gentle);
+}
+
+.zen-source-pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--color-sand-light);
+}
+
+.zen-source-pill.active {
+  background: rgba(156, 177, 151, 0.15);
+  border-color: rgba(156, 177, 151, 0.4);
+  color: var(--color-sage-light);
+}
+
+.zen-custom-audio-hint {
+  font-size: 0.72rem;
+  color: var(--color-sand-dim);
+  line-height: 1.4;
+}
+
+.zen-custom-audio-hint code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1px 4px;
+  border-radius: 3px;
+  color: var(--color-sand-muted);
+  font-family: monospace;
+}
+
 /* Zen Footer */
 .zen-footer {
   margin-top: auto;

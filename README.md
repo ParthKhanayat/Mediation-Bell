@@ -74,3 +74,4 @@ meditation-bell/
         ├── CircularProgress.jsx# SVG circular progress ring
         └── ZenControls.jsx     # Mobile-optimized Play/Pause & Reset buttons
 ```
+

@@ -1,6 +1,8 @@
 import React from 'react';
 import CircularProgress from './CircularProgress';
 import ZenControls from './ZenControls';
+import { Bell, Disc } from 'lucide-react';
+import { playBell, unlockAudio } from '../services/zenAudio';
 
 export default function ActiveTimer({
   currentInterval = 2,
@@ -23,6 +25,11 @@ export default function ActiveTimer({
 
   // Progress depleting smoothly: 1 (full) down to 0 (empty)
   const progress = Math.max(0, Math.min(1, mockSecondsRemaining / totalSecondsInInterval));
+
+  const handleControlPlayToggle = async () => {
+    await unlockAudio();
+    onTogglePlay();
+  };
 
   return (
     <section className="zen-card zen-timer-card" aria-label="Active Meditation Timer">
@@ -47,7 +54,7 @@ export default function ActiveTimer({
       {/* Large Tap-Target Controls */}
       <ZenControls
         isPlaying={isPlaying}
-        onTogglePlay={onTogglePlay}
+        onTogglePlay={handleControlPlayToggle}
         onReset={onReset}
         onOpenSettings={onOpenSettings}
       />
@@ -56,7 +63,7 @@ export default function ActiveTimer({
       <div className="zen-mock-toolbar" role="region" aria-label="Mock state inspection tools">
         <div className="mock-toolbar-header">
           <span>Mock State Playground</span>
-          <span className="mock-toolbar-badge">Requirement 4</span>
+          <span className="mock-toolbar-badge">Interactive Sound &amp; Timer</span>
         </div>
 
         <div className="mock-toolbar-actions">
@@ -90,6 +97,30 @@ export default function ActiveTimer({
               onClick={() => onMockSecondsChange(Math.round(totalSecondsInInterval * 0.25))}
             >
               25% Ring
+            </button>
+          </div>
+
+          {/* Sound trigger test buttons inside active timer view */}
+          <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.35rem', width: '100%' }}>
+            <button
+              type="button"
+              className="mock-toolbar-btn"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flex: 1 }}
+              onClick={() => playBell('interval')}
+              title="Ring 528Hz Interval Bell"
+            >
+              <Bell size={12} />
+              <span>Ring Chime</span>
+            </button>
+            <button
+              type="button"
+              className="mock-toolbar-btn"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flex: 1 }}
+              onClick={() => playBell('final')}
+              title="Ring Deep Singing Bowl"
+            >
+              <Disc size={12} />
+              <span>Ring Final Bowl</span>
             </button>
           </div>
         </div>
