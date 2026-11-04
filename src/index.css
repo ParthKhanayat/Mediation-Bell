@@ -1,39 +1,63 @@
+/* ==========================================================================
+   Zen Meditation Interval Timer - Pastel Glassmorphism Theme
+   Inspired by soft pastel mesh gradients, frosted glass, and coral-peach accents
+   ========================================================================== */
+
 :root {
-  --color-bg-base: #121413;
-  --color-bg-gradient: radial-gradient(circle at 50% 15%, #1c201c 0%, #131513 55%, #0d0f0d 100%);
-  --color-bg-surface: rgba(25, 29, 25, 0.75);
-  --color-bg-card: rgba(30, 35, 30, 0.65);
-  --color-bg-pill: rgba(45, 52, 45, 0.5);
-  --color-bg-pill-active: rgba(156, 177, 151, 0.18);
-  --color-bg-hover: rgba(156, 177, 151, 0.12);
-  --color-bg-active: rgba(156, 177, 151, 0.22);
+  /* Core Pastel Mesh Palette */
+  --color-bg-base: #F4F3F6;
+  --color-bg-mesh: 
+    radial-gradient(at 10% 10%, #FFFFFF 0px, transparent 40%),
+    radial-gradient(at 90% 10%, #F6EBF2 0px, transparent 45%),
+    radial-gradient(at 85% 85%, #EADBEE 0px, transparent 45%),
+    radial-gradient(at 15% 90%, #FFEFE6 0px, transparent 45%),
+    radial-gradient(at 50% 50%, #FAF7F9 0px, transparent 60%),
+    #F4F3F6;
 
-  --color-sage: #9cb197;
-  --color-sage-light: #b9ccb5;
-  --color-sage-dark: #63775f;
-  --color-sage-glow: rgba(156, 177, 151, 0.16);
+  /* Frosted Glass Surfaces */
+  --color-glass-card: rgba(255, 255, 255, 0.65);
+  --color-glass-subtle: rgba(255, 255, 255, 0.45);
+  --color-glass-pill: rgba(255, 255, 255, 0.55);
+  --color-glass-pill-active: #FFFFFF;
+  --color-glass-input: rgba(255, 255, 255, 0.6);
 
-  --color-sand: #dfd5c6;
-  --color-sand-light: #f3ece2;
-  --color-sand-muted: #a69e92;
-  --color-sand-dim: #7a7369;
+  /* Borders & Highlights */
+  --color-border-glass: rgba(255, 255, 255, 0.85);
+  --color-border-subtle: rgba(255, 255, 255, 0.6);
+  --color-border-dark: rgba(30, 20, 50, 0.06);
 
-  --color-border: rgba(223, 213, 198, 0.08);
-  --color-border-hover: rgba(156, 177, 151, 0.25);
-  --color-border-active: rgba(156, 177, 151, 0.5);
+  /* Coral-Peach Gradient Accents (from reference image) */
+  --gradient-coral-peach: linear-gradient(135deg, #FF8A65 0%, #FF6E40 100%);
+  --gradient-coral-lavender: linear-gradient(135deg, #FFA07A 0%, #FF6E40 50%, #E040FB 100%);
+  --gradient-orb: radial-gradient(circle at 35% 35%, #FFB499 0%, #FF7A50 45%, #E64A19 85%);
+  --color-coral: #FF6E40;
+  --color-coral-light: #FF8A65;
+  --color-coral-soft: rgba(255, 110, 64, 0.12);
+  --color-lavender: #E040FB;
 
-  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Typography Colors */
+  --text-primary: #1E1E24;     /* Deep charcoal for headers & timer digits */
+  --text-secondary: #6E6D7A;   /* Medium muted slate for labels & descriptions */
+  --text-muted: #9392A0;       /* Lighter slate for hints & captions */
+  --text-dim: #A8A7B3;
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: var(--font-sans); /* Pure clean geometric sans aesthetic */
+
+  /* Radii */
+  --radius-sm: 10px;
+  --radius-md: 16px;
   --radius-lg: 22px;
-  --radius-xl: 32px;
+  --radius-card: 28px;
   --radius-full: 9999px;
 
-  --shadow-zen: 0 12px 40px -10px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 50px -10px rgba(156, 177, 151, 0.12);
-  --shadow-inner: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  /* Diffused Soft Shadows */
+  --shadow-glass: 0 12px 32px -4px rgba(30, 20, 50, 0.05), 0 4px 12px -2px rgba(30, 20, 50, 0.03);
+  --shadow-inner: inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  --shadow-pill: 0 4px 14px rgba(30, 20, 50, 0.08);
+  --shadow-coral: 0 8px 24px -4px rgba(255, 110, 64, 0.38);
+  --shadow-orb: 0 8px 20px -4px rgba(255, 110, 64, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.5);
 
   --transition-gentle: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -51,18 +75,18 @@ html, body {
   height: 100%;
   width: 100%;
   background-color: var(--color-bg-base);
-  color: var(--color-sand);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   font-weight: 400;
   line-height: 1.5;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--color-bg-gradient);
+  background: var(--color-bg-mesh);
   background-attachment: fixed;
   display: flex;
   flex-direction: column;
@@ -94,25 +118,25 @@ body {
   }
 }
 
-/* Ambient Background Ornament */
+/* Ambient Canvas Background Orbs */
 .zen-ambient-aura {
   position: fixed;
-  top: 15%;
+  top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: min(90vw, 600px);
-  height: min(90vw, 600px);
-  background: radial-gradient(circle, rgba(156, 177, 151, 0.045) 0%, rgba(223, 213, 198, 0.02) 40%, transparent 70%);
+  width: min(92vw, 680px);
+  height: min(92vw, 680px);
+  background: radial-gradient(circle, rgba(255, 138, 101, 0.14) 0%, rgba(224, 64, 251, 0.08) 40%, rgba(255, 239, 230, 0.12) 65%, transparent 75%);
   pointer-events: none;
   z-index: 0;
   border-radius: 50%;
-  filter: blur(40px);
-  animation: zen-breathe 12s ease-in-out infinite alternate;
+  filter: blur(55px);
+  animation: zen-ambient-drift 14s ease-in-out infinite alternate;
 }
 
-@keyframes zen-breathe {
-  0% { transform: translateX(-50%) scale(0.95); opacity: 0.7; }
-  100% { transform: translateX(-50%) scale(1.08); opacity: 1; }
+@keyframes zen-ambient-drift {
+  0% { transform: translateX(-50%) scale(0.96) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateX(-48%) scale(1.08) rotate(15deg); opacity: 1; }
 }
 
 /* Zen Header */
@@ -123,59 +147,62 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 2rem;
-  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+  gap: 0.35rem;
 }
 
+/* Glowing 3D Orb Header Mark (echoes the 3D sphere from reference image) */
 .zen-logo-mark {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius-full);
-  background: rgba(156, 177, 151, 0.08);
-  border: 1px solid rgba(156, 177, 151, 0.2);
-  color: var(--color-sage);
-  margin-bottom: 0.25rem;
-  box-shadow: 0 0 20px -4px rgba(156, 177, 151, 0.15);
+  background: var(--gradient-orb);
+  color: #FFFFFF;
+  margin-bottom: 0.35rem;
+  box-shadow: var(--shadow-orb);
   transition: var(--transition-gentle);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .zen-logo-mark:hover {
-  background: rgba(156, 177, 151, 0.14);
-  transform: scale(1.04);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 10px 24px -2px rgba(255, 110, 64, 0.5);
 }
 
 .zen-title {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  letter-spacing: 0.04em;
-  color: var(--color-sand-light);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
   line-height: 1.2;
 }
 
 .zen-subtitle {
   font-size: 0.88rem;
-  color: var(--color-sand-muted);
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
-/* Mode Switcher Tabs */
+/* Mode Switcher Tabs (Frosted Capsule Pill) */
 .zen-view-switcher {
   display: inline-flex;
   align-items: center;
-  background: rgba(22, 26, 22, 0.8);
-  backdrop-filter: blur(12px);
-  padding: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 5px;
   border-radius: var(--radius-full);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-glass);
+  box-shadow: var(--shadow-glass), var(--shadow-inner);
   margin-bottom: 2rem;
   position: relative;
   z-index: 1;
+  gap: 4px;
 }
 
 .zen-view-tab {
@@ -185,10 +212,10 @@ body {
   padding: 0.55rem 1.25rem;
   font-size: 0.85rem;
   font-weight: 500;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.01em;
   border: none;
   background: transparent;
-  color: var(--color-sand-muted);
+  color: var(--text-secondary);
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: var(--transition-gentle);
@@ -196,19 +223,21 @@ body {
 }
 
 .zen-view-tab:hover {
-  color: var(--color-sand-light);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .zen-view-tab.active {
-  background: var(--color-bg-card);
-  color: var(--color-sand-light);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(156, 177, 151, 0.25);
+  background: var(--color-glass-pill-active);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-view-tab svg {
   width: 15px;
   height: 15px;
-  color: var(--color-sage);
+  color: var(--color-coral);
 }
 
 /* Main Content Area */
@@ -234,22 +263,22 @@ body {
   .zen-dual-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 2.25rem;
     max-width: 980px;
     align-items: start;
   }
 }
 
-/* Zen Card Container */
+/* Frosted Glass Panels (Glassmorphism) */
 .zen-card {
   width: 100%;
-  background: var(--color-bg-surface);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: 1.75rem 1.5rem;
-  box-shadow: var(--shadow-zen), var(--shadow-inner);
+  background: var(--color-glass-card);
+  backdrop-filter: blur(24px) saturate(130%);
+  -webkit-backdrop-filter: blur(24px) saturate(130%);
+  border: 1px solid var(--color-border-glass);
+  border-radius: var(--radius-card);
+  padding: 1.85rem 1.6rem;
+  box-shadow: var(--shadow-glass), var(--shadow-inner);
   transition: var(--transition-smooth);
 }
 
@@ -265,24 +294,25 @@ body {
 }
 
 .zen-card-title {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--color-sand-light);
-  letter-spacing: 0.02em;
+  font-family: var(--font-sans);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .zen-card-description {
-  font-size: 0.85rem;
-  color: var(--color-sand-muted);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
   margin-top: 0.25rem;
+  font-weight: 400;
 }
 
 /* Configuration UI Form Elements */
 .config-group {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .stepper-row {
@@ -307,70 +337,74 @@ body {
 
 .stepper-label {
   font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--color-sand);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .stepper-hint {
   font-size: 0.78rem;
-  color: var(--color-sand-dim);
+  color: var(--text-secondary);
 }
 
-/* Stepper Control */
+/* Capsule Stepper Control */
 .zen-stepper {
   display: inline-flex;
   align-items: center;
-  background: rgba(18, 21, 18, 0.7);
-  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--color-border-glass);
   border-radius: var(--radius-full);
   padding: 4px;
   gap: 4px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-inner), 0 2px 8px rgba(30, 20, 50, 0.04);
 }
 
 .zen-stepper-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
   border-radius: var(--radius-full);
-  border: 1px solid transparent;
-  background: rgba(45, 52, 45, 0.3);
-  color: var(--color-sand);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #FFFFFF;
+  color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
+  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.06);
 }
 
 .zen-stepper-btn:hover:not(:disabled) {
-  background: var(--color-bg-hover);
-  color: var(--color-sand-light);
-  border-color: var(--color-border-hover);
+  background: #FFFFFF;
+  color: var(--color-coral);
+  box-shadow: 0 4px 12px rgba(255, 110, 64, 0.18);
+  transform: scale(1.04);
 }
 
 .zen-stepper-btn:active:not(:disabled) {
-  transform: scale(0.94);
-  background: var(--color-bg-active);
+  transform: scale(0.95);
+  box-shadow: 0 1px 3px rgba(30, 20, 50, 0.08);
 }
 
 .zen-stepper-btn:disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .zen-stepper-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
 }
 
 .zen-stepper-value-container {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  min-width: 72px;
+  min-width: 68px;
   padding: 0 0.5rem;
 }
 
@@ -378,10 +412,10 @@ body {
   width: 44px;
   background: transparent;
   border: none;
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--color-sand-light);
+  font-family: var(--font-sans);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
   text-align: center;
   outline: none;
   -moz-appearance: textfield;
@@ -395,23 +429,24 @@ body {
 }
 
 .zen-stepper-unit {
-  font-size: 0.8rem;
-  color: var(--color-sand-muted);
-  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  font-weight: 500;
   margin-left: 2px;
 }
 
-/* Live Session Duration Display */
+/* Live Session Duration Banner */
 .zen-duration-banner {
   margin-top: 1.75rem;
   padding: 1.1rem 1.25rem;
   border-radius: var(--radius-lg);
-  background: rgba(156, 177, 151, 0.05);
-  border: 1px solid rgba(156, 177, 151, 0.15);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid var(--color-border-glass);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  box-shadow: var(--shadow-inner), 0 4px 14px rgba(30, 20, 50, 0.03);
 }
 
 .zen-duration-meta {
@@ -427,44 +462,46 @@ body {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
-  background: rgba(156, 177, 151, 0.1);
-  color: var(--color-sage);
+  background: var(--color-coral-soft);
+  color: var(--color-coral);
   flex-shrink: 0;
 }
 
 .zen-duration-title {
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-sand-muted);
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 
 .zen-duration-formula {
   font-family: var(--font-sans);
   font-size: 0.92rem;
-  color: var(--color-sand);
+  color: var(--text-primary);
   font-weight: 500;
 }
 
 .zen-duration-highlight {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--color-sage-light);
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-coral);
   white-space: nowrap;
 }
 
-/* Quick Select Presets */
+/* Quick Select Presets (Full Capsule Pills) */
 .presets-section {
   margin-top: 1.75rem;
 }
 
 .presets-label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-sand-muted);
+  color: var(--text-secondary);
+  font-weight: 600;
   margin-bottom: 0.75rem;
   text-align: center;
 }
@@ -472,7 +509,7 @@ body {
 .preset-pills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 @media (max-width: 360px) {
@@ -486,29 +523,31 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.7rem 0.5rem;
-  border-radius: var(--radius-md);
-  background: var(--color-bg-pill);
-  border: 1px solid var(--color-border);
-  color: var(--color-sand);
+  padding: 0.65rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-glass-subtle);
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
   min-height: 52px;
+  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.02);
 }
 
 .zen-preset-pill:hover {
-  background: var(--color-bg-hover);
-  border-color: var(--color-border-hover);
-  color: var(--color-sand-light);
-  transform: translateY(-1px);
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-preset-pill.active {
-  background: var(--color-bg-pill-active);
-  border-color: var(--color-border-active);
-  color: var(--color-sand-light);
-  box-shadow: 0 0 16px -2px rgba(156, 177, 151, 0.2);
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-preset-pill:active {
@@ -518,21 +557,26 @@ body {
 .preset-pill-title {
   font-family: var(--font-sans);
   font-size: 0.88rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .preset-pill-desc {
   font-size: 0.72rem;
-  color: var(--color-sand-muted);
-  margin-top: 2px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.zen-preset-pill.active .preset-pill-title {
+  color: var(--text-primary);
 }
 
 .zen-preset-pill.active .preset-pill-desc {
-  color: var(--color-sage-light);
+  color: var(--color-coral);
+  font-weight: 500;
 }
 
-/* Action button for configuration */
+/* Primary "Begin Meditation" Button (Coral-Peach Gradient Capsule) */
 .zen-start-session-btn {
   margin-top: 2rem;
   width: 100%;
@@ -540,199 +584,230 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 1rem 1.5rem;
+  padding: 0.95rem 1.5rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(156, 177, 151, 0.3);
-  background: linear-gradient(135deg, rgba(156, 177, 151, 0.15) 0%, rgba(156, 177, 151, 0.08) 100%);
-  color: var(--color-sand-light);
+  border: none;
+  background: var(--gradient-coral-peach);
+  color: #FFFFFF;
   font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   cursor: pointer;
   transition: var(--transition-gentle);
   min-height: 54px;
+  box-shadow: var(--shadow-coral);
 }
 
 .zen-start-session-btn:hover {
-  background: linear-gradient(135deg, rgba(156, 177, 151, 0.25) 0%, rgba(156, 177, 151, 0.14) 100%);
-  border-color: var(--color-sage);
-  box-shadow: 0 0 24px -4px rgba(156, 177, 151, 0.25);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -2px rgba(255, 110, 64, 0.48);
 }
 
 .zen-start-session-btn:active {
   transform: scale(0.98);
 }
 
-/* ACTIVE TIMER VIEW */
+/* ==========================================================================
+   ACTIVE TIMER VIEW & ETHEREAL CENTERPIECE
+   ========================================================================== */
 .zen-timer-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 2.25rem 1.5rem 2rem;
+  padding: 2.25rem 1.6rem 2rem;
   position: relative;
 }
 
-/* ==========================================================================
-   Zen Running Mode - Gentle Dimming of Secondary Controls
-   ========================================================================== */
-.zen-header-container,
-.zen-view-switcher,
-.zen-footer,
-.zen-config-wrapper,
-.zen-secondary-dim,
-.zen-secondary-control {
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.2s ease,
-              transform 0.4s ease;
+/* Top Meta: Interval Badge & Screen Wake Lock */
+.zen-timer-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  z-index: 2;
 }
 
-/* When the timer is running, dim secondary controls to low opacity */
-.zen-timer-running .zen-secondary-dim {
-  opacity: 0.15;
-  filter: grayscale(40%);
+.zen-interval-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.15rem;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: var(--shadow-pill);
 }
 
-.zen-timer-running .zen-secondary-dim:hover,
-.zen-timer-running .zen-secondary-dim:focus-within {
-  opacity: 0.75;
-  filter: grayscale(0%);
+.zen-interval-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-coral);
+  box-shadow: 0 0 8px rgba(255, 110, 64, 0.6);
 }
 
-.zen-timer-running .zen-secondary-control {
-  opacity: 0.15;
+.zen-interval-dot.pulsing {
+  animation: pulse-coral-dot 2.5s infinite ease-in-out;
 }
 
-.zen-timer-running .zen-secondary-control:hover,
-.zen-timer-running .zen-secondary-control:focus-within {
-  opacity: 0.85;
+@keyframes pulse-coral-dot {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.4); opacity: 1; }
 }
 
-.zen-timer-running .zen-btn-secondary {
-  opacity: 0.25;
+.zen-wakelock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(30, 20, 50, 0.04);
 }
 
-.zen-timer-running .zen-btn-secondary:hover {
-  opacity: 1;
+.zen-wakelock-pill svg {
+  color: var(--color-coral);
 }
 
-/* Ensure the central dial & primary pause button stay 100% prominent */
-.zen-timer-running .zen-dial-wrapper {
-  opacity: 1;
-  transform: scale(1.02);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.zen-timer-running .zen-btn-primary {
-  box-shadow: 0 0 35px -2px rgba(156, 177, 151, 0.45);
-}
-
-/* ==========================================================================
-   Pure Zen Mode (Hide Digits)
-   ========================================================================== */
+/* Pure Zen Mode Toggle */
 .zen-zen-mode-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.35rem 0.8rem;
+  padding: 0.45rem 0.95rem;
   border-radius: var(--radius-full);
-  background: rgba(223, 213, 198, 0.05);
-  border: 1px solid var(--color-border);
-  color: var(--color-sand-muted);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
+  box-shadow: 0 2px 8px rgba(30, 20, 50, 0.04);
 }
 
 .zen-zen-mode-toggle:hover {
-  background: rgba(156, 177, 151, 0.12);
-  border-color: rgba(156, 177, 151, 0.3);
-  color: var(--color-sand-light);
+  background: #FFFFFF;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-zen-mode-toggle.active {
-  background: rgba(156, 177, 151, 0.15);
-  border-color: rgba(156, 177, 151, 0.4);
-  color: var(--color-sage-light);
+  background: #FFFFFF;
+  color: var(--color-coral);
+  box-shadow: var(--shadow-pill);
 }
 
-.zen-pure-dial-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  pointer-events: auto;
-  user-select: none;
-}
-
-.zen-meditation-enso {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(156, 177, 151, 0.25);
+/* Circular Progress Dial & Luminous Glowing Centerpiece Aura */
+.zen-dial-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(72vw, 300px);
+  height: min(72vw, 300px);
+  margin: 0 auto 2.25rem;
+  z-index: 1;
 }
 
-.zen-breathing-core {
-  width: 22px;
-  height: 22px;
+@media (min-width: 480px) {
+  .zen-dial-wrapper {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+/* Luminous Centerpiece Radial Aura (Echoes the 3D glowing sphere in reference) */
+.zen-centerpiece-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(65vw, 260px);
+  height: min(65vw, 260px);
   border-radius: 50%;
-  background: radial-gradient(circle, var(--color-sage-light) 0%, rgba(156, 177, 151, 0.3) 70%, transparent 100%);
-  box-shadow: 0 0 16px var(--color-sage);
-  opacity: 0.85;
+  background: radial-gradient(circle, rgba(255, 138, 101, 0.32) 0%, rgba(224, 64, 251, 0.16) 45%, rgba(255, 240, 245, 0) 70%);
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 0;
+  animation: zen-orb-breathe 8s ease-in-out infinite alternate;
+  transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
 }
 
-.zen-breathing-core.breathing {
-  animation: zen-breath-pulse 6s infinite ease-in-out;
+@keyframes zen-orb-breathe {
+  0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
+  100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
 }
 
-@keyframes zen-breath-pulse {
-  0%, 100% {
-    transform: scale(0.85);
-    opacity: 0.45;
-    box-shadow: 0 0 8px rgba(156, 177, 151, 0.3);
+/* Flare on Bell Chime */
+.zen-centerpiece-aura.flare {
+  animation: zen-aura-flare 2.8s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+@keyframes zen-aura-flare {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+    background: radial-gradient(circle, rgba(255, 167, 38, 0.55) 0%, rgba(255, 110, 64, 0.45) 40%, rgba(224, 64, 251, 0.25) 65%, transparent 75%);
+    filter: blur(35px) brightness(1.6);
+    opacity: 1;
   }
   50% {
-    transform: scale(1.6);
-    opacity: 0.95;
-    box-shadow: 0 0 28px rgba(184, 203, 180, 0.7);
+    transform: translate(-50%, -50%) scale(1.22);
+    filter: blur(40px) brightness(1.3);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(30px) brightness(1);
+    opacity: 0.8;
   }
 }
 
-/* ==========================================================================
-   Bell Chime Visual Pulse on Progress Ring
-   ========================================================================== */
-.zen-dial-bell-ringing {
-  animation: dial-ring-glow 2.8s ease-out;
+.zen-svg-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
-@keyframes dial-ring-glow {
-  0% { transform: scale(1.04); }
-  30% { transform: scale(1.05); }
-  100% { transform: scale(1.02); }
+.zen-ring-track {
+  stroke: rgba(110, 109, 122, 0.09);
+  fill: none;
+}
+
+.zen-ring-progress {
+  fill: none;
+  stroke: url(#zenSageGradient);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 4px 14px rgba(255, 110, 64, 0.35));
 }
 
 .zen-ring-progress.ringing {
-  stroke: #dfd5c6 !important;
-  stroke-width: 7px;
-  filter: drop-shadow(0 0 20px rgba(223, 213, 198, 0.85)) !important;
-  transition: all 0.3s ease-out;
+  stroke: url(#zenBellPulseGradient) !important;
+  stroke-width: 8px;
+  filter: drop-shadow(0 0 22px rgba(255, 110, 64, 0.8)) !important;
 }
 
-/* Concentric expanding soundwave ripple */
+/* Concentric expanding soundwave ripple on chime */
 .zen-chime-soundwave {
   fill: none;
   stroke-width: 2.5px;
   pointer-events: none;
-  transform-origin: center;
 }
 
 .zen-chime-soundwave.wave-1 {
@@ -753,195 +828,10 @@ body {
     opacity: 0.45;
   }
   100% {
-    r: 145px;
+    r: 148px;
     opacity: 0;
     stroke-width: 0.5px;
   }
-}
-
-/* Interval Pill & Screen Wake Lock Header */
-.zen-timer-top-meta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 1.75rem;
-  flex-wrap: wrap;
-}
-
-.zen-interval-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1.1rem;
-  border-radius: var(--radius-full);
-  background: rgba(156, 177, 151, 0.08);
-  border: 1px solid rgba(156, 177, 151, 0.2);
-  color: var(--color-sage-light);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.zen-wakelock-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-full);
-  background: rgba(223, 213, 198, 0.08);
-  border: 1px solid rgba(223, 213, 198, 0.18);
-  color: var(--color-sand-light);
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  animation: fade-in 0.3s ease-out;
-}
-
-.zen-wakelock-pill svg {
-  color: var(--color-sage);
-}
-
-@keyframes fade-in {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-/* Session Completed Calm View */
-.zen-completed-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-  width: 100%;
-  animation: zen-bloom 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes zen-bloom {
-  0% { opacity: 0; transform: scale(0.92); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-.zen-completed-icon-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(156, 177, 151, 0.2) 0%, rgba(156, 177, 151, 0.04) 70%);
-  border: 1px solid rgba(156, 177, 151, 0.35);
-  color: var(--color-sage-light);
-  margin-bottom: 1.5rem;
-  box-shadow: 0 0 35px -5px rgba(156, 177, 151, 0.3);
-}
-
-.zen-completed-title {
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-weight: 400;
-  color: var(--color-sand-light);
-  letter-spacing: 0.03em;
-  margin-bottom: 0.5rem;
-}
-
-.zen-completed-subtitle {
-  font-size: 0.95rem;
-  color: var(--color-sand);
-  margin-bottom: 0.5rem;
-}
-
-.zen-completed-blessing {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.05rem;
-  color: var(--color-sand-muted);
-  max-width: 380px;
-  margin: 0 auto 2.25rem;
-  line-height: 1.5;
-}
-
-.zen-completed-reset-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.85rem 2rem;
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(156, 177, 151, 0.35);
-  background: linear-gradient(135deg, rgba(156, 177, 151, 0.2) 0%, rgba(156, 177, 151, 0.1) 100%);
-  color: var(--color-sand-light);
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: var(--transition-gentle);
-  min-height: 50px;
-}
-
-.zen-completed-reset-btn:hover {
-  background: linear-gradient(135deg, rgba(156, 177, 151, 0.3) 0%, rgba(156, 177, 151, 0.18) 100%);
-  border-color: var(--color-sage-light);
-  box-shadow: 0 0 25px -4px rgba(156, 177, 151, 0.35);
-  transform: translateY(-2px);
-}
-
-.zen-completed-reset-btn:active {
-  transform: scale(0.98);
-}
-
-.zen-interval-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--color-sage);
-  box-shadow: 0 0 8px var(--color-sage);
-  animation: pulse-dot 2.5s infinite ease-in-out;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.4); opacity: 1; }
-}
-
-/* Circular Progress Container */
-.zen-dial-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(72vw, 300px);
-  height: min(72vw, 300px);
-  margin: 0 auto 2.25rem;
-}
-
-@media (min-width: 480px) {
-  .zen-dial-wrapper {
-    width: 320px;
-    height: 320px;
-  }
-}
-
-.zen-svg-ring {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-  overflow: visible;
-}
-
-.zen-ring-track {
-  stroke: rgba(223, 213, 198, 0.06);
-  fill: none;
-}
-
-.zen-ring-progress {
-  fill: none;
-  stroke: var(--color-sage);
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 0 8px rgba(156, 177, 151, 0.35));
 }
 
 /* Center Content inside Dial */
@@ -956,34 +846,86 @@ body {
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  z-index: 2;
 }
 
 .zen-countdown-digits {
-  font-family: var(--font-serif);
-  font-size: clamp(3.2rem, 12vw, 4.4rem);
+  font-family: var(--font-sans);
+  font-size: clamp(3.2rem, 12vw, 4.2rem);
   font-weight: 300;
   line-height: 1;
-  color: var(--color-sand-light);
-  letter-spacing: 0.03em;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .zen-dial-subtext {
   font-size: 0.82rem;
-  color: var(--color-sand-muted);
-  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-top: 0.5rem;
+  font-weight: 500;
 }
 
-/* Controls Bar */
+/* Pure Zen Mode Dial Content */
+.zen-pure-dial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.zen-meditation-enso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 110, 64, 0.25);
+  position: relative;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 16px rgba(30, 20, 50, 0.04);
+}
+
+.zen-breathing-core {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gradient-orb);
+  box-shadow: 0 4px 14px rgba(255, 110, 64, 0.45);
+  opacity: 0.9;
+}
+
+.zen-breathing-core.breathing {
+  animation: zen-breath-pulse 6s infinite ease-in-out;
+}
+
+@keyframes zen-breath-pulse {
+  0%, 100% {
+    transform: scale(0.85);
+    opacity: 0.6;
+    box-shadow: 0 2px 8px rgba(255, 110, 64, 0.3);
+  }
+  50% {
+    transform: scale(1.55);
+    opacity: 1;
+    box-shadow: 0 6px 22px rgba(255, 110, 64, 0.65);
+  }
+}
+
+/* Pill-Shaped Controls Bar */
 .zen-controls-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.25rem;
   width: 100%;
+  z-index: 2;
 }
 
 .zen-control-btn {
@@ -991,22 +933,23 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-card);
-  color: var(--color-sand);
+  border: 1px solid var(--color-border-glass);
+  background: #FFFFFF;
+  color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-control-btn:hover {
-  background: var(--color-bg-hover);
-  border-color: var(--color-border-hover);
-  color: var(--color-sand-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(30, 20, 50, 0.1);
+  color: var(--color-coral);
 }
 
 .zen-control-btn:active {
-  transform: scale(0.93);
+  transform: scale(0.94);
 }
 
 /* Secondary Button (Reset, Settings) */
@@ -1020,31 +963,30 @@ body {
 .zen-btn-secondary svg {
   width: 20px;
   height: 20px;
-  color: var(--color-sand-muted);
+  color: var(--text-secondary);
   transition: var(--transition-gentle);
 }
 
 .zen-btn-secondary:hover svg {
-  color: var(--color-sand-light);
+  color: var(--color-coral);
 }
 
-/* Primary Play/Pause Button */
+/* Primary Play/Pause Button (Vibrant Coral-Peach Pill/Orb) */
 .zen-btn-primary {
-  width: 72px;
-  height: 72px;
-  min-width: 72px;
-  min-height: 72px;
-  background: rgba(156, 177, 151, 0.15);
-  border: 1px solid rgba(156, 177, 151, 0.4);
-  color: var(--color-sand-light);
-  box-shadow: 0 4px 25px -4px rgba(156, 177, 151, 0.25);
+  width: 74px;
+  height: 74px;
+  min-width: 74px;
+  min-height: 74px;
+  background: var(--gradient-coral-peach);
+  border: none;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-coral);
 }
 
 .zen-btn-primary:hover {
-  background: rgba(156, 177, 151, 0.24);
-  border-color: var(--color-sage-light);
-  box-shadow: 0 4px 30px -2px rgba(156, 177, 151, 0.4);
-  transform: scale(1.05);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 12px 32px -2px rgba(255, 110, 64, 0.5);
+  color: #FFFFFF;
 }
 
 .zen-btn-primary:active {
@@ -1052,77 +994,9 @@ body {
 }
 
 .zen-btn-primary svg {
-  width: 28px;
-  height: 28px;
-  color: var(--color-sand-light);
-}
-
-/* Mock State Testing Drawer / Helper */
-.zen-mock-toolbar {
-  margin-top: 2rem;
-  width: 100%;
-  padding: 0.9rem 1.1rem;
-  border-radius: var(--radius-md);
-  background: rgba(18, 20, 18, 0.6);
-  border: 1px dashed rgba(223, 213, 198, 0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.mock-toolbar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.75rem;
-  color: var(--color-sand-muted);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.mock-toolbar-badge {
-  background: rgba(156, 177, 151, 0.1);
-  color: var(--color-sage);
-  padding: 2px 8px;
-  border-radius: var(--radius-full);
-  font-size: 0.7rem;
-}
-
-.mock-toolbar-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.mock-toolbar-btn {
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--color-border);
-  color: var(--color-sand-muted);
-  font-size: 0.75rem;
-  cursor: pointer;
-  transition: var(--transition-gentle);
-}
-
-.mock-toolbar-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--color-sand-light);
-}
-
-.mock-slider-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  width: 100%;
-}
-
-.mock-slider {
-  flex: 1;
-  accent-color: var(--color-sage);
-  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -1131,7 +1005,7 @@ body {
 .zen-sound-section {
   margin-top: 1.75rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid rgba(30, 20, 50, 0.06);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -1158,50 +1032,50 @@ body {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
-  background: rgba(156, 177, 151, 0.1);
-  color: var(--color-sage);
+  background: var(--color-coral-soft);
+  color: var(--color-coral);
   flex-shrink: 0;
 }
 
 .zen-sound-heading {
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-sand-light);
-  letter-spacing: 0.02em;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .zen-sound-subheading {
   font-size: 0.75rem;
-  color: var(--color-sand-dim);
+  color: var(--text-secondary);
 }
 
 .zen-sound-mute-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.4rem 0.85rem;
+  padding: 0.45rem 0.95rem;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
-  font-weight: 500;
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-card);
-  color: var(--color-sand);
+  font-weight: 600;
+  border: 1px solid var(--color-border-glass);
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
+  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.03);
 }
 
 .zen-sound-mute-toggle.active {
-  background: rgba(156, 177, 151, 0.12);
-  border-color: rgba(156, 177, 151, 0.35);
-  color: var(--color-sage-light);
+  background: #FFFFFF;
+  color: var(--color-coral);
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-sound-mute-toggle.muted {
   opacity: 0.7;
-  color: var(--color-sand-dim);
-  border-color: rgba(223, 213, 198, 0.06);
+  color: var(--text-muted);
 }
 
 .zen-sound-mute-toggle:hover {
@@ -1216,19 +1090,20 @@ body {
 }
 
 .zen-sound-card {
-  padding: 1rem 1.15rem;
+  padding: 1.05rem 1.15rem;
   border-radius: var(--radius-md);
-  background: rgba(20, 24, 20, 0.6);
-  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--color-border-glass);
   transition: var(--transition-gentle);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-inner);
 }
 
 .zen-sound-card.is-playing {
-  border-color: rgba(156, 177, 151, 0.5);
-  background: rgba(28, 36, 28, 0.7);
-  box-shadow: 0 0 20px -3px rgba(156, 177, 151, 0.2);
+  border-color: rgba(255, 110, 64, 0.4);
+  background: #FFFFFF;
+  box-shadow: 0 6px 20px -2px rgba(255, 110, 64, 0.15);
 }
 
 .zen-sound-card.is-playing::before {
@@ -1237,8 +1112,8 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-sage), transparent);
+  height: 2.5px;
+  background: var(--gradient-coral-peach);
   animation: sound-shine 2s infinite ease-in-out;
 }
 
@@ -1267,56 +1142,48 @@ body {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
-  background: rgba(156, 177, 151, 0.08);
-  color: var(--color-sage);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-coral);
   flex-shrink: 0;
-}
-
-.zen-sound-card.is-playing .zen-sound-card-icon {
-  background: rgba(156, 177, 151, 0.2);
-  animation: pulse-icon 1.5s infinite alternate;
-}
-
-@keyframes pulse-icon {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); filter: drop-shadow(0 0 6px var(--color-sage)); }
+  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.05);
 }
 
 .zen-sound-card-name {
   display: block;
   font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--color-sand-light);
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 .zen-sound-card-specs {
   display: block;
   font-size: 0.74rem;
-  color: var(--color-sand-muted);
+  color: var(--text-secondary);
 }
 
 .zen-test-sound-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 1rem;
   min-height: 40px;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
-  font-weight: 500;
-  background: rgba(156, 177, 151, 0.1);
-  border: 1px solid rgba(156, 177, 151, 0.25);
-  color: var(--color-sand-light);
+  font-weight: 600;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
   white-space: nowrap;
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-test-sound-btn:hover:not(:disabled) {
-  background: rgba(156, 177, 151, 0.2);
-  border-color: var(--color-sage);
-  transform: translateY(-1px);
+  color: var(--color-coral);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 110, 64, 0.2);
 }
 
 .zen-test-sound-btn:active:not(:disabled) {
@@ -1324,19 +1191,21 @@ body {
 }
 
 .zen-test-sound-btn.active {
-  background: rgba(156, 177, 151, 0.3);
-  border-color: var(--color-sage-light);
-  color: var(--color-sand-light);
+  background: var(--gradient-coral-peach);
+  border-color: transparent;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-coral);
 }
 
 .zen-test-sound-btn:disabled {
-  opacity: 0.35;
+  opacity: 0.4;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .zen-sound-card-desc {
   font-size: 0.78rem;
-  color: var(--color-sand-dim);
+  color: var(--text-secondary);
   margin-top: 0.5rem;
   line-height: 1.4;
 }
@@ -1344,7 +1213,7 @@ body {
 .zen-sound-card-option {
   margin-top: 0.65rem;
   padding-top: 0.55rem;
-  border-top: 1px dashed rgba(223, 213, 198, 0.08);
+  border-top: 1px dashed rgba(30, 20, 50, 0.08);
 }
 
 .zen-checkbox-label {
@@ -1365,33 +1234,36 @@ body {
 .zen-checkbox-custom {
   width: 18px;
   height: 18px;
-  border-radius: 4px;
-  border: 1px solid rgba(156, 177, 151, 0.35);
-  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  border: 1px solid var(--color-border-glass);
+  background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-sage-light);
+  color: var(--color-coral);
   transition: var(--transition-gentle);
+  box-shadow: 0 1px 4px rgba(30, 20, 50, 0.06);
 }
 
 .zen-checkbox:checked + .zen-checkbox-custom {
-  background: rgba(156, 177, 151, 0.2);
-  border-color: var(--color-sage);
+  background: var(--gradient-coral-peach);
+  border-color: transparent;
+  color: #FFFFFF;
 }
 
 .zen-checkbox-text {
   font-size: 0.78rem;
-  color: var(--color-sand-muted);
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 /* Extensibility switch */
 .zen-audio-extensibility-note {
   margin-top: 0.35rem;
-  padding: 0.75rem 0.9rem;
-  border-radius: var(--radius-sm);
-  background: rgba(18, 20, 18, 0.45);
-  border: 1px dashed rgba(223, 213, 198, 0.08);
+  padding: 0.75rem 0.95rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px dashed rgba(30, 20, 50, 0.1);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -1406,48 +1278,266 @@ body {
 
 .zen-source-label {
   font-size: 0.74rem;
-  color: var(--color-sand-dim);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 .zen-source-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.65rem;
+  padding: 0.3rem 0.75rem;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--color-border);
-  color: var(--color-sand-muted);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: var(--transition-gentle);
+  box-shadow: 0 1px 3px rgba(30, 20, 50, 0.04);
 }
 
 .zen-source-pill:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--color-sand-light);
+  background: #FFFFFF;
+  color: var(--text-primary);
 }
 
 .zen-source-pill.active {
-  background: rgba(156, 177, 151, 0.15);
-  border-color: rgba(156, 177, 151, 0.4);
-  color: var(--color-sage-light);
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: var(--color-coral);
+  font-weight: 600;
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-custom-audio-hint {
   font-size: 0.72rem;
-  color: var(--color-sand-dim);
+  color: var(--text-secondary);
   line-height: 1.4;
 }
 
 .zen-custom-audio-hint code {
-  background: rgba(0, 0, 0, 0.3);
-  padding: 1px 4px;
-  border-radius: 3px;
-  color: var(--color-sand-muted);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--color-coral);
   font-family: monospace;
+}
+
+/* ==========================================================================
+   Running State - Gentle Dimming of Secondary Controls
+   ========================================================================== */
+.zen-header-container,
+.zen-view-switcher,
+.zen-footer,
+.zen-config-wrapper,
+.zen-secondary-dim,
+.zen-secondary-control {
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.2s ease,
+              transform 0.4s ease;
+}
+
+.zen-timer-running .zen-secondary-dim {
+  opacity: 0.22;
+  filter: grayscale(20%);
+}
+
+.zen-timer-running .zen-secondary-dim:hover,
+.zen-timer-running .zen-secondary-dim:focus-within {
+  opacity: 0.85;
+  filter: grayscale(0%);
+}
+
+.zen-timer-running .zen-secondary-control {
+  opacity: 0.2;
+}
+
+.zen-timer-running .zen-secondary-control:hover,
+.zen-timer-running .zen-secondary-control:focus-within {
+  opacity: 0.9;
+}
+
+.zen-timer-running .zen-btn-secondary {
+  opacity: 0.35;
+}
+
+.zen-timer-running .zen-btn-secondary:hover {
+  opacity: 1;
+}
+
+/* Ethereal aura breathes with greater presence when timer is running */
+.zen-timer-running .zen-centerpiece-aura {
+  animation: zen-orb-breathe-running 5s ease-in-out infinite alternate;
+}
+
+@keyframes zen-orb-breathe-running {
+  0% { transform: translate(-50%, -50%) scale(0.98); opacity: 0.8; filter: blur(28px); }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; filter: blur(36px); }
+}
+
+/* Testing Playground Toolbar */
+.zen-mock-toolbar {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px dashed rgba(30, 20, 50, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--shadow-inner);
+}
+
+.mock-toolbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.mock-toolbar-badge {
+  background: var(--color-coral-soft);
+  color: var(--color-coral);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.mock-toolbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mock-toolbar-btn {
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  box-shadow: 0 1px 4px rgba(30, 20, 50, 0.04);
+}
+
+.mock-toolbar-btn:hover:not(:disabled) {
+  background: #FFFFFF;
+  color: var(--color-coral);
+  box-shadow: var(--shadow-pill);
+}
+
+.mock-toolbar-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mock-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.mock-slider {
+  flex: 1;
+  accent-color: var(--color-coral);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Session Completed View
+   ========================================================================== */
+.zen-completed-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+  animation: zen-bloom 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zen-bloom {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.zen-completed-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: var(--gradient-orb);
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-coral);
+}
+
+.zen-completed-title {
+  font-family: var(--font-sans);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.zen-completed-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.zen-completed-blessing {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  max-width: 380px;
+  margin: 0 auto 2.25rem;
+  line-height: 1.5;
+}
+
+.zen-completed-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2.2rem;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--gradient-coral-peach);
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  min-height: 52px;
+  box-shadow: var(--shadow-coral);
+}
+
+.zen-completed-reset-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -2px rgba(255, 110, 64, 0.48);
+}
+
+.zen-completed-reset-btn:active {
+  transform: scale(0.98);
 }
 
 /* Zen Footer */
@@ -1456,16 +1546,16 @@ body {
   padding-top: 2.5rem;
   text-align: center;
   font-size: 0.78rem;
-  color: var(--color-sand-dim);
-  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }
 
 .zen-footer a {
-  color: var(--color-sand-muted);
+  color: var(--text-secondary);
   text-decoration: none;
   transition: var(--transition-gentle);
 }
 
 .zen-footer a:hover {
-  color: var(--color-sage-light);
+  color: var(--color-coral);
 }

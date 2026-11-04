@@ -6,9 +6,9 @@ export default function CircularProgress({
   children,
 }) {
   const size = 280;
-  const strokeWidth = 5;
+  const strokeWidth = 6;
   const center = size / 2;
-  const radius = center - strokeWidth - 14; // ~121
+  const radius = center - strokeWidth - 14; // ~120
   const circumference = 2 * Math.PI * radius;
 
   // Clamped progress (0 to 1)
@@ -18,20 +18,30 @@ export default function CircularProgress({
 
   return (
     <div className={`zen-dial-wrapper ${isBellRinging ? 'zen-dial-bell-ringing' : ''}`}>
+      {/* Ethereal glowing radial centerpiece aura (echoes the 3D glowing orb in reference) */}
+      <div
+        className={`zen-centerpiece-aura ${isBellRinging ? 'flare' : ''}`}
+        aria-hidden="true"
+      />
+
       <svg
         className={`zen-svg-ring ${isBellRinging ? 'ring-pulsing' : ''}`}
         viewBox={`0 0 ${size} ${size}`}
         aria-hidden="true"
       >
         <defs>
+          {/* Luminous coral-peach to soft lavender gradient */}
           <linearGradient id="zenSageGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#9cb197" />
-            <stop offset="100%" stopColor="#b8cbb4" />
+            <stop offset="0%" stopColor="#FFA07A" />
+            <stop offset="45%" stopColor="#FF6E40" />
+            <stop offset="100%" stopColor="#E040FB" />
           </linearGradient>
 
+          {/* Golden-coral flare gradient when bell chimes */}
           <linearGradient id="zenBellPulseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#d8cbb8" />
-            <stop offset="100%" stopColor="#9cb197" />
+            <stop offset="0%" stopColor="#FFB74D" />
+            <stop offset="50%" stopColor="#FF7043" />
+            <stop offset="100%" stopColor="#F06292" />
           </linearGradient>
 
           {/* Glow filter for resonant chime pulse */}
@@ -77,7 +87,7 @@ export default function CircularProgress({
           cy={center}
           r={radius}
           stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenSageGradient)'}
-          strokeWidth={isBellRinging ? strokeWidth + 1.5 : strokeWidth}
+          strokeWidth={isBellRinging ? strokeWidth + 2 : strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           filter={isBellRinging ? 'url(#chimeGlow)' : undefined}
