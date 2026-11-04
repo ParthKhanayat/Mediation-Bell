@@ -1378,18 +1378,73 @@ body {
   100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; filter: blur(36px); }
 }
 
+/* Advanced Dev Testing Accordion Dropdown */
+.zen-dev-testing-accordion {
+  width: 100%;
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.zen-dev-testing-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px dashed rgba(30, 20, 50, 0.12);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  user-select: none;
+}
+
+.zen-dev-testing-trigger:hover {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  border-color: rgba(255, 110, 64, 0.3);
+  box-shadow: var(--shadow-pill);
+}
+
+.zen-dev-testing-trigger-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.zen-dev-testing-trigger-label svg {
+  color: var(--color-coral);
+}
+
 /* Testing Playground Toolbar */
 .zen-mock-toolbar {
-  margin-top: 2rem;
+  margin-top: 0.85rem;
   width: 100%;
   padding: 1rem 1.2rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.55);
   border: 1px dashed rgba(30, 20, 50, 0.12);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   box-shadow: var(--shadow-inner);
+  animation: devtools-expand 0.25s ease-out;
+}
+
+@keyframes devtools-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mock-toolbar-header {

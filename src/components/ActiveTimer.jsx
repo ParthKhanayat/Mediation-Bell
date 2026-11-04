@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CircularProgress from './CircularProgress';
 import ZenControls from './ZenControls';
-import { Bell, Disc, Sun, Sparkles, RotateCcw, Eye, EyeOff } from 'lucide-react';
+import { Bell, Disc, Sun, Sparkles, RotateCcw, Eye, EyeOff, ChevronDown, ChevronUp, Wrench } from 'lucide-react';
 import { playBell } from '../services/zenAudio';
 
 export default function ActiveTimer({
@@ -25,6 +25,8 @@ export default function ActiveTimer({
   onSeekProgress,
   onTriggerBellPulse,
 }) {
+  const [showDevTools, setShowDevTools] = useState(false);
+
   const handleTestBell = (type) => {
     if (onTriggerBellPulse) {
       onTriggerBellPulse(type === 'final' ? 5500 : 2800);
@@ -130,89 +132,112 @@ export default function ActiveTimer({
         </>
       )}
 
-      {/* Mock & Fast-Forward Testing Bar (Dims when running) */}
-      <div className="zen-mock-toolbar zen-secondary-control" role="region" aria-label="Timer testing tools">
-        <div className="mock-toolbar-header">
-          <span>Drift-Free Engine Testing</span>
-          <span className="mock-toolbar-badge">
-            {isWakeLockActive ? 'WakeLock: ON' : 'WakeLock: Ready'}
-          </span>
-        </div>
-
-        <div className="mock-toolbar-actions">
-          <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              className="mock-toolbar-btn"
-              onClick={() => onSeekInterval && onSeekInterval(Math.max(1, currentInterval - 1))}
-              disabled={currentInterval <= 1 || isCompleted}
-            >
-              Prev Interval
-            </button>
-            <button
-              type="button"
-              className="mock-toolbar-btn"
-              onClick={() =>
-                onSeekInterval && onSeekInterval(Math.min(totalIntervals, currentInterval + 1))
-              }
-              disabled={currentInterval >= totalIntervals || isCompleted}
-            >
-              Next Interval
-            </button>
-            <button
-              type="button"
-              className="mock-toolbar-btn"
-              onClick={() => onSeekProgress && onSeekProgress(0.02)} // Jump to last 2% (near 00:00)
-              disabled={isCompleted}
-              title="Jump to last few seconds of interval to hear transition chime and test ring pulse"
-            >
-              Near 00:00 (Test Chime &amp; Pulse)
-            </button>
+      {/* Advanced Dev Testing Dropdown (Collapsible) */}
+      <div className="zen-dev-testing-accordion zen-secondary-control">
+        <button
+          type="button"
+          className="zen-dev-testing-trigger"
+          onClick={() => setShowDevTools((prev) => !prev)}
+          aria-expanded={showDevTools}
+          aria-controls="zen-dev-testing-panel"
+        >
+          <div className="zen-dev-testing-trigger-label">
+            <Wrench size={13} />
+            <span>Advanced Dev Testing</span>
           </div>
+          {showDevTools ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        </button>
 
-          {/* Direct Sound Test Buttons with Visual Pulse */}
-          <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.35rem', width: '100%' }}>
-            <button
-              type="button"
-              className="mock-toolbar-btn"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flex: 1 }}
-              onClick={() => handleTestBell('interval')}
-              title="Ring 528Hz Interval Bell"
-            >
-              <Bell size={12} />
-              <span>Interval Chime (528Hz)</span>
-            </button>
-            <button
-              type="button"
-              className="mock-toolbar-btn"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flex: 1 }}
-              onClick={() => handleTestBell('final')}
-              title="Ring Deep Singing Bowl"
-            >
-              <Disc size={12} />
-              <span>Final Bowl (256Hz)</span>
-            </button>
-          </div>
-        </div>
+        {showDevTools && (
+          <div
+            id="zen-dev-testing-panel"
+            className="zen-mock-toolbar"
+            role="region"
+            aria-label="Timer testing tools"
+          >
+            <div className="mock-toolbar-header">
+              <span>Drift-Free Engine Testing</span>
+              <span className="mock-toolbar-badge">
+                {isWakeLockActive ? 'WakeLock: ON' : 'WakeLock: Ready'}
+              </span>
+            </div>
 
-        {!isCompleted && (
-          <div className="mock-slider-wrap">
-            <span style={{ fontSize: '0.72rem', color: 'var(--color-sand-muted)' }}>Progress:</span>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.005"
-              value={intervalProgress}
-              onChange={(e) => onSeekProgress && onSeekProgress(parseFloat(e.target.value))}
-              className="mock-slider"
-              aria-label="Scrub progress within current interval"
-            />
-            <span
-              style={{ fontSize: '0.72rem', color: 'var(--color-sage-light)', minWidth: '32px' }}
-            >
-              {Math.round(intervalProgress * 100)}%
-            </span>
+            <div className="mock-toolbar-actions">
+              <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  className="mock-toolbar-btn"
+                  onClick={() => onSeekInterval && onSeekInterval(Math.max(1, currentInterval - 1))}
+                  disabled={currentInterval <= 1 || isCompleted}
+                >
+                  Prev Interval
+                </button>
+                <button
+                  type="button"
+                  className="mock-toolbar-btn"
+                  onClick={() =>
+                    onSeekInterval && onSeekInterval(Math.min(totalIntervals, currentInterval + 1))
+                  }
+                  disabled={currentInterval >= totalIntervals || isCompleted}
+                >
+                  Next Interval
+                </button>
+                <button
+                  type="button"
+                  className="mock-toolbar-btn"
+                  onClick={() => onSeekProgress && onSeekProgress(0.02)} // Jump to last 2% (near 00:00)
+                  disabled={isCompleted}
+                  title="Jump to last few seconds of interval to hear transition chime and test ring pulse"
+                >
+                  Near 00:00 (Test Chime &amp; Pulse)
+                </button>
+              </div>
+
+              {/* Direct Sound Test Buttons with Visual Pulse */}
+              <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.35rem', width: '100%' }}>
+                <button
+                  type="button"
+                  className="mock-toolbar-btn"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flex: 1 }}
+                  onClick={() => handleTestBell('interval')}
+                  title="Ring 528Hz Interval Bell"
+                >
+                  <Bell size={12} />
+                  <span>Interval Chime (528Hz)</span>
+                </button>
+                <button
+                  type="button"
+                  className="mock-toolbar-btn"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', flex: 1 }}
+                  onClick={() => handleTestBell('final')}
+                  title="Ring Deep Singing Bowl"
+                >
+                  <Disc size={12} />
+                  <span>Final Bowl (256Hz)</span>
+                </button>
+              </div>
+            </div>
+
+            {!isCompleted && (
+              <div className="mock-slider-wrap">
+                <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>Progress:</span>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.005"
+                  value={intervalProgress}
+                  onChange={(e) => onSeekProgress && onSeekProgress(parseFloat(e.target.value))}
+                  className="mock-slider"
+                  aria-label="Scrub progress within current interval"
+                />
+                <span
+                  style={{ fontSize: '0.72rem', color: 'var(--color-coral)', minWidth: '32px' }}
+                >
+                  {Math.round(intervalProgress * 100)}%
+                </span>
+              </div>
+            )}
           </div>
         )}
       </div>
