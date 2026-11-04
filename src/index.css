@@ -574,6 +574,191 @@ body {
   position: relative;
 }
 
+/* ==========================================================================
+   Zen Running Mode - Gentle Dimming of Secondary Controls
+   ========================================================================== */
+.zen-header-container,
+.zen-view-switcher,
+.zen-footer,
+.zen-config-wrapper,
+.zen-secondary-dim,
+.zen-secondary-control {
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.2s ease,
+              transform 0.4s ease;
+}
+
+/* When the timer is running, dim secondary controls to low opacity */
+.zen-timer-running .zen-secondary-dim {
+  opacity: 0.15;
+  filter: grayscale(40%);
+}
+
+.zen-timer-running .zen-secondary-dim:hover,
+.zen-timer-running .zen-secondary-dim:focus-within {
+  opacity: 0.75;
+  filter: grayscale(0%);
+}
+
+.zen-timer-running .zen-secondary-control {
+  opacity: 0.15;
+}
+
+.zen-timer-running .zen-secondary-control:hover,
+.zen-timer-running .zen-secondary-control:focus-within {
+  opacity: 0.85;
+}
+
+.zen-timer-running .zen-btn-secondary {
+  opacity: 0.25;
+}
+
+.zen-timer-running .zen-btn-secondary:hover {
+  opacity: 1;
+}
+
+/* Ensure the central dial & primary pause button stay 100% prominent */
+.zen-timer-running .zen-dial-wrapper {
+  opacity: 1;
+  transform: scale(1.02);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zen-timer-running .zen-btn-primary {
+  box-shadow: 0 0 35px -2px rgba(156, 177, 151, 0.45);
+}
+
+/* ==========================================================================
+   Pure Zen Mode (Hide Digits)
+   ========================================================================== */
+.zen-zen-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+  background: rgba(223, 213, 198, 0.05);
+  border: 1px solid var(--color-border);
+  color: var(--color-sand-muted);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  user-select: none;
+}
+
+.zen-zen-mode-toggle:hover {
+  background: rgba(156, 177, 151, 0.12);
+  border-color: rgba(156, 177, 151, 0.3);
+  color: var(--color-sand-light);
+}
+
+.zen-zen-mode-toggle.active {
+  background: rgba(156, 177, 151, 0.15);
+  border-color: rgba(156, 177, 151, 0.4);
+  color: var(--color-sage-light);
+}
+
+.zen-pure-dial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.zen-meditation-enso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(156, 177, 151, 0.25);
+  position: relative;
+}
+
+.zen-breathing-core {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-sage-light) 0%, rgba(156, 177, 151, 0.3) 70%, transparent 100%);
+  box-shadow: 0 0 16px var(--color-sage);
+  opacity: 0.85;
+}
+
+.zen-breathing-core.breathing {
+  animation: zen-breath-pulse 6s infinite ease-in-out;
+}
+
+@keyframes zen-breath-pulse {
+  0%, 100% {
+    transform: scale(0.85);
+    opacity: 0.45;
+    box-shadow: 0 0 8px rgba(156, 177, 151, 0.3);
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.95;
+    box-shadow: 0 0 28px rgba(184, 203, 180, 0.7);
+  }
+}
+
+/* ==========================================================================
+   Bell Chime Visual Pulse on Progress Ring
+   ========================================================================== */
+.zen-dial-bell-ringing {
+  animation: dial-ring-glow 2.8s ease-out;
+}
+
+@keyframes dial-ring-glow {
+  0% { transform: scale(1.04); }
+  30% { transform: scale(1.05); }
+  100% { transform: scale(1.02); }
+}
+
+.zen-ring-progress.ringing {
+  stroke: #dfd5c6 !important;
+  stroke-width: 7px;
+  filter: drop-shadow(0 0 20px rgba(223, 213, 198, 0.85)) !important;
+  transition: all 0.3s ease-out;
+}
+
+/* Concentric expanding soundwave ripple */
+.zen-chime-soundwave {
+  fill: none;
+  stroke-width: 2.5px;
+  pointer-events: none;
+  transform-origin: center;
+}
+
+.zen-chime-soundwave.wave-1 {
+  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+.zen-chime-soundwave.wave-2 {
+  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) 0.35s forwards;
+}
+
+@keyframes soundwave-ripple {
+  0% {
+    r: 110px;
+    opacity: 0.85;
+    stroke-width: 3.5px;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    r: 145px;
+    opacity: 0;
+    stroke-width: 0.5px;
+  }
+}
+
 /* Interval Pill & Screen Wake Lock Header */
 .zen-timer-top-meta {
   display: flex;

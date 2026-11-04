@@ -24,6 +24,20 @@ export function useIntervalTimer({
   // Screen Wake Lock active status
   const [isWakeLockActive, setIsWakeLockActive] = useState(false);
 
+  // Bell audio visual pulse trigger
+  const [isBellRinging, setIsBellRinging] = useState(false);
+  const pulseTimeoutRef = useRef(null);
+
+  const triggerBellPulse = useCallback((durationMs = 2800) => {
+    setIsBellRinging(true);
+    if (pulseTimeoutRef.current) {
+      clearTimeout(pulseTimeoutRef.current);
+    }
+    pulseTimeoutRef.current = setTimeout(() => {
+      setIsBellRinging(false);
+    }, durationMs);
+  }, []);
+
   // References for drift-free timestamp tracking
   const startTimeRef = useRef(null);
   const accumulatedMsRef = useRef(0);
@@ -101,11 +115,12 @@ export function useIntervalTimer({
     setStatus('completed');
     setSessionElapsedMs(totalSessionDurationMs);
 
-    // Trigger Final Session Bell (Deep Tibetan Singing Bowl)
+    // Trigger Final Session Bell (Deep Tibetan Singing Bowl) & visual ring pulse
+    triggerBellPulse(5500);
     if (soundEnabled) {
       playBell('final', { doubleStrike });
     }
-  }, [stopTick, releaseWakeLock, totalSessionDurationMs, soundEnabled, doubleStrike]);
+  }, [stopTick, releaseWakeLock, totalSessionDurationMs, soundEnabled, doubleStrike, triggerBellPulse]);
 
   const tick = useCallback(() => {
     if (!startTimeRef.current) return;
@@ -127,13 +142,14 @@ export function useIntervalTimer({
 
     // Check if we rolled into a new intermediate interval
     if (currentIntervalIndex > lastChimedIntervalIndexRef.current) {
-      // Fire intermediate gentle chime
+      // Fire intermediate gentle chime & visual pulse
+      triggerBellPulse(2800);
       if (soundEnabled) {
         playBell('interval');
       }
       lastChimedIntervalIndexRef.current = currentIntervalIndex;
     }
-  }, [totalSessionDurationMs, intervalDurationMs, soundEnabled, handleTimerComplete]);
+  }, [totalSessionDurationMs, intervalDurationMs, soundEnabled, handleTimerComplete, triggerBellPulse]);
 
   /* ========================================================================
      Control Actions: Start, Pause, Reset, Seek
@@ -289,6 +305,7 @@ export function useIntervalTimer({
     totalSessionProgress,
     sessionElapsedMs,
     isWakeLockActive,
+    isBellRinging,
     // Actions
     startTimer,
     pauseTimer,
@@ -296,5 +313,7 @@ export function useIntervalTimer({
     resetTimer,
     seekToInterval,
     seekIntervalProgress,
+    triggerBellPulse,
   };
 }
+
