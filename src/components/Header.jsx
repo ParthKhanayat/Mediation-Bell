@@ -7,8 +7,8 @@ export default function Header() {
       <div className="zen-logo-mark" aria-hidden="true">
         <Bell size={22} strokeWidth={1.75} />
       </div>
-      <h1 className="zen-title">Zen Meditation</h1>
-      <p className="zen-subtitle">Interval Timer & Bell</p>
+      <h1 className="zen-title">Meditation Bell</h1>
+      <p className="zen-subtitle">Interval Mindfulness Timer</p>
     </header>
   );
 }
