@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Play } from 'lucide-react';
+import { Clock, Play, SlidersHorizontal, ChevronDown, ChevronUp, Minus, Plus } from 'lucide-react';
 import Stepper from './Stepper';
 import PresetPills from './PresetPills';
 import SoundSettings from './SoundSettings';
@@ -15,8 +15,22 @@ export default function IntervalConfig({
   onToggleSound,
   doubleStrike,
   onToggleDoubleStrike,
+  // Custom individual interval durations
+  isCustomIntervals = false,
+  onToggleCustomIntervals,
+  customDurations = [],
+  onCustomDurationChange,
+  onResetCustomToUniform,
 }) {
-  const totalMinutes = intervals * minutes;
+  const totalMinutes = isCustomIntervals
+    ? customDurations.reduce((acc, d) => acc + (parseInt(d, 10) || 0), 0)
+    : intervals * minutes;
+
+  const durationFormula = isCustomIntervals
+    ? intervals <= 5
+      ? `${customDurations.join(' + ')} min`
+      : `${intervals} custom intervals (${customDurations.slice(0, 3).join(', ')}... min)`
+    : `${intervals} × ${minutes} min`;
 
   const handleBeginClick = async () => {
     // Crucial for iOS Safari & Android Chrome: unlock AudioContext during tap gesture
@@ -53,7 +67,7 @@ export default function IntervalConfig({
         <Stepper
           id="min-per-interval"
           label="Minutes per Interval"
-          hint="Duration of each meditation interval"
+          hint="Default duration for intervals"
           value={minutes}
           min={1}
           max={120}
@@ -62,6 +76,83 @@ export default function IntervalConfig({
           onChange={onMinutesChange}
         />
       </div>
+
+      {/* Button to show controls for changing the duration of each interval individually */}
+      <div className="zen-custom-toggle-container">
+        <button
+          type="button"
+          className={`zen-custom-toggle-btn ${isCustomIntervals ? 'active' : ''}`}
+          onClick={onToggleCustomIntervals}
+          aria-expanded={isCustomIntervals}
+        >
+          <div className="zen-custom-toggle-label">
+            <SlidersHorizontal size={14} />
+            <span>
+              {isCustomIntervals
+                ? 'Custom Interval Durations (Active)'
+                : 'Customize Each Interval Individually'}
+            </span>
+          </div>
+          {isCustomIntervals ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        </button>
+      </div>
+
+      {/* Individual Interval Duration Controls */}
+      {isCustomIntervals && (
+        <div className="zen-custom-intervals-drawer">
+          <div className="zen-custom-intervals-header">
+            <span className="zen-custom-intervals-heading">Individual Durations</span>
+            {onResetCustomToUniform && (
+              <button
+                type="button"
+                className="zen-custom-reset-link"
+                onClick={onResetCustomToUniform}
+                title={`Set all intervals to ${minutes} min`}
+              >
+                Reset to {minutes}m each
+              </button>
+            )}
+          </div>
+
+          <div className="zen-custom-intervals-grid">
+            {customDurations.map((dur, idx) => (
+              <div key={idx} className="zen-custom-interval-item">
+                <div className="zen-custom-item-label">
+                  <span className="zen-custom-item-dot" />
+                  <span>Interval {idx + 1}</span>
+                </div>
+
+                <div className="zen-stepper zen-stepper-compact">
+                  <button
+                    type="button"
+                    className="zen-stepper-btn zen-stepper-btn-compact"
+                    onClick={() => onCustomDurationChange(idx, Math.max(1, dur - 1))}
+                    disabled={dur <= 1}
+                    aria-label={`Decrease Interval ${idx + 1} duration`}
+                  >
+                    <Minus size={14} strokeWidth={2} />
+                  </button>
+
+                  <div className="zen-stepper-value-container">
+                    <span className="zen-stepper-input zen-stepper-val-static">{dur}</span>
+                    <span className="zen-stepper-unit">min</span>
+                  </div>
+
+                  <button
+                    type="button"
+                    className="zen-stepper-btn zen-stepper-btn-compact"
+                    onClick={() => onCustomDurationChange(idx, Math.min(120, dur + 1))}
+                    disabled={dur >= 120}
+                    aria-label={`Increase Interval ${idx + 1} duration`}
+                  >
+                    <Plus size={14} strokeWidth={2} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Live Calculated Display */}
       <div
@@ -77,7 +168,7 @@ export default function IntervalConfig({
           <div>
             <div className="zen-duration-title">Total Session Duration</div>
             <div className="zen-duration-formula">
-              {intervals} × {minutes} min
+              {durationFormula}
             </div>
           </div>
         </div>

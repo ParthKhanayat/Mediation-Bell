@@ -12,6 +12,8 @@ const STORAGE_KEY_MINUTES = 'zen_bell_minutes';
 const STORAGE_KEY_SOUND_ENABLED = 'zen_bell_sound_enabled';
 const STORAGE_KEY_DOUBLE_STRIKE = 'zen_bell_double_strike';
 const STORAGE_KEY_HIDE_DIGITS = 'zen_bell_hide_digits';
+const STORAGE_KEY_IS_CUSTOM = 'zen_bell_is_custom';
+const STORAGE_KEY_CUSTOM_DURATIONS = 'zen_bell_custom_durations';
 
 export default function App() {
   // 1. Session Configuration Parameters (Loaded from localStorage)
@@ -33,6 +35,28 @@ export default function App() {
     } catch {
       return 5;
     }
+  });
+
+  // Custom individual interval durations
+  const [isCustomIntervals, setIsCustomIntervals] = useState(() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY_IS_CUSTOM) === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const [customDurations, setCustomDurations] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY_CUSTOM_DURATIONS);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      }
+    } catch {}
+    return Array(4).fill(5);
   });
 
   // Sound Synthesizer Options
@@ -66,6 +90,17 @@ export default function App() {
   // View state: 'config' | 'timer' | 'both'
   const [viewMode, setViewMode] = useState('both');
 
+  // Keep customDurations length synced with intervals
+  useEffect(() => {
+    setCustomDurations((prev) => {
+      if (prev.length === intervals) return prev;
+      if (prev.length < intervals) {
+        return [...prev, ...Array(intervals - prev.length).fill(minutes)];
+      }
+      return prev.slice(0, intervals);
+    });
+  }, [intervals, minutes]);
+
   // Automatically save preferences to localStorage on return
   useEffect(() => {
     try {
@@ -97,6 +132,21 @@ export default function App() {
     } catch {}
   }, [hideDigits]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY_IS_CUSTOM, String(isCustomIntervals));
+    } catch {}
+  }, [isCustomIntervals]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY_CUSTOM_DURATIONS,
+        JSON.stringify(customDurations)
+      );
+    } catch {}
+  }, [customDurations]);
+
   // Synchronize master sound settings with audio singleton
   useEffect(() => {
     AUDIO_CONFIG.soundEnabled = soundEnabled;
@@ -107,6 +157,8 @@ export default function App() {
   const timer = useIntervalTimer({
     intervals,
     minutes,
+    isCustomIntervals,
+    customDurations,
     soundEnabled,
     doubleStrike,
   });
@@ -114,6 +166,32 @@ export default function App() {
   const handleStartSession = async () => {
     await timer.startTimer();
     setViewMode('timer');
+  };
+
+  const handleToggleCustomIntervals = () => {
+    setIsCustomIntervals((prev) => !prev);
+    if (timer.status !== 'running') timer.resetTimer();
+  };
+
+  const handleCustomDurationChange = (index, newMin) => {
+    setCustomDurations((prev) => {
+      const copy = [...prev];
+      copy[index] = newMin;
+      return copy;
+    });
+    if (timer.status !== 'running') timer.resetTimer();
+  };
+
+  const handleResetCustomToUniform = () => {
+    setCustomDurations(Array(intervals).fill(minutes));
+    if (timer.status !== 'running') timer.resetTimer();
+  };
+
+  const handlePresetSelect = (newIntervals, newMinutes) => {
+    setIntervals(newIntervals);
+    setMinutes(newMinutes);
+    setCustomDurations(Array(newIntervals).fill(newMinutes));
+    if (timer.status !== 'running') timer.resetTimer();
   };
 
   return (
@@ -180,6 +258,11 @@ export default function App() {
                 onToggleSound={() => setSoundEnabled((prev) => !prev)}
                 doubleStrike={doubleStrike}
                 onToggleDoubleStrike={() => setDoubleStrike((prev) => !prev)}
+                isCustomIntervals={isCustomIntervals}
+                onToggleCustomIntervals={handleToggleCustomIntervals}
+                customDurations={customDurations}
+                onCustomDurationChange={handleCustomDurationChange}
+                onResetCustomToUniform={handleResetCustomToUniform}
               />
             </div>
 
@@ -222,6 +305,11 @@ export default function App() {
               onToggleSound={() => setSoundEnabled((prev) => !prev)}
               doubleStrike={doubleStrike}
               onToggleDoubleStrike={() => setDoubleStrike((prev) => !prev)}
+              isCustomIntervals={isCustomIntervals}
+              onToggleCustomIntervals={handleToggleCustomIntervals}
+              customDurations={customDurations}
+              onCustomDurationChange={handleCustomDurationChange}
+              onResetCustomToUniform={handleResetCustomToUniform}
             />
           </div>
         ) : (

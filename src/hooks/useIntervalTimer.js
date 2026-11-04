@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { playBell, unlockAudio } from '../services/zenAudio';
 
 /**
@@ -8,10 +8,13 @@ import { playBell, unlockAudio } from '../services/zenAudio';
  * - Handles intermediate interval transitions and triggers the 528Hz Interval Bell.
  * - Handles session completion and triggers the deep Tibetan Singing Bowl.
  * - Integrates the Screen Wake Lock API to prevent mobile screens from sleeping.
+ * - Supports both uniform minutes and custom individual interval durations.
  */
 export function useIntervalTimer({
   intervals = 4,
   minutes = 5,
+  isCustomIntervals = false,
+  customDurations = null,
   soundEnabled = true,
   doubleStrike = true,
 }) {
@@ -48,9 +51,51 @@ export function useIntervalTimer({
   // (0-indexed: when crossing from interval 0 into interval 1, lastChimedIndexRef becomes 0)
   const lastChimedIntervalIndexRef = useRef(0);
 
-  // Current session constants in ms
-  const intervalDurationMs = Math.max(1, minutes * 60 * 1000);
-  const totalSessionDurationMs = intervals * intervalDurationMs;
+  // Calculate durations in ms for each interval (supports custom durations or uniform)
+  const durationsMs = useMemo(() => {
+    if (
+      isCustomIntervals &&
+      Array.isArray(customDurations) &&
+      customDurations.length === intervals
+    ) {
+      return customDurations.map((m) => Math.max(1, (parseInt(m, 10) || 1) * 60 * 1000));
+    }
+    return Array(intervals).fill(Math.max(1, minutes * 60 * 1000));
+  }, [isCustomIntervals, customDurations, intervals, minutes]);
+
+  const totalSessionDurationMs = useMemo(() => {
+    return durationsMs.reduce((acc, d) => acc + d, 0);
+  }, [durationsMs]);
+
+  // Helper to determine interval index, duration, and elapsed time at any given ms
+  const getIntervalInfoAtElapsed = useCallback(
+    (elapsedMs) => {
+      let currentIdx = 0;
+      let accum = 0;
+      let durationMs = durationsMs[0] || 60000;
+      let elapsedInInt = 0;
+
+      for (let i = 0; i < durationsMs.length; i++) {
+        const d = durationsMs[i];
+        if (elapsedMs < accum + d || i === durationsMs.length - 1) {
+          currentIdx = i;
+          durationMs = d;
+          elapsedInInt = Math.max(0, elapsedMs - accum);
+          break;
+        }
+        accum += d;
+      }
+
+      const remainingInInt = Math.max(0, durationMs - elapsedInInt);
+      return {
+        currentIdx,
+        durationMs,
+        elapsedInInt,
+        remainingInInt,
+      };
+    },
+    [durationsMs]
+  );
 
   /* ========================================================================
      Screen Wake Lock API Management
@@ -138,18 +183,18 @@ export function useIntervalTimer({
     setSessionElapsedMs(totalElapsed);
 
     // Determine current interval index (0 to intervals - 1)
-    const currentIntervalIndex = Math.floor(totalElapsed / intervalDurationMs);
+    const { currentIdx } = getIntervalInfoAtElapsed(totalElapsed);
 
     // Check if we rolled into a new intermediate interval
-    if (currentIntervalIndex > lastChimedIntervalIndexRef.current) {
+    if (currentIdx > lastChimedIntervalIndexRef.current) {
       // Fire intermediate gentle chime & visual pulse
       triggerBellPulse(2800);
       if (soundEnabled) {
         playBell('interval');
       }
-      lastChimedIntervalIndexRef.current = currentIntervalIndex;
+      lastChimedIntervalIndexRef.current = currentIdx;
     }
-  }, [totalSessionDurationMs, intervalDurationMs, soundEnabled, handleTimerComplete, triggerBellPulse]);
+  }, [totalSessionDurationMs, getIntervalInfoAtElapsed, soundEnabled, handleTimerComplete, triggerBellPulse]);
 
   /* ========================================================================
      Control Actions: Start, Pause, Reset, Seek
@@ -215,34 +260,36 @@ export function useIntervalTimer({
     (targetIntervalNum) => {
       const clamped = Math.max(1, Math.min(intervals, targetIntervalNum));
       const targetIndex = clamped - 1;
-      const targetElapsedMs = targetIndex * intervalDurationMs;
+      const targetElapsedMs = durationsMs
+        .slice(0, targetIndex)
+        .reduce((sum, d) => sum + d, 0);
 
       accumulatedMsRef.current = targetElapsedMs;
       startTimeRef.current = status === 'running' ? Date.now() : null;
       lastChimedIntervalIndexRef.current = targetIndex;
       setSessionElapsedMs(targetElapsedMs);
     },
-    [intervals, intervalDurationMs, status]
+    [intervals, durationsMs, status]
   );
 
   // Scrub progress within current interval
   const seekIntervalProgress = useCallback(
     (ratio) => {
-      const currentIntervalIdx = Math.min(
-        intervals - 1,
-        Math.floor(sessionElapsedMs / intervalDurationMs)
-      );
-      const intervalBaseMs = currentIntervalIdx * intervalDurationMs;
+      const { currentIdx, durationMs } = getIntervalInfoAtElapsed(sessionElapsedMs);
+      const baseElapsed = durationsMs
+        .slice(0, currentIdx)
+        .reduce((sum, d) => sum + d, 0);
+
       // ratio: 1 (full) down to 0 (empty)
-      const remainingInInterval = intervalDurationMs * Math.max(0, Math.min(1, ratio));
-      const newElapsedInInterval = intervalDurationMs - remainingInInterval;
-      const targetElapsedMs = intervalBaseMs + newElapsedInInterval;
+      const remainingInInterval = durationMs * Math.max(0, Math.min(1, ratio));
+      const newElapsedInInterval = durationMs - remainingInInterval;
+      const targetElapsedMs = baseElapsed + newElapsedInInterval;
 
       accumulatedMsRef.current = targetElapsedMs;
       startTimeRef.current = status === 'running' ? Date.now() : null;
       setSessionElapsedMs(targetElapsedMs);
     },
-    [intervals, intervalDurationMs, sessionElapsedMs, status]
+    [durationsMs, getIntervalInfoAtElapsed, sessionElapsedMs, status]
   );
 
   // Clean up interval and wake lock on unmount
@@ -253,33 +300,24 @@ export function useIntervalTimer({
     };
   }, [stopTick, releaseWakeLock]);
 
-  // If session parameters (intervals or minutes) change while idle, reset cleanly
+  // If session parameters change while idle, reset cleanly
   useEffect(() => {
     if (status === 'idle') {
       accumulatedMsRef.current = 0;
       setSessionElapsedMs(0);
       lastChimedIntervalIndexRef.current = 0;
     }
-  }, [intervals, minutes, status]);
+  }, [intervals, minutes, isCustomIntervals, customDurations, status]);
 
   /* ========================================================================
      Calculated Output Properties
      ======================================================================== */
-  const currentIntervalIndex = Math.min(
-    intervals - 1,
-    Math.floor(sessionElapsedMs / intervalDurationMs)
-  );
-  const currentInterval = currentIntervalIndex + 1;
-
-  const elapsedInCurrentIntervalMs = sessionElapsedMs - currentIntervalIndex * intervalDurationMs;
-  const remainingInCurrentIntervalMs = Math.max(
-    0,
-    intervalDurationMs - elapsedInCurrentIntervalMs
-  );
+  const { currentIdx, durationMs, remainingInInt } = getIntervalInfoAtElapsed(sessionElapsedMs);
+  const currentInterval = currentIdx + 1;
 
   // In completed state, remaining is strictly 0
   const isCompleted = status === 'completed';
-  const effectiveRemainingMs = isCompleted ? 0 : remainingInCurrentIntervalMs;
+  const effectiveRemainingMs = isCompleted ? 0 : remainingInInt;
 
   const remainingSeconds = Math.ceil(effectiveRemainingMs / 1000);
   const minutesDisplay = Math.floor(remainingSeconds / 60);
@@ -287,7 +325,7 @@ export function useIntervalTimer({
   const formattedTime = `${String(minutesDisplay).padStart(2, '0')}:${String(secondsDisplay).padStart(2, '0')}`;
 
   // Progress for the circular ring: 1.0 (full) down to 0.0 (empty)
-  const intervalProgress = isCompleted ? 0 : effectiveRemainingMs / intervalDurationMs;
+  const intervalProgress = isCompleted ? 0 : effectiveRemainingMs / durationMs;
 
   // Overall session percentage (0% to 100%)
   const totalSessionProgress = Math.min(1, sessionElapsedMs / totalSessionDurationMs);
