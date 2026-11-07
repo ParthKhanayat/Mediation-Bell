@@ -223,7 +223,13 @@ export default function App() {
 
   return (
     <div className={`zen-app-wrapper ${timer.isPlaying ? 'zen-timer-running' : ''}`}>
-      <div className="zen-ambient-aura" aria-hidden="true" />
+      {/* Dreamy Multi-Layered Ambient Mesh & Aura Blobs (Image 1 Inspiration) */}
+      <div className="zen-ambient-mesh-canvas" aria-hidden="true">
+        <div className="zen-aura-blob zen-blob-peach" />
+        <div className="zen-aura-blob zen-blob-rose" />
+        <div className="zen-aura-blob zen-blob-lavender" />
+        <div className="zen-aura-blob zen-blob-periwinkle" />
+      </div>
 
       {/* Header - Dims gently during active sitting */}
       <div className="zen-header-container zen-secondary-dim">

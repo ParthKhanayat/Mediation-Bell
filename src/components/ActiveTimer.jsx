@@ -107,7 +107,11 @@ export default function ActiveTimer({
         </div>
       ) : (
         <>
-          <CircularProgress progress={intervalProgress} isBellRinging={isBellRinging}>
+          <CircularProgress
+            progress={intervalProgress}
+            isBellRinging={isBellRinging}
+            isPlaying={isPlaying}
+          >
             {hideDigits ? (
               <div className="zen-pure-dial-content" onClick={onToggleHideDigits} role="button" tabIndex={0}>
                 <div className="zen-meditation-enso" aria-hidden="true">

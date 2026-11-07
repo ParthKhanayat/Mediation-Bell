@@ -1,69 +1,94 @@
 /* ==========================================================================
-   Zen Meditation Interval Timer - Pastel Glassmorphism Theme
-   Inspired by soft pastel mesh gradients, frosted glass, and coral-peach accents
+   Meditation Bell - Ethereal Luminous Theme
+   Inspired by:
+   - Image 1: Cloud-soft ethereal mesh palette, frosted glassmorphism,
+              editorial serif typography, and sacred geometry overlapping rings.
+   - Image 2: 3D pearlescent iridescent glowing orb centerpiece,
+              outer orbit progress arc, and refined minimal pill controls.
    ========================================================================== */
 
 :root {
-  /* Core Pastel Mesh Palette */
-  --color-bg-base: #F4F3F6;
+  /* ------------------------------------------------------------------------
+     1. Rich Dreamy Ambient Mesh Palette (Image 1 Inspiration)
+     Lavender #D8B4FE, Pastel Rose #FBCFE8, Warm Peach #FDE68A, Periwinkle #C7D2FE
+     ------------------------------------------------------------------------ */
+  --color-bg-base: #F8F5FB;
+  --color-lavender: #D8B4FE;
+  --color-rose: #FBCFE8;
+  --color-peach: #FDE68A;
+  --color-periwinkle: #C7D2FE;
+  --color-violet: #A855F7;
+  --color-violet-soft: rgba(168, 85, 247, 0.12);
+  --color-rose-soft: rgba(244, 114, 182, 0.15);
+
   --color-bg-mesh: 
-    radial-gradient(at 10% 10%, #FFFFFF 0px, transparent 40%),
-    radial-gradient(at 90% 10%, #F6EBF2 0px, transparent 45%),
-    radial-gradient(at 85% 85%, #EADBEE 0px, transparent 45%),
-    radial-gradient(at 15% 90%, #FFEFE6 0px, transparent 45%),
-    radial-gradient(at 50% 50%, #FAF7F9 0px, transparent 60%),
-    #F4F3F6;
+    radial-gradient(at 15% 10%, #FDE68A 0px, transparent 42%),
+    radial-gradient(at 88% 12%, #FBCFE8 0px, transparent 45%),
+    radial-gradient(at 82% 82%, #D8B4FE 0px, transparent 48%),
+    radial-gradient(at 12% 85%, #C7D2FE 0px, transparent 45%),
+    radial-gradient(at 50% 50%, #FAF5FF 0px, transparent 65%),
+    #F8F5FB;
 
-  /* Frosted Glass Surfaces */
-  --color-glass-card: rgba(255, 255, 255, 0.65);
-  --color-glass-subtle: rgba(255, 255, 255, 0.45);
-  --color-glass-pill: rgba(255, 255, 255, 0.55);
+  /* ------------------------------------------------------------------------
+     2. Frosted Glass Surfaces (Lower card in Image 1: 0.38 - 0.55 blur 24px)
+     ------------------------------------------------------------------------ */
+  --color-glass-card: rgba(255, 255, 255, 0.46);
+  --color-glass-subtle: rgba(255, 255, 255, 0.34);
+  --color-glass-pill: rgba(255, 255, 255, 0.52);
   --color-glass-pill-active: #FFFFFF;
-  --color-glass-input: rgba(255, 255, 255, 0.6);
+  --color-glass-input: rgba(255, 255, 255, 0.55);
 
-  /* Borders & Highlights */
-  --color-border-glass: rgba(255, 255, 255, 0.85);
-  --color-border-subtle: rgba(255, 255, 255, 0.6);
-  --color-border-dark: rgba(30, 20, 50, 0.06);
+  /* Borders & Specular Highlights */
+  --color-border-glass: rgba(255, 255, 255, 0.72);
+  --color-border-subtle: rgba(255, 255, 255, 0.5);
+  --color-border-dark: rgba(147, 118, 185, 0.1);
 
-  /* Coral-Peach Gradient Accents (from reference image) */
-  --gradient-coral-peach: linear-gradient(135deg, #FF8A65 0%, #FF6E40 100%);
-  --gradient-coral-lavender: linear-gradient(135deg, #FFA07A 0%, #FF6E40 50%, #E040FB 100%);
-  --gradient-orb: radial-gradient(circle at 35% 35%, #FFB499 0%, #FF7A50 45%, #E64A19 85%);
-  --color-coral: #FF6E40;
-  --color-coral-light: #FF8A65;
-  --color-coral-soft: rgba(255, 110, 64, 0.12);
-  --color-lavender: #E040FB;
+  /* ------------------------------------------------------------------------
+     3. Luminous Rose-to-Violet & Peach Gradients (Image 1 & 2)
+     ------------------------------------------------------------------------ */
+  --gradient-aurora: linear-gradient(135deg, #C084FC 0%, #F472B6 100%);
+  --gradient-rose-violet: linear-gradient(135deg, #F472B6 0%, #A855F7 100%);
+  --gradient-peach-lavender: linear-gradient(135deg, #FDE68A 0%, #F472B6 50%, #C084FC 100%);
+  --gradient-primary-btn: linear-gradient(135deg, #A855F7 0%, #EC4899 50%, #F43F5E 100%);
+  --gradient-orb-pearl: radial-gradient(circle at 35% 28%, #FFFFFF 0%, #FFF0F6 18%, #F3E8FF 45%, #DDD6FE 72%, #FBCFE8 100%);
 
-  /* Typography Colors */
-  --text-primary: #1E1E24;     /* Deep charcoal for headers & timer digits */
-  --text-secondary: #6E6D7A;   /* Medium muted slate for labels & descriptions */
-  --text-muted: #9392A0;       /* Lighter slate for hints & captions */
-  --text-dim: #A8A7B3;
+  /* Accent Colors */
+  --color-accent: #A855F7;
+  --color-accent-rose: #EC4899;
+  --color-accent-peach: #F59E0B;
+  --color-accent-glow: rgba(168, 85, 247, 0.35);
 
-  /* Fonts */
-  --font-sans: 'DynaPuff', cursive, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: var(--font-sans);
+  /* ------------------------------------------------------------------------
+     4. High-Contrast Editorial Typography Colors
+     ------------------------------------------------------------------------ */
+  --text-primary: #1C132E;     /* Deep rich amethyst charcoal for high contrast */
+  --text-secondary: #584D6F;   /* Refined slate violet */
+  --text-muted: #84769F;       /* Soft serene slate */
+  --text-dim: #A89DC2;
+
+  /* Typography Pairing: Editorial Serif + Clean Modern Sans */
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Radii */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
-  --radius-card: 28px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-card: 32px;
   --radius-full: 9999px;
 
-  /* Diffused Soft Shadows */
-  --shadow-glass: 0 12px 32px -4px rgba(30, 20, 50, 0.05), 0 4px 12px -2px rgba(30, 20, 50, 0.03);
-  --shadow-inner: inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  --shadow-pill: 0 4px 14px rgba(30, 20, 50, 0.08);
-  --shadow-coral: 0 8px 24px -4px rgba(255, 110, 64, 0.38);
-  --shadow-orb: 0 8px 20px -4px rgba(255, 110, 64, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.5);
+  /* Ambient Ethereal Shadows */
+  --shadow-glass: 0 20px 50px rgba(148, 118, 185, 0.12), 0 4px 14px rgba(148, 118, 185, 0.04);
+  --shadow-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  --shadow-pill: 0 4px 16px rgba(148, 118, 185, 0.1);
+  --shadow-luminous: 0 10px 28px -4px rgba(168, 85, 247, 0.36);
+  --shadow-orb: 0 20px 50px rgba(168, 85, 247, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.8);
 
   --transition-gentle: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Base Reset & Typography */
+/* Base Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -71,39 +96,38 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Global Thin & Rounded Scrollbars matching Coral-Peach / Lavender Glassmorphic Palette */
+/* Global Thin & Rounded Scrollbars matching Ethereal Lavender/Rose Glassmorphism */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 110, 64, 0.38) rgba(255, 255, 255, 0.35);
+  scrollbar-color: rgba(168, 85, 247, 0.35) rgba(255, 255, 255, 0.35);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 110, 64, 0.35) transparent;
+  scrollbar-color: rgba(168, 85, 247, 0.3) transparent;
 }
 
-/* WebKit-based browsers (Chrome, Edge, Safari, Brave) */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, rgba(255, 138, 101, 0.45) 0%, rgba(255, 110, 64, 0.55) 100%);
+  background: linear-gradient(135deg, rgba(192, 132, 252, 0.5) 0%, rgba(244, 114, 182, 0.6) 100%);
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   transition: var(--transition-gentle);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, rgba(255, 138, 101, 0.8) 0%, rgba(255, 110, 64, 0.9) 100%);
-  border-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 8px rgba(255, 110, 64, 0.35);
+  background: linear-gradient(135deg, rgba(192, 132, 252, 0.8) 0%, rgba(244, 114, 182, 0.9) 100%);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
 }
 
 ::-webkit-scrollbar-corner {
@@ -138,7 +162,86 @@ body {
   flex-direction: column;
 }
 
-/* Serene Layout Wrapper */
+/* ==========================================================================
+   Multi-Layered Ambient Canvas Background Blobs (Image 1 Inspiration)
+   ========================================================================== */
+.zen-ambient-mesh-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.zen-aura-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+  transition: opacity 1.2s ease;
+}
+
+.zen-blob-peach {
+  top: -12%;
+  right: 4%;
+  width: min(85vw, 560px);
+  height: min(85vw, 560px);
+  background: radial-gradient(circle, #FDE68A 0%, rgba(253, 230, 138, 0) 70%);
+  animation: blob-drift-1 24s ease-in-out infinite alternate;
+}
+
+.zen-blob-rose {
+  top: 25%;
+  left: -14%;
+  width: min(90vw, 620px);
+  height: min(90vw, 620px);
+  background: radial-gradient(circle, #FBCFE8 0%, rgba(251, 207, 232, 0) 70%);
+  animation: blob-drift-2 28s ease-in-out infinite alternate;
+}
+
+.zen-blob-lavender {
+  bottom: 8%;
+  right: -8%;
+  width: min(90vw, 580px);
+  height: min(90vw, 580px);
+  background: radial-gradient(circle, #D8B4FE 0%, rgba(216, 180, 254, 0) 70%);
+  animation: blob-drift-3 22s ease-in-out infinite alternate;
+}
+
+.zen-blob-periwinkle {
+  bottom: -15%;
+  left: 12%;
+  width: min(80vw, 520px);
+  height: min(80vw, 520px);
+  background: radial-gradient(circle, #C7D2FE 0%, rgba(199, 210, 254, 0) 70%);
+  animation: blob-drift-4 30s ease-in-out infinite alternate;
+}
+
+@keyframes blob-drift-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-45px, 55px) scale(1.12); }
+}
+
+@keyframes blob-drift-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(55px, -45px) scale(1.08); }
+}
+
+@keyframes blob-drift-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-35px, -45px) scale(1.1); }
+}
+
+@keyframes blob-drift-4 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(45px, -35px) scale(1.06); }
+}
+
+/* ==========================================================================
+   Serene Layout Wrapper
+   ========================================================================== */
 .zen-app-wrapper {
   flex: 1;
   display: flex;
@@ -149,6 +252,8 @@ body {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 @media (min-width: 768px) {
@@ -157,28 +262,9 @@ body {
   }
 }
 
-/* Ambient Canvas Background Orbs */
-.zen-ambient-aura {
-  position: fixed;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(92vw, 680px);
-  height: min(92vw, 680px);
-  background: radial-gradient(circle, rgba(255, 138, 101, 0.14) 0%, rgba(224, 64, 251, 0.08) 40%, rgba(255, 239, 230, 0.12) 65%, transparent 75%);
-  pointer-events: none;
-  z-index: 0;
-  border-radius: 50%;
-  filter: blur(55px);
-  animation: zen-ambient-drift 14s ease-in-out infinite alternate;
-}
-
-@keyframes zen-ambient-drift {
-  0% { transform: translateX(-50%) scale(0.96) rotate(0deg); opacity: 0.8; }
-  100% { transform: translateX(-48%) scale(1.08) rotate(15deg); opacity: 1; }
-}
-
-/* Zen Header */
+/* ==========================================================================
+   Header & Brand Badge (Image 2 Miniature Glowing Pearl Orb)
+   ========================================================================== */
 .zen-header {
   position: relative;
   z-index: 1;
@@ -190,38 +276,72 @@ body {
   gap: 0.35rem;
 }
 
-/* Glowing 3D Orb Header Mark (echoes the 3D sphere from reference image) */
-.zen-logo-mark {
+.zen-header-brand-wrap {
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+/* Miniature Pearlescent Orb Brand Mark */
+.zen-logo-mark.zen-pearl-orb {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-full);
-  background: var(--gradient-orb);
-  color: #FFFFFF;
-  margin-bottom: 0.35rem;
-  box-shadow: var(--shadow-orb);
+  background: var(--gradient-orb-pearl);
+  color: var(--color-accent);
+  box-shadow: 
+    inset -4px -6px 14px rgba(168, 85, 247, 0.22),
+    inset 4px 5px 12px rgba(255, 255, 255, 0.95),
+    0 10px 24px rgba(168, 85, 247, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   transition: var(--transition-gentle);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  overflow: visible;
 }
 
-.zen-logo-mark:hover {
-  transform: scale(1.06) translateY(-2px);
-  box-shadow: 0 10px 24px -2px rgba(255, 110, 64, 0.5);
+.zen-logo-mark.zen-pearl-orb:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 
+    inset -5px -7px 16px rgba(168, 85, 247, 0.28),
+    inset 5px 6px 14px rgba(255, 255, 255, 1),
+    0 14px 30px rgba(168, 85, 247, 0.28);
 }
 
+.zen-pearl-orb-sheen {
+  position: absolute;
+  top: 6px;
+  left: 9px;
+  width: 14px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.1) 100%);
+  transform: rotate(-30deg);
+  pointer-events: none;
+}
+
+.zen-header-sparkle {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  color: #FFFFFF;
+  filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.7));
+  animation: star-sparkle-twinkle 3.5s ease-in-out infinite alternate;
+}
+
+/* Editorial Serif Main Title (Image 1 Inspiration) */
 .zen-title {
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: clamp(1.8rem, 4vw, 2.3rem);
-  letter-spacing: -0.03em;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2rem, 4.5vw, 2.6rem);
+  letter-spacing: -0.015em;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .zen-subtitle {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -231,15 +351,15 @@ body {
 .zen-header-lifetime-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   margin-top: 0.25rem;
-  padding: 0.32rem 0.85rem;
+  padding: 0.32rem 0.95rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.58);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border-glass);
-  box-shadow: 0 2px 8px rgba(30, 20, 50, 0.04);
+  box-shadow: var(--shadow-inner), 0 2px 8px rgba(148, 118, 185, 0.06);
   font-size: 0.76rem;
   font-weight: 600;
   color: var(--text-secondary);
@@ -256,7 +376,7 @@ body {
 }
 
 .zen-header-lifetime-pill svg {
-  color: var(--color-coral);
+  color: var(--color-accent);
   transition: transform 0.3s ease;
 }
 
@@ -264,13 +384,15 @@ body {
   transform: scale(1.15) translateY(-1px);
 }
 
-/* Mode Switcher Tabs (Frosted Capsule Pill) */
+/* ==========================================================================
+   Mode Switcher Tabs (Frosted Glass Pill Capsule)
+   ========================================================================== */
 .zen-view-switcher {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   padding: 5px;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border-glass);
@@ -318,16 +440,18 @@ body {
   background: var(--color-glass-pill-active);
   color: var(--text-primary);
   font-weight: 600;
-  box-shadow: var(--shadow-pill);
+  box-shadow: var(--shadow-pill), var(--shadow-inner);
 }
 
 .zen-view-tab svg {
   width: 15px;
   height: 15px;
-  color: var(--color-coral);
+  color: var(--color-accent);
 }
 
-/* Main Content Area */
+/* ==========================================================================
+   Main Content Area & Dual View Layout
+   ========================================================================== */
 .zen-main-container {
   width: 100%;
   max-width: 540px;
@@ -339,7 +463,6 @@ body {
   transition: max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Expanded container for desktop Dual View to ensure spacious, symmetrical cards */
 @media (min-width: 992px) {
   .zen-main-container.dual-mode,
   .zen-main-container:has(.zen-dual-layout) {
@@ -347,7 +470,6 @@ body {
   }
 }
 
-/* Responsive Dual Column View on Desktop */
 .zen-dual-layout {
   display: flex;
   flex-direction: column;
@@ -365,12 +487,14 @@ body {
   }
 }
 
-/* Frosted Glass Panels (Glassmorphism) */
+/* ==========================================================================
+   Frosted Glass Card Panels (Image 1 Inspiration)
+   ========================================================================== */
 .zen-card {
   width: 100%;
   background: var(--color-glass-card);
-  backdrop-filter: blur(24px) saturate(130%);
-  -webkit-backdrop-filter: blur(24px) saturate(130%);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid var(--color-border-glass);
   border-radius: var(--radius-card);
   padding: 1.85rem 1.6rem;
@@ -390,11 +514,11 @@ body {
 }
 
 .zen-card-title {
-  font-family: var(--font-sans);
-  font-size: 1.55rem;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .zen-card-description {
@@ -404,7 +528,9 @@ body {
   font-weight: 400;
 }
 
-/* Configuration UI Form Elements */
+/* ==========================================================================
+   Configuration UI & Symmetrical Capsule Stepper Controls
+   ========================================================================== */
 .config-group {
   display: flex;
   flex-direction: column;
@@ -443,17 +569,17 @@ body {
   color: var(--text-secondary);
 }
 
-/* Capsule Stepper Control - Completely Symmetrical */
+/* Symmetrical Frosted Glass Capsule Stepper */
 .zen-stepper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.52);
   border: 1px solid var(--color-border-glass);
   border-radius: var(--radius-full);
   padding: 4px;
-  box-shadow: var(--shadow-inner), 0 2px 8px rgba(30, 20, 50, 0.04);
+  box-shadow: var(--shadow-inner), 0 2px 8px rgba(148, 118, 185, 0.05);
   box-sizing: border-box;
 }
 
@@ -479,64 +605,62 @@ body {
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.06);
+  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.08);
   flex-shrink: 0;
 }
 
 .zen-stepper-btn:hover:not(:disabled) {
   background: #FFFFFF;
-  color: var(--color-coral);
-  box-shadow: 0 4px 12px rgba(255, 110, 64, 0.18);
+  color: var(--color-accent);
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.22);
   transform: scale(1.04);
 }
 
 .zen-stepper-btn:active:not(:disabled) {
   transform: scale(0.95);
-  box-shadow: 0 1px 3px rgba(30, 20, 50, 0.08);
+  box-shadow: 0 1px 3px rgba(148, 118, 185, 0.1);
 }
 
 .zen-stepper-btn:disabled {
   opacity: 0.35;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
-.zen-stepper-btn svg {
-  width: 17px;
-  height: 17px;
-}
-
-/* Symmetrically Centered Value Cluster */
 .zen-stepper-value-container {
-  flex: 1;
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 5px;
-  padding: 0 0.25rem;
+  gap: 0.25rem;
+  flex: 1;
   text-align: center;
+  padding: 0 0.5rem;
   min-width: 0;
 }
 
 .zen-stepper-input {
-  width: 2.2ch;
-  background: transparent;
-  border: none;
   font-family: var(--font-sans);
-  font-size: 1.45rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
+  background: transparent;
+  border: none;
   text-align: right;
+  width: 2.8ch;
   outline: none;
-  -moz-appearance: textfield;
-  appearance: textfield;
   padding: 0;
+  font-variant-numeric: tabular-nums;
 }
 
-.zen-stepper-input::-webkit-outer-spin-button,
-.zen-stepper-input::-webkit-inner-spin-button {
+.zen-stepper-input::-webkit-inner-spin-button,
+.zen-stepper-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.zen-stepper-val-static {
+  display: inline-block;
+  text-align: right;
+  user-select: none;
 }
 
 .zen-stepper-unit {
@@ -547,45 +671,40 @@ body {
 }
 
 /* ==========================================================================
-   Custom Individual Interval Durations Feature
+   Custom Individual Interval Durations Drawer
    ========================================================================== */
 .zen-custom-toggle-container {
-  margin-top: 0.85rem;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  margin-top: 0.5rem;
 }
 
 .zen-custom-toggle-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.65rem;
   width: 100%;
   padding: 0.65rem 1.15rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px dashed rgba(30, 20, 50, 0.12);
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid var(--color-border-glass);
   color: var(--text-secondary);
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 1px 4px rgba(30, 20, 50, 0.02);
+  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.04);
 }
 
 .zen-custom-toggle-btn:hover {
   background: #FFFFFF;
   color: var(--text-primary);
-  border-color: rgba(255, 110, 64, 0.35);
   box-shadow: var(--shadow-pill);
 }
 
 .zen-custom-toggle-btn.active {
   background: #FFFFFF;
-  color: var(--color-coral);
-  border-color: rgba(255, 110, 64, 0.45);
+  color: var(--color-accent);
+  border-color: rgba(168, 85, 247, 0.35);
   box-shadow: var(--shadow-pill);
 }
 
@@ -596,16 +715,16 @@ body {
 }
 
 .zen-custom-toggle-label svg {
-  color: var(--color-coral);
+  color: var(--color-accent);
 }
 
 .zen-custom-intervals-drawer {
   margin-top: 0.85rem;
   padding: 1rem 1.15rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.52);
   border: 1px solid var(--color-border-glass);
-  box-shadow: var(--shadow-inner), 0 4px 14px rgba(30, 20, 50, 0.03);
+  box-shadow: var(--shadow-inner), 0 4px 14px rgba(148, 118, 185, 0.04);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -617,7 +736,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0.4rem;
-  border-bottom: 1px dashed rgba(30, 20, 50, 0.08);
+  border-bottom: 1px dashed rgba(148, 118, 185, 0.15);
 }
 
 .zen-custom-intervals-heading {
@@ -633,7 +752,7 @@ body {
   border: none;
   font-size: 0.74rem;
   font-weight: 600;
-  color: var(--color-coral);
+  color: var(--color-accent);
   cursor: pointer;
   transition: var(--transition-gentle);
   padding: 2px 6px;
@@ -641,7 +760,7 @@ body {
 }
 
 .zen-custom-reset-link:hover {
-  background: var(--color-coral-soft);
+  background: var(--color-violet-soft);
 }
 
 .zen-custom-intervals-grid {
@@ -651,15 +770,6 @@ body {
   max-height: 250px;
   overflow-y: auto;
   padding-right: 4px;
-}
-
-.zen-custom-intervals-grid::-webkit-scrollbar {
-  width: 5px;
-}
-
-.zen-custom-intervals-grid::-webkit-scrollbar-thumb {
-  background: rgba(30, 20, 50, 0.12);
-  border-radius: 9999px;
 }
 
 .zen-custom-interval-item {
@@ -675,20 +785,20 @@ body {
   align-items: center;
   gap: 0.45rem;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--text-primary);
 }
 
 .zen-custom-item-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--color-coral);
+  background: var(--gradient-aurora);
 }
 
 .zen-stepper-compact {
   width: 145px !important;
-  padding: 2px 3px !important;
+  padding: 2px;
 }
 
 .zen-stepper-btn-compact {
@@ -698,26 +808,27 @@ body {
   min-height: 32px !important;
 }
 
-.zen-stepper-val-static {
-  display: inline-block;
-  font-size: 1.15rem !important;
-  width: auto !important;
-  min-width: 20px;
-  text-align: right;
-}
-
-/* Live Session Duration Banner */
+/* ==========================================================================
+   Total Session Duration Banner
+   ========================================================================== */
 .zen-duration-banner {
-  margin-top: 1.75rem;
-  padding: 1.1rem 1.25rem;
+  margin-top: 1.5rem;
+  padding: 1.1rem 1.35rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.58);
   border: 1px solid var(--color-border-glass);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  box-shadow: var(--shadow-inner), 0 4px 14px rgba(30, 20, 50, 0.03);
+  flex-direction: column;
+  gap: 0.4rem;
+  box-shadow: var(--shadow-inner), 0 4px 16px rgba(148, 118, 185, 0.05);
+}
+
+@media (min-width: 480px) {
+  .zen-duration-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .zen-duration-meta {
@@ -730,62 +841,64 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-full);
-  background: var(--color-coral-soft);
-  color: var(--color-coral);
+  background: var(--color-violet-soft);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
 .zen-duration-title {
-  font-size: 0.76rem;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: var(--text-secondary);
   font-weight: 600;
 }
 
 .zen-duration-formula {
-  font-family: var(--font-sans);
-  font-size: 0.92rem;
-  color: var(--text-primary);
-  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--text-muted);
 }
 
 .zen-duration-highlight {
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-coral);
-  white-space: nowrap;
+  color: var(--color-accent);
+  letter-spacing: -0.01em;
 }
 
-/* Quick Select Presets (Full Capsule Pills) */
-.presets-section {
-  margin-top: 1.75rem;
-}
-
-.presets-label {
-  display: block;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-secondary);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  text-align: center;
-}
-
-.preset-pills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+/* ==========================================================================
+   Quick Select Presets (Frosted Glass Capsule Pills)
+   ========================================================================== */
+.zen-presets-container {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
   gap: 0.65rem;
 }
 
-@media (max-width: 360px) {
-  .preset-pills-grid {
-    grid-template-columns: repeat(2, 1fr);
+.zen-presets-label {
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.zen-presets-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.55rem;
+}
+
+@media (min-width: 480px) {
+  .zen-presets-grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -796,478 +909,39 @@ body {
   justify-content: center;
   padding: 0.65rem 0.5rem;
   border-radius: var(--radius-full);
-  background: var(--color-glass-subtle);
+  background: rgba(255, 255, 255, 0.48);
   border: 1px solid var(--color-border-glass);
-  color: var(--text-secondary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  min-height: 52px;
-  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.02);
+  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.04);
 }
 
 .zen-preset-pill:hover {
   background: #FFFFFF;
-  border-color: #FFFFFF;
-  color: var(--text-primary);
   transform: translateY(-2px);
   box-shadow: var(--shadow-pill);
 }
 
 .zen-preset-pill.active {
   background: #FFFFFF;
-  border-color: #FFFFFF;
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: var(--shadow-pill), 0 0 16px rgba(168, 85, 247, 0.15);
+}
+
+.zen-preset-intervals {
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--text-primary);
-  box-shadow: var(--shadow-pill);
 }
 
-.zen-preset-pill:active {
-  transform: scale(0.97);
+.zen-preset-pill.active .zen-preset-intervals {
+  color: var(--color-accent);
 }
 
-.preset-pill-title {
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.preset-pill-desc {
-  font-size: 0.72rem;
+.zen-preset-total {
+  font-size: 0.7rem;
   color: var(--text-muted);
-  margin-top: 1px;
-}
-
-.zen-preset-pill.active .preset-pill-title {
-  color: var(--text-primary);
-}
-
-.zen-preset-pill.active .preset-pill-desc {
-  color: var(--color-coral);
-  font-weight: 500;
-}
-
-/* Primary "Begin Meditation" Button (Coral-Peach Gradient Capsule) */
-.zen-start-session-btn {
-  margin-top: 2rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 0.95rem 1.5rem;
-  border-radius: var(--radius-full);
-  border: none;
-  background: var(--gradient-coral-peach);
-  color: #FFFFFF;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  transition: var(--transition-gentle);
-  min-height: 54px;
-  box-shadow: var(--shadow-coral);
-}
-
-.zen-start-session-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px -2px rgba(255, 110, 64, 0.48);
-}
-
-.zen-start-session-btn:active {
-  transform: scale(0.98);
-}
-
-/* ==========================================================================
-   ACTIVE TIMER VIEW & ETHEREAL CENTERPIECE
-   ========================================================================== */
-.zen-timer-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2.25rem 1.6rem 2rem;
-  position: relative;
-}
-
-/* Top Meta: Interval Badge & Screen Wake Lock */
-.zen-timer-top-meta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 1.75rem;
-  flex-wrap: wrap;
-  z-index: 2;
-}
-
-.zen-interval-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1.15rem;
-  border-radius: var(--radius-full);
-  background: #FFFFFF;
-  border: 1px solid var(--color-border-glass);
-  color: var(--text-primary);
-  font-size: 0.84rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  box-shadow: var(--shadow-pill);
-}
-
-.zen-interval-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: var(--color-coral);
-  box-shadow: 0 0 8px rgba(255, 110, 64, 0.6);
-}
-
-.zen-interval-dot.pulsing {
-  animation: pulse-coral-dot 2.5s infinite ease-in-out;
-}
-
-@keyframes pulse-coral-dot {
-  0%, 100% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.4); opacity: 1; }
-}
-
-.zen-wakelock-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.95rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid var(--color-border-glass);
-  color: var(--text-secondary);
-  font-size: 0.76rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(30, 20, 50, 0.04);
-}
-
-.zen-wakelock-pill svg {
-  color: var(--color-coral);
-}
-
-/* Pure Zen Mode Toggle */
-.zen-zen-mode-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.95rem;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid var(--color-border-glass);
-  color: var(--text-secondary);
-  font-size: 0.76rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition-gentle);
-  user-select: none;
-  box-shadow: 0 2px 8px rgba(30, 20, 50, 0.04);
-}
-
-.zen-zen-mode-toggle:hover {
-  background: #FFFFFF;
-  color: var(--text-primary);
-  box-shadow: var(--shadow-pill);
-}
-
-.zen-zen-mode-toggle.active {
-  background: #FFFFFF;
-  color: var(--color-coral);
-  box-shadow: var(--shadow-pill);
-}
-
-/* Circular Progress Dial & Luminous Glowing Centerpiece Aura */
-.zen-dial-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(72vw, 300px);
-  height: min(72vw, 300px);
-  margin: 0 auto 2.25rem;
-  z-index: 1;
-}
-
-@media (min-width: 480px) {
-  .zen-dial-wrapper {
-    width: 320px;
-    height: 320px;
-  }
-}
-
-/* Luminous Centerpiece Radial Aura (Echoes the 3D glowing sphere in reference) */
-.zen-centerpiece-aura {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(65vw, 260px);
-  height: min(65vw, 260px);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 138, 101, 0.32) 0%, rgba(224, 64, 251, 0.16) 45%, rgba(255, 240, 245, 0) 70%);
-  filter: blur(30px);
-  pointer-events: none;
-  z-index: 0;
-  animation: zen-orb-breathe 8s ease-in-out infinite alternate;
-  transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
-}
-
-@keyframes zen-orb-breathe {
-  0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
-  100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
-}
-
-/* Flare on Bell Chime */
-.zen-centerpiece-aura.flare {
-  animation: zen-aura-flare 2.8s cubic-bezier(0.1, 0.8, 0.2, 1);
-}
-
-@keyframes zen-aura-flare {
-  0% {
-    transform: translate(-50%, -50%) scale(0.95);
-    background: radial-gradient(circle, rgba(255, 167, 38, 0.55) 0%, rgba(255, 110, 64, 0.45) 40%, rgba(224, 64, 251, 0.25) 65%, transparent 75%);
-    filter: blur(35px) brightness(1.6);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.22);
-    filter: blur(40px) brightness(1.3);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    filter: blur(30px) brightness(1);
-    opacity: 0.8;
-  }
-}
-
-.zen-svg-ring {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-  overflow: visible;
-  position: relative;
-  z-index: 1;
-}
-
-.zen-ring-track {
-  stroke: rgba(110, 109, 122, 0.09);
-  fill: none;
-}
-
-.zen-ring-progress {
-  fill: none;
-  stroke: url(#zenSageGradient);
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 4px 14px rgba(255, 110, 64, 0.35));
-}
-
-.zen-ring-progress.ringing {
-  stroke: url(#zenBellPulseGradient) !important;
-  stroke-width: 8px;
-  filter: drop-shadow(0 0 22px rgba(255, 110, 64, 0.8)) !important;
-}
-
-/* Concentric expanding soundwave ripple on chime */
-.zen-chime-soundwave {
-  fill: none;
-  stroke-width: 2.5px;
-  pointer-events: none;
-}
-
-.zen-chime-soundwave.wave-1 {
-  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-}
-
-.zen-chime-soundwave.wave-2 {
-  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) 0.35s forwards;
-}
-
-@keyframes soundwave-ripple {
-  0% {
-    r: 110px;
-    opacity: 0.85;
-    stroke-width: 3.5px;
-  }
-  50% {
-    opacity: 0.45;
-  }
-  100% {
-    r: 148px;
-    opacity: 0;
-    stroke-width: 0.5px;
-  }
-}
-
-/* Center Content inside Dial */
-.zen-dial-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.zen-countdown-digits {
-  font-family: var(--font-sans);
-  font-size: clamp(3.2rem, 12vw, 4.2rem);
-  font-weight: 300;
-  line-height: 1;
-  color: var(--text-primary);
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-}
-
-.zen-dial-subtext {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  margin-top: 0.5rem;
-  font-weight: 500;
-}
-
-/* Pure Zen Mode Dial Content */
-.zen-pure-dial-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  pointer-events: auto;
-  user-select: none;
-}
-
-.zen-meditation-enso {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 110, 64, 0.25);
-  position: relative;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 16px rgba(30, 20, 50, 0.04);
-}
-
-.zen-breathing-core {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: var(--gradient-orb);
-  box-shadow: 0 4px 14px rgba(255, 110, 64, 0.45);
-  opacity: 0.9;
-}
-
-.zen-breathing-core.breathing {
-  animation: zen-breath-pulse 6s infinite ease-in-out;
-}
-
-@keyframes zen-breath-pulse {
-  0%, 100% {
-    transform: scale(0.85);
-    opacity: 0.6;
-    box-shadow: 0 2px 8px rgba(255, 110, 64, 0.3);
-  }
-  50% {
-    transform: scale(1.55);
-    opacity: 1;
-    box-shadow: 0 6px 22px rgba(255, 110, 64, 0.65);
-  }
-}
-
-/* Pill-Shaped Controls Bar */
-.zen-controls-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  width: 100%;
-  z-index: 2;
-}
-
-.zen-control-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--color-border-glass);
-  background: #FFFFFF;
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: var(--transition-gentle);
-  user-select: none;
-  box-shadow: var(--shadow-pill);
-}
-
-.zen-control-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(30, 20, 50, 0.1);
-  color: var(--color-coral);
-}
-
-.zen-control-btn:active {
-  transform: scale(0.94);
-}
-
-/* Secondary Button (Reset, Settings) */
-.zen-btn-secondary {
-  width: 52px;
-  height: 52px;
-  min-width: 52px;
-  min-height: 52px;
-}
-
-.zen-btn-secondary svg {
-  width: 20px;
-  height: 20px;
-  color: var(--text-secondary);
-  transition: var(--transition-gentle);
-}
-
-.zen-btn-secondary:hover svg {
-  color: var(--color-coral);
-}
-
-/* Primary Play/Pause Button (Vibrant Coral-Peach Pill/Orb) */
-.zen-btn-primary {
-  width: 74px;
-  height: 74px;
-  min-width: 74px;
-  min-height: 74px;
-  background: var(--gradient-coral-peach);
-  border: none;
-  color: #FFFFFF;
-  box-shadow: var(--shadow-coral);
-}
-
-.zen-btn-primary:hover {
-  transform: scale(1.06) translateY(-2px);
-  box-shadow: 0 12px 32px -2px rgba(255, 110, 64, 0.5);
-  color: #FFFFFF;
-}
-
-.zen-btn-primary:active {
-  transform: scale(0.96);
-}
-
-.zen-btn-primary svg {
-  width: 30px;
-  height: 30px;
-  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -1276,7 +950,7 @@ body {
 .zen-sound-section {
   margin-top: 1.75rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(30, 20, 50, 0.06);
+  border-top: 1px solid rgba(148, 118, 185, 0.12);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -1303,15 +977,15 @@ body {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
-  background: var(--color-coral-soft);
-  color: var(--color-coral);
+  background: var(--color-violet-soft);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
 .zen-sound-heading {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.01em;
 }
@@ -1330,17 +1004,17 @@ body {
   font-size: 0.78rem;
   font-weight: 600;
   border: 1px solid var(--color-border-glass);
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.6);
   color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.03);
+  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.04);
 }
 
 .zen-sound-mute-toggle.active {
   background: #FFFFFF;
-  color: var(--color-coral);
+  color: var(--color-accent);
   box-shadow: var(--shadow-pill);
 }
 
@@ -1353,7 +1027,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* Sound Cards Grid */
 .zen-sound-cards-grid {
   display: flex;
   flex-direction: column;
@@ -1363,7 +1036,7 @@ body {
 .zen-sound-card {
   padding: 1.05rem 1.15rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.48);
   border: 1px solid var(--color-border-glass);
   transition: var(--transition-gentle);
   position: relative;
@@ -1372,9 +1045,9 @@ body {
 }
 
 .zen-sound-card.is-playing {
-  border-color: rgba(255, 110, 64, 0.4);
+  border-color: rgba(168, 85, 247, 0.4);
   background: #FFFFFF;
-  box-shadow: 0 6px 20px -2px rgba(255, 110, 64, 0.15);
+  box-shadow: 0 6px 20px -2px rgba(168, 85, 247, 0.16);
 }
 
 .zen-sound-card.is-playing::before {
@@ -1384,7 +1057,7 @@ body {
   left: 0;
   right: 0;
   height: 2.5px;
-  background: var(--gradient-coral-peach);
+  background: var(--gradient-aurora);
   animation: sound-shine 2s infinite ease-in-out;
 }
 
@@ -1414,9 +1087,9 @@ body {
   height: 36px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.9);
-  color: var(--color-coral);
+  color: var(--color-accent);
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(30, 20, 50, 0.05);
+  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.08);
 }
 
 .zen-sound-card-name {
@@ -1452,9 +1125,9 @@ body {
 }
 
 .zen-test-sound-btn:hover:not(:disabled) {
-  color: var(--color-coral);
+  color: var(--color-accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 110, 64, 0.2);
+  box-shadow: 0 6px 16px rgba(168, 85, 247, 0.2);
 }
 
 .zen-test-sound-btn:active:not(:disabled) {
@@ -1462,10 +1135,10 @@ body {
 }
 
 .zen-test-sound-btn.active {
-  background: var(--gradient-coral-peach);
+  background: var(--gradient-aurora);
   border-color: transparent;
   color: #FFFFFF;
-  box-shadow: var(--shadow-coral);
+  box-shadow: var(--shadow-luminous);
 }
 
 .zen-test-sound-btn:disabled {
@@ -1484,7 +1157,7 @@ body {
 .zen-sound-card-option {
   margin-top: 0.65rem;
   padding-top: 0.55rem;
-  border-top: 1px dashed rgba(30, 20, 50, 0.08);
+  border-top: 1px dashed rgba(148, 118, 185, 0.12);
 }
 
 .zen-checkbox-label {
@@ -1511,13 +1184,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-coral);
+  color: var(--color-accent);
   transition: var(--transition-gentle);
-  box-shadow: 0 1px 4px rgba(30, 20, 50, 0.06);
+  box-shadow: 0 1px 4px rgba(148, 118, 185, 0.08);
 }
 
 .zen-checkbox:checked + .zen-checkbox-custom {
-  background: var(--gradient-coral-peach);
+  background: var(--gradient-aurora);
   border-color: transparent;
   color: #FFFFFF;
 }
@@ -1534,7 +1207,7 @@ body {
   padding: 0.75rem 0.95rem;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.45);
-  border: 1px dashed rgba(30, 20, 50, 0.1);
+  border: 1px dashed rgba(148, 118, 185, 0.15);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -1567,7 +1240,7 @@ body {
   color: var(--text-secondary);
   cursor: pointer;
   transition: var(--transition-gentle);
-  box-shadow: 0 1px 3px rgba(30, 20, 50, 0.04);
+  box-shadow: 0 1px 3px rgba(148, 118, 185, 0.05);
 }
 
 .zen-source-pill:hover {
@@ -1578,7 +1251,7 @@ body {
 .zen-source-pill.active {
   background: #FFFFFF;
   border-color: #FFFFFF;
-  color: var(--color-coral);
+  color: var(--color-accent);
   font-weight: 600;
   box-shadow: var(--shadow-pill);
 }
@@ -1593,8 +1266,602 @@ body {
   background: rgba(255, 255, 255, 0.85);
   padding: 1px 5px;
   border-radius: 4px;
-  color: var(--color-coral);
+  color: var(--color-accent);
   font-family: monospace;
+}
+
+/* ==========================================================================
+   Primary CTA Button ("Begin Meditation")
+   ========================================================================== */
+.zen-start-session-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1rem 2rem;
+  min-height: 54px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--gradient-primary-btn);
+  color: #FFFFFF;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), var(--shadow-luminous);
+  transition: var(--transition-gentle);
+  margin-top: 1.5rem;
+  user-select: none;
+}
+
+.zen-start-session-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.65), 0 14px 34px -2px rgba(168, 85, 247, 0.46);
+}
+
+.zen-start-session-btn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Active Timer Section & Top Meta
+   ========================================================================== */
+.zen-timer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.zen-timer-top-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.zen-interval-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border-glass);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(148, 118, 185, 0.05);
+}
+
+.zen-interval-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient-aurora);
+}
+
+.zen-interval-dot.pulsing {
+  animation: dot-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+.zen-wakelock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.05);
+}
+
+.zen-wakelock-pill svg {
+  color: var(--color-accent);
+}
+
+/* Pure Zen Mode Toggle */
+.zen-zen-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--color-border-glass);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(148, 118, 185, 0.05);
+}
+
+.zen-zen-mode-toggle:hover {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-pill);
+}
+
+.zen-zen-mode-toggle.active {
+  background: #FFFFFF;
+  color: var(--color-accent);
+  box-shadow: var(--shadow-pill);
+}
+
+/* ==========================================================================
+   CENTERPIECE TIMER REDESIGN (Image 1 & Image 2 Synergy)
+   - Sacred Geometry Overlapping Elliptical Rings & Star Sparkle (Image 1)
+   - 3D Pearlescent Iridescent Glowing Orb Centerpiece (Image 2)
+   - Sleek Outer Orbit Progress Arc (Image 2)
+   ========================================================================== */
+.zen-dial-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(78vw, 320px);
+  height: min(78vw, 320px);
+  margin: 0 auto 2.25rem;
+  z-index: 1;
+}
+
+@media (min-width: 480px) {
+  .zen-dial-wrapper {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+/* Outer Luminous Centerpiece Radial Ambient Glow */
+.zen-centerpiece-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(72vw, 290px);
+  height: min(72vw, 290px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.32) 0%, rgba(244, 114, 182, 0.18) 45%, rgba(253, 230, 138, 0.08) 65%, transparent 75%);
+  filter: blur(34px);
+  pointer-events: none;
+  z-index: 0;
+  transition: filter 0.8s ease, opacity 0.8s ease, transform 0.8s ease;
+}
+
+.zen-centerpiece-aura.breathing {
+  animation: aura-breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes aura-breathe {
+  0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.7; filter: blur(30px); }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; filter: blur(40px); }
+}
+
+.zen-centerpiece-aura.flare {
+  animation: aura-flare 2.8s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+@keyframes aura-flare {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+    background: radial-gradient(circle, rgba(253, 230, 138, 0.6) 0%, rgba(244, 114, 182, 0.45) 40%, rgba(192, 132, 252, 0.3) 65%, transparent 75%);
+    filter: blur(35px) brightness(1.6);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.22);
+    filter: blur(42px) brightness(1.3);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: blur(34px) brightness(1);
+    opacity: 0.8;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sacred Geometry Elliptical SVG Rings (Image 1 Inspiration)
+   -------------------------------------------------------------------------- */
+.zen-sacred-rings-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  transition: opacity 0.6s ease;
+}
+
+.zen-sacred-rings-wrap.rotating {
+  animation: sacred-rings-spin 75s linear infinite;
+}
+
+@keyframes sacred-rings-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.zen-sacred-rings-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.zen-sacred-ellipse {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.58);
+  stroke-width: 1px;
+  transition: stroke 0.6s ease;
+}
+
+.zen-sacred-rings-wrap.ringing .zen-sacred-ellipse {
+  stroke: rgba(253, 230, 138, 0.85);
+  filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.7));
+}
+
+/* Delicate 4-Point Celestial Star Sparkle Accent (Image 1 Inspiration) */
+.zen-sacred-star-accent {
+  position: absolute;
+  bottom: 22px;
+  right: 28px;
+  color: #FFFFFF;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 12px rgba(192, 132, 252, 0.8));
+  animation: star-sparkle-twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes star-sparkle-twinkle {
+  0% { transform: scale(0.85) rotate(0deg); opacity: 0.75; }
+  50% { transform: scale(1.15) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1)); }
+  100% { transform: scale(0.9) rotate(0deg); opacity: 0.8; }
+}
+
+/* --------------------------------------------------------------------------
+   3D Iridescent Pearlescent Glowing Orb (Image 2 Inspiration)
+   -------------------------------------------------------------------------- */
+.zen-iridescent-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 232px;
+  height: 232px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%,
+    #FFFFFF 0%,
+    rgba(255, 245, 250, 0.98) 18%,
+    rgba(240, 215, 255, 0.92) 38%,
+    rgba(216, 180, 254, 0.84) 60%,
+    rgba(199, 210, 254, 0.8) 80%,
+    rgba(249, 168, 212, 0.78) 100%);
+  box-shadow:
+    inset -10px -14px 28px rgba(129, 140, 248, 0.32),
+    inset 8px 10px 22px rgba(255, 255, 255, 0.98),
+    inset 0 0 18px rgba(236, 72, 153, 0.24),
+    0 20px 50px rgba(147, 51, 234, 0.16),
+    0 0 45px rgba(244, 114, 182, 0.22);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.6s ease;
+}
+
+.zen-orb-specular-sheen {
+  position: absolute;
+  top: 7%;
+  left: 14%;
+  width: 48%;
+  height: 28%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.05) 100%);
+  transform: rotate(-25deg);
+  filter: blur(1px);
+}
+
+.zen-orb-cyan-glow {
+  position: absolute;
+  bottom: 12%;
+  left: 16%;
+  width: 44%;
+  height: 40%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.5) 0%, transparent 70%);
+  filter: blur(14px);
+}
+
+.zen-orb-magenta-core {
+  position: absolute;
+  top: 28%;
+  right: 20%;
+  width: 52%;
+  height: 52%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.38) 0%, rgba(192, 132, 252, 0.22) 60%, transparent 80%);
+  filter: blur(14px);
+}
+
+/* Rhythmic Breathing Animation (4s Inhale, 4s Exhale) */
+.zen-iridescent-orb.orb-breathing {
+  animation: orb-breathing 8s ease-in-out infinite alternate;
+}
+
+@keyframes orb-breathing {
+  0% {
+    transform: translate(-50%, -50%) scale(0.975);
+    box-shadow:
+      inset -9px -12px 26px rgba(129, 140, 248, 0.28),
+      inset 7px 9px 20px rgba(255, 255, 255, 0.95),
+      0 18px 42px rgba(147, 51, 234, 0.14),
+      0 0 32px rgba(244, 114, 182, 0.18);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.035);
+    box-shadow:
+      inset -12px -16px 34px rgba(129, 140, 248, 0.38),
+      inset 10px 12px 26px rgba(255, 255, 255, 1),
+      0 24px 60px rgba(147, 51, 234, 0.24),
+      0 0 55px rgba(244, 114, 182, 0.32);
+  }
+}
+
+.zen-iridescent-orb.orb-flare {
+  animation: orb-chime-flare 3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes orb-chime-flare {
+  0% { transform: translate(-50%, -50%) scale(0.98); }
+  30% { transform: translate(-50%, -50%) scale(1.08); filter: brightness(1.25) saturate(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); filter: brightness(1); }
+}
+
+/* --------------------------------------------------------------------------
+   Sleek Outer Orbit Progress Arc (Image 2 Inspiration)
+   -------------------------------------------------------------------------- */
+.zen-svg-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+.zen-ring-track {
+  stroke: rgba(255, 255, 255, 0.35);
+  fill: none;
+}
+
+.zen-ring-progress {
+  fill: none;
+  stroke: url(#zenAuraGradient);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.65));
+}
+
+.zen-ring-progress.ringing {
+  stroke: url(#zenBellPulseGradient) !important;
+  stroke-width: 6.5px;
+  filter: drop-shadow(0 0 22px rgba(253, 230, 138, 0.9)) !important;
+}
+
+/* Concentric Expanding Soundwave Ripple on Chime */
+.zen-chime-soundwave {
+  fill: none;
+  stroke-width: 2.5px;
+  pointer-events: none;
+}
+
+.zen-chime-soundwave.wave-1 {
+  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+.zen-chime-soundwave.wave-2 {
+  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) 0.35s forwards;
+}
+
+@keyframes soundwave-ripple {
+  0% {
+    r: 130px;
+    opacity: 0.9;
+    stroke-width: 3.5px;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  100% {
+    r: 175px;
+    opacity: 0;
+    stroke-width: 0.5px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Center Content inside the Orb
+   -------------------------------------------------------------------------- */
+.zen-dial-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.zen-countdown-digits {
+  font-family: var(--font-sans);
+  font-size: clamp(3.2rem, 11vw, 4.2rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.6);
+}
+
+.zen-dial-subtext {
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-top: 0.45rem;
+  font-weight: 500;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* Pure Zen Mode Dial Content */
+.zen-pure-dial-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.zen-meditation-enso {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(168, 85, 247, 0.3);
+  position: relative;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 16px rgba(148, 118, 185, 0.08);
+}
+
+.zen-breathing-core {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gradient-aurora);
+  box-shadow: 0 4px 16px rgba(192, 132, 252, 0.5);
+  opacity: 0.9;
+}
+
+.zen-breathing-core.breathing {
+  animation: zen-breath-pulse 6s infinite ease-in-out;
+}
+
+@keyframes zen-breath-pulse {
+  0%, 100% {
+    transform: scale(0.85);
+    opacity: 0.6;
+    box-shadow: 0 2px 8px rgba(192, 132, 252, 0.35);
+  }
+  50% {
+    transform: scale(1.55);
+    opacity: 1;
+    box-shadow: 0 6px 24px rgba(244, 114, 182, 0.7);
+  }
+}
+
+/* ==========================================================================
+   Pill-Shaped Controls Bar & Buttons
+   ========================================================================== */
+.zen-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  z-index: 2;
+}
+
+.zen-control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-glass);
+  background: #FFFFFF;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  user-select: none;
+  box-shadow: var(--shadow-pill);
+}
+
+.zen-control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(148, 118, 185, 0.16);
+  color: var(--color-accent);
+}
+
+.zen-control-btn:active {
+  transform: scale(0.94);
+}
+
+.zen-btn-secondary {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+}
+
+.zen-btn-secondary svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-secondary);
+  transition: var(--transition-gentle);
+}
+
+.zen-btn-secondary:hover svg {
+  color: var(--color-accent);
+}
+
+/* Primary Play/Pause Button (Aurora Gradient Orb) */
+.zen-btn-primary {
+  width: 74px;
+  height: 74px;
+  min-width: 74px;
+  min-height: 74px;
+  background: var(--gradient-aurora);
+  border: none;
+  color: #FFFFFF;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.65), var(--shadow-luminous);
+}
+
+.zen-btn-primary:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 16px 36px rgba(192, 132, 252, 0.55);
+  color: #FFFFFF;
+}
+
+.zen-btn-primary:active {
+  transform: scale(0.96);
+}
+
+.zen-btn-primary svg {
+  width: 30px;
+  height: 30px;
+  color: #FFFFFF;
 }
 
 /* ==========================================================================
@@ -1618,7 +1885,7 @@ body {
 
 .zen-timer-running .zen-secondary-dim:hover,
 .zen-timer-running .zen-secondary-dim:focus-within {
-  opacity: 0.85;
+  opacity: 0.88;
   filter: grayscale(0%);
 }
 
@@ -1639,17 +1906,9 @@ body {
   opacity: 1;
 }
 
-/* Ethereal aura breathes with greater presence when timer is running */
-.zen-timer-running .zen-centerpiece-aura {
-  animation: zen-orb-breathe-running 5s ease-in-out infinite alternate;
-}
-
-@keyframes zen-orb-breathe-running {
-  0% { transform: translate(-50%, -50%) scale(0.98); opacity: 0.8; filter: blur(28px); }
-  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; filter: blur(36px); }
-}
-
-/* Advanced Dev Testing Accordion Dropdown */
+/* ==========================================================================
+   Advanced Dev Testing Dropdown (Collapsible)
+   ========================================================================== */
 .zen-dev-testing-accordion {
   width: 100%;
   margin-top: 1.75rem;
@@ -1666,7 +1925,7 @@ body {
   padding: 0.45rem 1rem;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.45);
-  border: 1px dashed rgba(30, 20, 50, 0.12);
+  border: 1px dashed rgba(148, 118, 185, 0.18);
   color: var(--text-secondary);
   font-size: 0.76rem;
   font-weight: 600;
@@ -1678,7 +1937,7 @@ body {
 .zen-dev-testing-trigger:hover {
   background: #FFFFFF;
   color: var(--text-primary);
-  border-color: rgba(255, 110, 64, 0.3);
+  border-color: rgba(168, 85, 247, 0.3);
   box-shadow: var(--shadow-pill);
 }
 
@@ -1689,17 +1948,16 @@ body {
 }
 
 .zen-dev-testing-trigger-label svg {
-  color: var(--color-coral);
+  color: var(--color-accent);
 }
 
-/* Testing Playground Toolbar */
 .zen-mock-toolbar {
   margin-top: 0.85rem;
   width: 100%;
   padding: 1rem 1.2rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px dashed rgba(30, 20, 50, 0.12);
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px dashed rgba(148, 118, 185, 0.18);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -1730,8 +1988,8 @@ body {
 }
 
 .mock-toolbar-badge {
-  background: var(--color-coral-soft);
-  color: var(--color-coral);
+  background: var(--color-violet-soft);
+  color: var(--color-accent);
   padding: 2px 8px;
   border-radius: var(--radius-full);
   font-size: 0.7rem;
@@ -1756,12 +2014,12 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition-gentle);
-  box-shadow: 0 1px 4px rgba(30, 20, 50, 0.04);
+  box-shadow: 0 1px 4px rgba(148, 118, 185, 0.06);
 }
 
 .mock-toolbar-btn:hover:not(:disabled) {
   background: #FFFFFF;
-  color: var(--color-coral);
+  color: var(--color-accent);
   box-shadow: var(--shadow-pill);
 }
 
@@ -1779,12 +2037,12 @@ body {
 
 .mock-slider {
   flex: 1;
-  accent-color: var(--color-coral);
+  accent-color: var(--color-accent);
   cursor: pointer;
 }
 
 /* ==========================================================================
-   Session Completed View
+   Session Completed View (Image 1 & 2 Aesthetic)
    ========================================================================== */
 .zen-completed-view {
   display: flex;
@@ -1806,22 +2064,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 82px;
-  height: 82px;
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
-  background: var(--gradient-orb);
-  color: #FFFFFF;
+  background: var(--gradient-orb-pearl);
+  color: var(--color-accent);
   margin-bottom: 1.5rem;
-  box-shadow: var(--shadow-coral);
+  box-shadow: 
+    inset -6px -8px 18px rgba(168, 85, 247, 0.25),
+    inset 6px 8px 16px rgba(255, 255, 255, 0.98),
+    0 16px 36px rgba(168, 85, 247, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 .zen-completed-title {
-  font-family: var(--font-sans);
-  font-size: 2.1rem;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.45rem;
 }
 
 .zen-completed-subtitle {
@@ -1839,11 +2101,11 @@ body {
   margin: 0.45rem 0 1.25rem;
   padding: 0.45rem 1.15rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 110, 64, 0.25);
-  box-shadow: 0 4px 16px rgba(255, 110, 64, 0.08), var(--shadow-inner);
+  border: 1px solid rgba(168, 85, 247, 0.28);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.1), var(--shadow-inner);
   font-size: 0.84rem;
   color: var(--text-secondary);
   letter-spacing: 0.01em;
@@ -1856,21 +2118,23 @@ body {
 }
 
 .zen-completed-lifetime-badge svg {
-  color: var(--color-coral);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
 .zen-completed-lifetime-badge strong {
-  color: var(--color-coral);
+  color: var(--color-accent);
   font-weight: 700;
 }
 
 .zen-completed-blessing {
-  font-size: 0.98rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-style: italic;
   color: var(--text-muted);
   max-width: 380px;
   margin: 0 auto 2.25rem;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .zen-completed-reset-btn {
@@ -1880,7 +2144,7 @@ body {
   padding: 0.9rem 2.2rem;
   border-radius: var(--radius-full);
   border: none;
-  background: var(--gradient-coral-peach);
+  background: var(--gradient-primary-btn);
   color: #FFFFFF;
   font-size: 0.95rem;
   font-weight: 600;
@@ -1888,19 +2152,21 @@ body {
   cursor: pointer;
   transition: var(--transition-gentle);
   min-height: 52px;
-  box-shadow: var(--shadow-coral);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), var(--shadow-luminous);
 }
 
 .zen-completed-reset-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px -2px rgba(255, 110, 64, 0.48);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7), 0 14px 34px -2px rgba(168, 85, 247, 0.48);
 }
 
 .zen-completed-reset-btn:active {
   transform: scale(0.98);
 }
 
-/* Zen Footer */
+/* ==========================================================================
+   Zen Footer
+   ========================================================================== */
 .zen-footer {
   margin-top: auto;
   padding-top: 2.5rem;
@@ -1917,5 +2183,5 @@ body {
 }
 
 .zen-footer a:hover {
-  color: var(--color-coral);
+  color: var(--color-accent);
 }

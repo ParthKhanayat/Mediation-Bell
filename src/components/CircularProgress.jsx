@@ -1,14 +1,23 @@
 import React from 'react';
+import StarSparkle from './StarSparkle';
 
+/**
+ * CircularProgress - Luminous Iridescent Orb + Sacred Geometry Centerpiece
+ * Seamlessly integrates:
+ * - Sacred geometry elliptical SVG rings & star sparkle (Image 1 Inspiration)
+ * - 3D pearlescent iridescent glowing orb (Image 2 Inspiration)
+ * - Sleek outer orbit progress arc with harmonic audio pulse (Image 2 Inspiration)
+ */
 export default function CircularProgress({
   progress = 0.75, // 0 to 1 (1 = full, 0 = depleted)
   isBellRinging = false,
+  isPlaying = false,
   children,
 }) {
-  const size = 280;
-  const strokeWidth = 6;
-  const center = size / 2;
-  const radius = center - strokeWidth - 14; // ~120
+  const size = 320;
+  const strokeWidth = 4;
+  const center = size / 2; // 160
+  const radius = 142; // Orbit path radius
   const circumference = 2 * Math.PI * radius;
 
   // Clamped progress (0 to 1)
@@ -17,31 +26,78 @@ export default function CircularProgress({
   const strokeDashoffset = circumference * (1 - clampedProgress);
 
   return (
-    <div className={`zen-dial-wrapper ${isBellRinging ? 'zen-dial-bell-ringing' : ''}`}>
-      {/* Ethereal glowing radial centerpiece aura (echoes the 3D glowing orb in reference) */}
+    <div
+      className={`zen-dial-wrapper ${isBellRinging ? 'zen-dial-bell-ringing' : ''} ${
+        isPlaying ? 'zen-dial-running' : ''
+      }`}
+    >
+      {/* Outer Ethereal Radial Ambient Glow */}
       <div
-        className={`zen-centerpiece-aura ${isBellRinging ? 'flare' : ''}`}
+        className={`zen-centerpiece-aura ${isBellRinging ? 'flare' : ''} ${
+          isPlaying ? 'breathing' : ''
+        }`}
         aria-hidden="true"
       />
 
+      {/* Sacred Geometry Elliptical SVG Rings (Image 1 Inspiration) */}
+      <div
+        className={`zen-sacred-rings-wrap ${isPlaying ? 'rotating' : ''} ${
+          isBellRinging ? 'ringing' : ''
+        }`}
+        aria-hidden="true"
+      >
+        <svg
+          className="zen-sacred-rings-svg"
+          viewBox={`0 0 ${size} ${size}`}
+          fill="none"
+        >
+          <g transform={`translate(${center}, ${center})`}>
+            {/* Overlapping sacred ellipses rotated at harmonic angles */}
+            <ellipse rx="136" ry="94" className="zen-sacred-ellipse ellipse-1" />
+            <ellipse rx="136" ry="94" className="zen-sacred-ellipse ellipse-2" transform="rotate(45)" />
+            <ellipse rx="136" ry="94" className="zen-sacred-ellipse ellipse-3" transform="rotate(90)" />
+            <ellipse rx="136" ry="94" className="zen-sacred-ellipse ellipse-4" transform="rotate(135)" />
+          </g>
+        </svg>
+
+        {/* Delicate celestial 4-point star sparkle accent from Image 1 */}
+        <div className="zen-sacred-star-accent" aria-hidden="true">
+          <StarSparkle size={18} />
+        </div>
+      </div>
+
+      {/* 3D Iridescent Pearlescent Glowing Orb (Image 2 Inspiration) */}
+      <div
+        className={`zen-iridescent-orb ${isBellRinging ? 'orb-flare' : ''} ${
+          isPlaying ? 'orb-breathing' : ''
+        }`}
+        aria-hidden="true"
+      >
+        <div className="zen-orb-inner-light" />
+        <div className="zen-orb-specular-sheen" />
+        <div className="zen-orb-cyan-glow" />
+        <div className="zen-orb-magenta-core" />
+      </div>
+
+      {/* SVG Orbit Progress Arc & Chime Waves */}
       <svg
         className={`zen-svg-ring ${isBellRinging ? 'ring-pulsing' : ''}`}
         viewBox={`0 0 ${size} ${size}`}
         aria-hidden="true"
       >
         <defs>
-          {/* Luminous coral-peach to soft lavender gradient */}
-          <linearGradient id="zenSageGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFA07A" />
-            <stop offset="45%" stopColor="#FF6E40" />
-            <stop offset="100%" stopColor="#E040FB" />
+          {/* Luminous lavender to rose/peach gradient (Image 1 & 2 inspired) */}
+          <linearGradient id="zenAuraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#C084FC" />
+            <stop offset="45%" stopColor="#F472B6" />
+            <stop offset="100%" stopColor="#FB7185" />
           </linearGradient>
 
-          {/* Golden-coral flare gradient when bell chimes */}
+          {/* Golden-amber harmonic flare gradient when bell chimes */}
           <linearGradient id="zenBellPulseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FFB74D" />
-            <stop offset="50%" stopColor="#FF7043" />
-            <stop offset="100%" stopColor="#F06292" />
+            <stop offset="0%" stopColor="#FDE68A" />
+            <stop offset="50%" stopColor="#F472B6" />
+            <stop offset="100%" stopColor="#C084FC" />
           </linearGradient>
 
           {/* Glow filter for resonant chime pulse */}
@@ -80,21 +136,21 @@ export default function CircularProgress({
           strokeWidth={strokeWidth}
         />
 
-        {/* Depleting progress ring */}
+        {/* Sleek Orbit Progress Arc */}
         <circle
           className={`zen-ring-progress ${isBellRinging ? 'ringing' : ''}`}
           cx={center}
           cy={center}
           r={radius}
-          stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenSageGradient)'}
-          strokeWidth={isBellRinging ? strokeWidth + 2 : strokeWidth}
+          stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
+          strokeWidth={isBellRinging ? strokeWidth + 2.5 : strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           filter={isBellRinging ? 'url(#chimeGlow)' : undefined}
         />
       </svg>
 
-      {/* Central Content */}
+      {/* Central Content (Countdown digits & status labels inside the luminous orb) */}
       <div className="zen-dial-content">{children}</div>
     </div>
   );
