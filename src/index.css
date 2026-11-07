@@ -40,8 +40,8 @@
   --color-glass-input: rgba(255, 255, 255, 0.85);
 
   /* Borders & Specular Highlights */
-  --color-border-glass: rgba(255, 255, 255, 0.9);
-  --color-border-subtle: rgba(165, 139, 104, 0.16);
+  --color-border-glass: rgba(112, 83, 107, 0.08);
+  --color-border-subtle: rgba(112, 83, 107, 0.14);
   --color-border-dark: rgba(41, 37, 43, 0.08);
 
   /* Gradients */
@@ -60,10 +60,10 @@
   --radius-full: 9999px;
 
   /* Natural, Diffused Organic Shadows */
-  --shadow-glass: 0 20px 45px rgba(41, 37, 43, 0.05), 0 4px 12px rgba(41, 37, 43, 0.03);
-  --shadow-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.98);
-  --shadow-pill: 0 4px 16px rgba(41, 37, 43, 0.05);
-  --shadow-soft-elevation: 0 8px 24px rgba(41, 37, 43, 0.06);
+  --shadow-glass: 0 8px 30px rgba(65, 48, 40, 0.045);
+  --shadow-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+  --shadow-pill: 0 4px 16px rgba(65, 48, 40, 0.04);
+  --shadow-soft-elevation: 0 8px 24px rgba(65, 48, 40, 0.05);
 
   --transition-gentle: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -315,8 +315,8 @@ body {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border-glass);
-  box-shadow: var(--shadow-inner), 0 2px 8px rgba(41, 37, 43, 0.04);
+  border: 1px solid rgba(112, 83, 107, 0.12);
+  box-shadow: var(--shadow-inner), 0 2px 8px rgba(65, 48, 40, 0.04);
   font-size: 0.76rem;
   font-weight: 600;
   color: var(--text-secondary);
@@ -328,6 +328,7 @@ body {
 .zen-header-lifetime-pill:hover {
   background: #FFFFFF;
   color: var(--text-primary);
+  border-color: rgba(112, 83, 107, 0.25);
   transform: translateY(-1px);
   box-shadow: var(--shadow-pill);
 }
@@ -352,8 +353,8 @@ body {
   -webkit-backdrop-filter: blur(20px);
   padding: 5px;
   border-radius: var(--radius-full);
-  border: 1px solid var(--color-border-glass);
-  box-shadow: var(--shadow-glass), var(--shadow-inner);
+  border: 1px solid rgba(112, 83, 107, 0.08);
+  box-shadow: 0 8px 30px rgba(65, 48, 40, 0.045), var(--shadow-inner);
   margin-bottom: 2rem;
   position: relative;
   z-index: 1;
@@ -370,7 +371,7 @@ body {
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   color: var(--text-secondary);
   border-radius: var(--radius-full);
@@ -397,7 +398,8 @@ body {
   background: #FFFFFF;
   color: var(--text-primary);
   font-weight: 600;
-  box-shadow: var(--shadow-pill), var(--shadow-inner);
+  border: 1px solid rgba(112, 83, 107, 0.22);
+  box-shadow: 0 4px 14px rgba(65, 48, 40, 0.05), var(--shadow-inner);
 }
 
 .zen-view-tab svg {
@@ -456,10 +458,10 @@ body {
   background: var(--color-glass-card);
   backdrop-filter: blur(20px) saturate(120%);
   -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border: 1px solid var(--color-border-glass);
+  border: 1px solid rgba(112, 83, 107, 0.08);
   border-radius: var(--radius-card);
   padding: 1.85rem 1.6rem;
-  box-shadow: var(--shadow-glass), var(--shadow-inner);
+  box-shadow: 0 8px 30px rgba(65, 48, 40, 0.045), var(--shadow-inner);
   transition: var(--transition-smooth);
 }
 
@@ -894,24 +896,24 @@ input[type="number"] {
   min-height: 54px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.75);
-  border: 1px solid var(--color-border-glass);
+  border: 1px solid rgba(112, 83, 107, 0.08);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 6px rgba(41, 37, 43, 0.03);
+  box-shadow: 0 2px 6px rgba(65, 48, 40, 0.03);
 }
 
 .zen-preset-pill:hover {
   background: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.98);
+  border-color: rgba(112, 83, 107, 0.25);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-pill);
+  box-shadow: 0 6px 16px rgba(65, 48, 40, 0.06);
 }
 
 .zen-preset-pill.active {
   background: #FFFFFF;
-  border-color: rgba(112, 83, 107, 0.35);
-  box-shadow: var(--shadow-pill);
+  border: 1.5px solid rgba(112, 83, 107, 0.42);
+  box-shadow: 0 4px 14px rgba(112, 83, 107, 0.1), var(--shadow-inner);
 }
 
 .zen-preset-pill:active {
@@ -1336,18 +1338,24 @@ input[type="number"] {
   flex-wrap: wrap;
 }
 
+.zen-interval-badge-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
 .zen-interval-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
   padding: 0.45rem 0.95rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid var(--color-border-glass);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(112, 83, 107, 0.14);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-primary);
-  box-shadow: 0 2px 8px rgba(41, 37, 43, 0.04);
+  box-shadow: 0 2px 8px rgba(65, 48, 40, 0.04);
 }
 
 .zen-interval-dot {
@@ -1355,6 +1363,7 @@ input[type="number"] {
   height: 8px;
   border-radius: 50%;
   background: var(--color-dusty-rose);
+  box-shadow: 0 0 6px rgba(157, 107, 132, 0.35);
 }
 
 .zen-interval-dot.pulsing {
@@ -1364,6 +1373,43 @@ input[type="number"] {
 @keyframes dot-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+.zen-interval-pips-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-left: 0.5rem;
+}
+
+.zen-interval-pip {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: var(--transition-gentle);
+}
+
+.zen-interval-pip.completed {
+  background: var(--color-dusty-rose);
+  opacity: 0.85;
+}
+
+.zen-interval-pip.current {
+  width: 7px;
+  height: 7px;
+  background: var(--color-muted-plum);
+  box-shadow: 0 0 6px rgba(112, 83, 107, 0.45);
+  animation: pip-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.zen-interval-pip.upcoming {
+  background: rgba(112, 83, 107, 0.16);
+}
+
+@keyframes pip-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.85; }
 }
 
 .zen-wakelock-pill {
@@ -1639,7 +1685,7 @@ input[type="number"] {
 }
 
 .zen-ring-track {
-  stroke: rgba(41, 37, 43, 0.08);
+  stroke: rgba(112, 83, 107, 0.12);
   fill: none;
 }
 
@@ -1648,13 +1694,13 @@ input[type="number"] {
   stroke: url(#zenAuraGradient);
   stroke-linecap: round;
   transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 1px 4px rgba(112, 83, 107, 0.2));
+  filter: drop-shadow(0 1px 3px rgba(112, 83, 107, 0.2));
 }
 
 .zen-ring-progress.ringing {
   stroke: url(#zenBellPulseGradient) !important;
-  stroke-width: 3.5px;
-  filter: drop-shadow(0 0 12px rgba(165, 139, 104, 0.6)) !important;
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 10px rgba(165, 139, 104, 0.5)) !important;
 }
 
 /* Concentric Expanding Soundwave Ripple on Chime */
@@ -2107,8 +2153,8 @@ input[type="number"] {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(165, 139, 104, 0.25);
-  box-shadow: 0 4px 16px rgba(41, 37, 43, 0.04), var(--shadow-inner);
+  border: 1px solid rgba(112, 83, 107, 0.22);
+  box-shadow: 0 4px 16px rgba(65, 48, 40, 0.04), var(--shadow-inner);
   font-size: 0.84rem;
   color: var(--text-secondary);
   letter-spacing: 0.01em;

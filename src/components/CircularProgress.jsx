@@ -14,7 +14,7 @@ export default function CircularProgress({
   children,
 }) {
   const size = 320;
-  const strokeWidth = 2; // Delicate 2px stroke per specification
+  const strokeWidth = 1.75; // Delicate 1.5px - 2px stroke per specification
   const center = size / 2; // 160
   const radius = 142; // Orbit path radius
   const circumference = 2 * Math.PI * radius;
@@ -30,7 +30,7 @@ export default function CircularProgress({
         isPlaying ? 'zen-dial-running' : ''
       }`}
     >
-      {/* Outer Ethereal Radial Ambient Glow (Soft, diffused white/rose outer glow) */}
+      {/* Outer Ethereal Radial Ambient Glow (Soft, diffused warm-white outer glow) */}
       <div
         className={`zen-centerpiece-aura ${isBellRinging ? 'flare' : ''} ${
           isPlaying ? 'breathing' : ''
@@ -38,7 +38,7 @@ export default function CircularProgress({
         aria-hidden="true"
       />
 
-      {/* Sacred Geometry Elliptical SVG Rings (Extended gently beyond the 116px radius sphere) */}
+      {/* Sacred Geometry Elliptical SVG Rings (Extended gently beyond the sphere) */}
       <div
         className={`zen-sacred-rings-wrap ${isPlaying ? 'rotating' : ''} ${
           isBellRinging ? 'ringing' : ''
@@ -80,11 +80,10 @@ export default function CircularProgress({
         aria-hidden="true"
       >
         <defs>
-          {/* Muted Plum to Dusty Rose and Antique Bronze organic gradient */}
+          {/* Muted Plum to Dusty Rose refined organic gradient */}
           <linearGradient id="zenAuraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#70536B" stopOpacity="0.85" />
-            <stop offset="60%" stopColor="#9D6B84" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#A58B68" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#70536B" />
+            <stop offset="100%" stopColor="#9D6B84" />
           </linearGradient>
 
           {/* Antique Bronze to Dusty Rose harmonic flare gradient when bell chimes */}
@@ -115,7 +114,7 @@ export default function CircularProgress({
           </>
         )}
 
-        {/* Ambient subtle track ring */}
+        {/* Inactive progress track - almost invisible rgba(112, 83, 107, 0.12) with delicate 1.5px stroke */}
         <circle
           className="zen-ring-track"
           cx={center}
@@ -124,14 +123,14 @@ export default function CircularProgress({
           strokeWidth={1.5}
         />
 
-        {/* Sleek, delicate countdown progress arc */}
+        {/* Sleek, delicate active countdown progress arc (1.75px stroke) */}
         <circle
           className={`zen-ring-progress ${isBellRinging ? 'ringing' : ''}`}
           cx={center}
           cy={center}
           r={radius}
           stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
-          strokeWidth={isBellRinging ? 3 : strokeWidth}
+          strokeWidth={isBellRinging ? 2.5 : strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
         />

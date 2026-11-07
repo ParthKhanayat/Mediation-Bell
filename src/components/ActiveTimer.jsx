@@ -40,13 +40,36 @@ export default function ActiveTimer({
     <section className="zen-card zen-timer-card" aria-label="Active Meditation Timer">
       {/* Top Meta: Interval Badge & Screen Wake Lock & Zen Mode Toggle */}
       <div className="zen-timer-top-meta">
-        <div className="zen-interval-badge" aria-live="polite">
-          <span className={`zen-interval-dot ${isPlaying ? 'pulsing' : ''}`} aria-hidden="true" />
-          <span>
-            {isCompleted
-              ? 'Session Complete'
-              : `Interval ${currentInterval} of ${totalIntervals}`}
-          </span>
+        <div className="zen-interval-badge-wrap">
+          <div className="zen-interval-badge" aria-live="polite">
+            <span className={`zen-interval-dot ${isPlaying ? 'pulsing' : ''}`} aria-hidden="true" />
+            <span>
+              {isCompleted
+                ? 'Session Complete'
+                : `Interval ${currentInterval} of ${totalIntervals}`}
+            </span>
+          </div>
+
+          {totalIntervals > 1 && !isCompleted && (
+            <div
+              className="zen-interval-pips-row"
+              aria-label={`Interval progress: ${currentInterval} of ${totalIntervals}`}
+            >
+              {Array.from({ length: totalIntervals }).map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`zen-interval-pip ${
+                    idx + 1 < currentInterval
+                      ? 'completed'
+                      : idx + 1 === currentInterval
+                      ? 'current'
+                      : 'upcoming'
+                  }`}
+                  title={`Interval ${idx + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
