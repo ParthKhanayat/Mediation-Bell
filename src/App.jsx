@@ -223,12 +223,11 @@ export default function App() {
 
   return (
     <div className={`zen-app-wrapper ${timer.isPlaying ? 'zen-timer-running' : ''}`}>
-      {/* Dreamy Multi-Layered Ambient Mesh & Aura Blobs (Image 1 Inspiration) */}
+      {/* Subtle Atmospheric Light Drifts (Warm Ivory, Soft Sand, Faint Blush) */}
       <div className="zen-ambient-mesh-canvas" aria-hidden="true">
-        <div className="zen-aura-blob zen-blob-peach" />
-        <div className="zen-aura-blob zen-blob-rose" />
-        <div className="zen-aura-blob zen-blob-lavender" />
-        <div className="zen-aura-blob zen-blob-periwinkle" />
+        <div className="zen-aura-blob zen-blob-warm" />
+        <div className="zen-aura-blob zen-blob-blush" />
+        <div className="zen-aura-blob zen-blob-sand" />
       </div>
 
       {/* Header - Dims gently during active sitting */}

@@ -1,72 +1,54 @@
 /* ==========================================================================
-   Meditation Bell - Ethereal Luminous Theme
-   Inspired by:
-   - Image 1: Cloud-soft ethereal mesh palette, frosted glassmorphism,
-              editorial serif typography, and sacred geometry overlapping rings.
-   - Image 2: 3D pearlescent iridescent glowing orb centerpiece,
-              outer orbit progress arc, and refined minimal pill controls.
+   Meditation Bell - Handcrafted Premium Instrument Theme
+   Warm Ivory, Soft Sand, Muted Plum, Dusty Rose, Antique Bronze & Charcoal Ink
    ========================================================================== */
 
 :root {
   /* ------------------------------------------------------------------------
-     1. Rich Dreamy Ambient Mesh Palette (Image 1 Inspiration)
-     Lavender #D8B4FE, Pastel Rose #FBCFE8, Warm Peach #FDE68A, Periwinkle #C7D2FE
+     1. Organic Handcrafted Design Tokens
      ------------------------------------------------------------------------ */
-  --color-bg-base: #F8F5FB;
-  --color-lavender: #D8B4FE;
-  --color-rose: #FBCFE8;
-  --color-peach: #FDE68A;
-  --color-periwinkle: #C7D2FE;
-  --color-violet: #A855F7;
-  --color-violet-soft: rgba(168, 85, 247, 0.12);
-  --color-rose-soft: rgba(244, 114, 182, 0.15);
+  --color-warm-ivory: #F5F0E6;      /* Main page background */
+  --color-soft-sand: #E9E2D6;       /* Secondary surfaces & soft card backing */
+  --color-muted-plum: #70536B;      /* Primary accent for selected states & emphasis */
+  --color-dusty-rose: #9D6B84;      /* Secondary accent for subtle highlights */
+  --color-antique-bronze: #A58B68;  /* Occasional decorative details & secondary icons */
+  --color-charcoal: #29252B;        /* Primary typography & dark UI elements */
+  --color-slate: #55515B;           /* Secondary text */
+  --color-slate-light: #7E7985;     /* Tertiary captions & microcopy */
 
+  /* Semantic Aliases */
+  --color-bg-base: var(--color-warm-ivory);
+  --text-primary: var(--color-charcoal);
+  --text-secondary: var(--color-slate);
+  --text-muted: var(--color-slate-light);
+  --color-accent: var(--color-muted-plum);
+  --color-accent-subtle: var(--color-dusty-rose);
+
+  /* Predominantly warm ivory background with faint cream-to-warm-beige undertones */
   --color-bg-mesh: 
-    radial-gradient(at 15% 10%, #FDE68A 0px, transparent 42%),
-    radial-gradient(at 88% 12%, #FBCFE8 0px, transparent 45%),
-    radial-gradient(at 82% 82%, #D8B4FE 0px, transparent 48%),
-    radial-gradient(at 12% 85%, #C7D2FE 0px, transparent 45%),
-    radial-gradient(at 50% 50%, #FAF5FF 0px, transparent 65%),
-    #F8F5FB;
+    radial-gradient(at 15% 10%, rgba(255, 255, 255, 0.75) 0px, transparent 45%),
+    radial-gradient(at 88% 12%, rgba(233, 226, 214, 0.6) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(237, 226, 230, 0.4) 0px, transparent 48%),
+    radial-gradient(at 15% 85%, rgba(233, 226, 214, 0.5) 0px, transparent 50%),
+    #F5F0E6;
 
-  /* ------------------------------------------------------------------------
-     2. Frosted Glass Surfaces (Lower card in Image 1: 0.38 - 0.55 blur 24px)
-     ------------------------------------------------------------------------ */
-  --color-glass-card: rgba(255, 255, 255, 0.46);
-  --color-glass-subtle: rgba(255, 255, 255, 0.34);
-  --color-glass-pill: rgba(255, 255, 255, 0.52);
+  /* Frosted Glass Surfaces (Translucent warm-white / cream surfaces 0.82-0.92) */
+  --color-glass-card: rgba(255, 255, 255, 0.86);
+  --color-glass-subtle: rgba(255, 255, 255, 0.72);
+  --color-glass-pill: rgba(255, 255, 255, 0.78);
   --color-glass-pill-active: #FFFFFF;
-  --color-glass-input: rgba(255, 255, 255, 0.55);
+  --color-glass-input: rgba(255, 255, 255, 0.85);
 
   /* Borders & Specular Highlights */
-  --color-border-glass: rgba(255, 255, 255, 0.72);
-  --color-border-subtle: rgba(255, 255, 255, 0.5);
-  --color-border-dark: rgba(147, 118, 185, 0.1);
+  --color-border-glass: rgba(255, 255, 255, 0.9);
+  --color-border-subtle: rgba(165, 139, 104, 0.16);
+  --color-border-dark: rgba(41, 37, 43, 0.08);
 
-  /* ------------------------------------------------------------------------
-     3. Luminous Rose-to-Violet & Peach Gradients (Image 1 & 2)
-     ------------------------------------------------------------------------ */
-  --gradient-aurora: linear-gradient(135deg, #C084FC 0%, #F472B6 100%);
-  --gradient-rose-violet: linear-gradient(135deg, #F472B6 0%, #A855F7 100%);
-  --gradient-peach-lavender: linear-gradient(135deg, #FDE68A 0%, #F472B6 50%, #C084FC 100%);
-  --gradient-primary-btn: linear-gradient(135deg, #A855F7 0%, #EC4899 50%, #F43F5E 100%);
-  --gradient-orb-pearl: radial-gradient(circle at 35% 28%, #FFFFFF 0%, #FFF0F6 18%, #F3E8FF 45%, #DDD6FE 72%, #FBCFE8 100%);
+  /* Gradients */
+  --gradient-plum-rose: linear-gradient(135deg, #70536B 0%, #9D6B84 100%);
+  --gradient-orb-pearl: radial-gradient(circle at 35% 26%, #FFFFFF 0%, #FAF6F4 22%, #F2E9EE 48%, #EAE0D8 75%, #DFD0D8 100%);
 
-  /* Accent Colors */
-  --color-accent: #A855F7;
-  --color-accent-rose: #EC4899;
-  --color-accent-peach: #F59E0B;
-  --color-accent-glow: rgba(168, 85, 247, 0.35);
-
-  /* ------------------------------------------------------------------------
-     4. High-Contrast Editorial Typography Colors
-     ------------------------------------------------------------------------ */
-  --text-primary: #1C132E;     /* Deep rich amethyst charcoal for high contrast */
-  --text-secondary: #584D6F;   /* Refined slate violet */
-  --text-muted: #84769F;       /* Soft serene slate */
-  --text-dim: #A89DC2;
-
-  /* Typography Pairing: Editorial Serif + Clean Modern Sans */
+  /* Typography Pairing */
   --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
@@ -77,12 +59,11 @@
   --radius-card: 32px;
   --radius-full: 9999px;
 
-  /* Ambient Ethereal Shadows */
-  --shadow-glass: 0 20px 50px rgba(148, 118, 185, 0.12), 0 4px 14px rgba(148, 118, 185, 0.04);
-  --shadow-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
-  --shadow-pill: 0 4px 16px rgba(148, 118, 185, 0.1);
-  --shadow-luminous: 0 10px 28px -4px rgba(168, 85, 247, 0.36);
-  --shadow-orb: 0 20px 50px rgba(168, 85, 247, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+  /* Natural, Diffused Organic Shadows */
+  --shadow-glass: 0 20px 45px rgba(41, 37, 43, 0.05), 0 4px 12px rgba(41, 37, 43, 0.03);
+  --shadow-inner: inset 0 1px 1px 0 rgba(255, 255, 255, 0.98);
+  --shadow-pill: 0 4px 16px rgba(41, 37, 43, 0.05);
+  --shadow-soft-elevation: 0 8px 24px rgba(41, 37, 43, 0.06);
 
   --transition-gentle: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -96,15 +77,15 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Global Thin & Rounded Scrollbars matching Ethereal Lavender/Rose Glassmorphism */
+/* Global Thin & Rounded Scrollbars matching Warm Ivory / Bronze Palette */
 html {
   scrollbar-width: thin;
-  scrollbar-color: rgba(168, 85, 247, 0.35) rgba(255, 255, 255, 0.35);
+  scrollbar-color: rgba(165, 139, 104, 0.35) rgba(245, 240, 230, 0.6);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(168, 85, 247, 0.3) transparent;
+  scrollbar-color: rgba(165, 139, 104, 0.3) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -113,21 +94,20 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(245, 240, 230, 0.5);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, rgba(192, 132, 252, 0.5) 0%, rgba(244, 114, 182, 0.6) 100%);
+  background: rgba(165, 139, 104, 0.35);
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   transition: var(--transition-gentle);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, rgba(192, 132, 252, 0.8) 0%, rgba(244, 114, 182, 0.9) 100%);
+  background: rgba(112, 83, 107, 0.5);
   border-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 10px rgba(168, 85, 247, 0.35);
 }
 
 ::-webkit-scrollbar-corner {
@@ -163,7 +143,7 @@ body {
 }
 
 /* ==========================================================================
-   Multi-Layered Ambient Canvas Background Blobs (Image 1 Inspiration)
+   Subtle Atmospheric Light Drifts (Warm Ivory, Soft Sand, Faint Blush)
    ========================================================================== */
 .zen-ambient-mesh-canvas {
   position: fixed;
@@ -176,67 +156,53 @@ body {
 .zen-aura-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(90px);
   pointer-events: none;
-  opacity: 0.6;
-  mix-blend-mode: multiply;
+  opacity: 0.5;
+  mix-blend-mode: normal;
   transition: opacity 1.2s ease;
 }
 
-.zen-blob-peach {
+.zen-blob-warm {
   top: -12%;
-  right: 4%;
+  right: 5%;
   width: min(85vw, 560px);
   height: min(85vw, 560px);
-  background: radial-gradient(circle, #FDE68A 0%, rgba(253, 230, 138, 0) 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 70%);
   animation: blob-drift-1 24s ease-in-out infinite alternate;
 }
 
-.zen-blob-rose {
+.zen-blob-blush {
   top: 25%;
-  left: -14%;
-  width: min(90vw, 620px);
-  height: min(90vw, 620px);
-  background: radial-gradient(circle, #FBCFE8 0%, rgba(251, 207, 232, 0) 70%);
+  left: -12%;
+  width: min(90vw, 600px);
+  height: min(90vw, 600px);
+  background: radial-gradient(circle, rgba(235, 218, 224, 0.4) 0%, rgba(235, 218, 224, 0) 70%);
   animation: blob-drift-2 28s ease-in-out infinite alternate;
 }
 
-.zen-blob-lavender {
-  bottom: 8%;
-  right: -8%;
+.zen-blob-sand {
+  bottom: 5%;
+  right: -5%;
   width: min(90vw, 580px);
   height: min(90vw, 580px);
-  background: radial-gradient(circle, #D8B4FE 0%, rgba(216, 180, 254, 0) 70%);
+  background: radial-gradient(circle, rgba(233, 226, 214, 0.55) 0%, rgba(233, 226, 214, 0) 70%);
   animation: blob-drift-3 22s ease-in-out infinite alternate;
-}
-
-.zen-blob-periwinkle {
-  bottom: -15%;
-  left: 12%;
-  width: min(80vw, 520px);
-  height: min(80vw, 520px);
-  background: radial-gradient(circle, #C7D2FE 0%, rgba(199, 210, 254, 0) 70%);
-  animation: blob-drift-4 30s ease-in-out infinite alternate;
 }
 
 @keyframes blob-drift-1 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-45px, 55px) scale(1.12); }
+  100% { transform: translate(-35px, 45px) scale(1.08); }
 }
 
 @keyframes blob-drift-2 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(55px, -45px) scale(1.08); }
+  100% { transform: translate(45px, -35px) scale(1.06); }
 }
 
 @keyframes blob-drift-3 {
   0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-35px, -45px) scale(1.1); }
-}
-
-@keyframes blob-drift-4 {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(45px, -35px) scale(1.06); }
+  100% { transform: translate(-30px, -35px) scale(1.08); }
 }
 
 /* ==========================================================================
@@ -263,7 +229,7 @@ body {
 }
 
 /* ==========================================================================
-   Header & Brand Badge (Image 2 Miniature Glowing Pearl Orb)
+   Header & Brand Badge (Miniature Glowing Pearl Orb)
    ========================================================================== */
 .zen-header {
   position: relative;
@@ -291,22 +257,22 @@ body {
   height: 48px;
   border-radius: var(--radius-full);
   background: var(--gradient-orb-pearl);
-  color: var(--color-accent);
+  color: var(--color-charcoal);
   box-shadow: 
-    inset -4px -6px 14px rgba(168, 85, 247, 0.22),
-    inset 4px 5px 12px rgba(255, 255, 255, 0.95),
-    0 10px 24px rgba(168, 85, 247, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+    inset -3px -5px 12px rgba(165, 139, 104, 0.16),
+    inset 4px 5px 12px rgba(255, 255, 255, 0.98),
+    0 8px 20px rgba(41, 37, 43, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.95);
   transition: var(--transition-gentle);
   overflow: visible;
 }
 
 .zen-logo-mark.zen-pearl-orb:hover {
-  transform: scale(1.08) translateY(-2px);
+  transform: scale(1.06) translateY(-2px);
   box-shadow: 
-    inset -5px -7px 16px rgba(168, 85, 247, 0.28),
-    inset 5px 6px 14px rgba(255, 255, 255, 1),
-    0 14px 30px rgba(168, 85, 247, 0.28);
+    inset -4px -6px 14px rgba(165, 139, 104, 0.22),
+    inset 4px 5px 14px rgba(255, 255, 255, 1),
+    0 12px 26px rgba(41, 37, 43, 0.12);
 }
 
 .zen-pearl-orb-sheen {
@@ -316,21 +282,21 @@ body {
   width: 14px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.1) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.08) 100%);
   transform: rotate(-30deg);
   pointer-events: none;
 }
 
 .zen-header-sparkle {
   position: absolute;
-  top: -4px;
-  right: -4px;
-  color: #FFFFFF;
-  filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.7));
+  top: -3px;
+  right: -3px;
+  color: var(--color-antique-bronze);
+  filter: drop-shadow(0 0 4px rgba(165, 139, 104, 0.4));
   animation: star-sparkle-twinkle 3.5s ease-in-out infinite alternate;
 }
 
-/* Editorial Serif Main Title (Image 1 Inspiration) */
+/* Editorial Serif Main Title */
 .zen-title {
   font-family: var(--font-serif);
   font-weight: 600;
@@ -355,11 +321,11 @@ body {
   margin-top: 0.25rem;
   padding: 0.32rem 0.95rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border-glass);
-  box-shadow: var(--shadow-inner), 0 2px 8px rgba(148, 118, 185, 0.06);
+  box-shadow: var(--shadow-inner), 0 2px 8px rgba(41, 37, 43, 0.04);
   font-size: 0.76rem;
   font-weight: 600;
   color: var(--text-secondary);
@@ -376,7 +342,7 @@ body {
 }
 
 .zen-header-lifetime-pill svg {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   transition: transform 0.3s ease;
 }
 
@@ -385,14 +351,14 @@ body {
 }
 
 /* ==========================================================================
-   Mode Switcher Tabs (Frosted Glass Pill Capsule)
+   Mode Switcher Tabs (Warm Frosted Glass Pill Capsule)
    ========================================================================== */
 .zen-view-switcher {
   display: inline-flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   padding: 5px;
   border-radius: var(--radius-full);
   border: 1px solid var(--color-border-glass);
@@ -433,11 +399,11 @@ body {
 
 .zen-view-tab:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .zen-view-tab.active {
-  background: var(--color-glass-pill-active);
+  background: #FFFFFF;
   color: var(--text-primary);
   font-weight: 600;
   box-shadow: var(--shadow-pill), var(--shadow-inner);
@@ -446,7 +412,11 @@ body {
 .zen-view-tab svg {
   width: 15px;
   height: 15px;
-  color: var(--color-accent);
+  color: var(--color-slate);
+}
+
+.zen-view-tab.active svg {
+  color: var(--color-muted-plum);
 }
 
 /* ==========================================================================
@@ -488,13 +458,13 @@ body {
 }
 
 /* ==========================================================================
-   Frosted Glass Card Panels (Image 1 Inspiration)
+   Frosted Glass Card Panels (Warm-White / Cream Glass)
    ========================================================================== */
 .zen-card {
   width: 100%;
   background: var(--color-glass-card);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
   border: 1px solid var(--color-border-glass);
   border-radius: var(--radius-card);
   padding: 1.85rem 1.6rem;
@@ -575,11 +545,11 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  background: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--color-border-glass);
   border-radius: var(--radius-full);
   padding: 4px;
-  box-shadow: var(--shadow-inner), 0 2px 8px rgba(148, 118, 185, 0.05);
+  box-shadow: var(--shadow-inner), 0 2px 8px rgba(41, 37, 43, 0.04);
   box-sizing: border-box;
 }
 
@@ -599,26 +569,26 @@ body {
   min-width: 42px;
   min-height: 42px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.95);
   background: #FFFFFF;
   color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.08);
+  box-shadow: 0 2px 6px rgba(41, 37, 43, 0.05);
   flex-shrink: 0;
 }
 
 .zen-stepper-btn:hover:not(:disabled) {
   background: #FFFFFF;
-  color: var(--color-accent);
-  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.22);
+  color: var(--color-muted-plum);
+  box-shadow: 0 4px 12px rgba(41, 37, 43, 0.08);
   transform: scale(1.04);
 }
 
 .zen-stepper-btn:active:not(:disabled) {
   transform: scale(0.95);
-  box-shadow: 0 1px 3px rgba(148, 118, 185, 0.1);
+  box-shadow: 0 1px 3px rgba(41, 37, 43, 0.08);
 }
 
 .zen-stepper-btn:disabled {
@@ -698,7 +668,7 @@ input[type="number"] {
   width: 100%;
   padding: 0.65rem 1.15rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--color-border-glass);
   color: var(--text-secondary);
   font-size: 0.82rem;
@@ -706,7 +676,7 @@ input[type="number"] {
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.04);
+  box-shadow: 0 2px 6px rgba(41, 37, 43, 0.03);
 }
 
 .zen-custom-toggle-btn:hover {
@@ -717,8 +687,8 @@ input[type="number"] {
 
 .zen-custom-toggle-btn.active {
   background: #FFFFFF;
-  color: var(--color-accent);
-  border-color: rgba(168, 85, 247, 0.35);
+  color: var(--color-muted-plum);
+  border-color: rgba(112, 83, 107, 0.35);
   box-shadow: var(--shadow-pill);
 }
 
@@ -729,16 +699,16 @@ input[type="number"] {
 }
 
 .zen-custom-toggle-label svg {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
 }
 
 .zen-custom-intervals-drawer {
   margin-top: 0.85rem;
   padding: 1rem 1.15rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid var(--color-border-glass);
-  box-shadow: var(--shadow-inner), 0 4px 14px rgba(148, 118, 185, 0.04);
+  box-shadow: var(--shadow-inner), 0 4px 14px rgba(41, 37, 43, 0.03);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -750,7 +720,7 @@ input[type="number"] {
   align-items: center;
   justify-content: space-between;
   padding-bottom: 0.4rem;
-  border-bottom: 1px dashed rgba(148, 118, 185, 0.15);
+  border-bottom: 1px dashed rgba(165, 139, 104, 0.18);
 }
 
 .zen-custom-intervals-heading {
@@ -766,7 +736,7 @@ input[type="number"] {
   border: none;
   font-size: 0.74rem;
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   cursor: pointer;
   transition: var(--transition-gentle);
   padding: 2px 6px;
@@ -774,7 +744,7 @@ input[type="number"] {
 }
 
 .zen-custom-reset-link:hover {
-  background: var(--color-violet-soft);
+  background: rgba(112, 83, 107, 0.08);
 }
 
 .zen-custom-intervals-grid {
@@ -807,7 +777,7 @@ input[type="number"] {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--gradient-aurora);
+  background: var(--color-muted-plum);
 }
 
 .zen-stepper-compact {
@@ -829,12 +799,12 @@ input[type="number"] {
   margin-top: 1.5rem;
   padding: 1.1rem 1.35rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.58);
+  background: rgba(255, 255, 255, 0.82);
   border: 1px solid var(--color-border-glass);
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  box-shadow: var(--shadow-inner), 0 4px 16px rgba(148, 118, 185, 0.05);
+  box-shadow: var(--shadow-inner), 0 4px 16px rgba(41, 37, 43, 0.04);
 }
 
 @media (min-width: 480px) {
@@ -858,8 +828,8 @@ input[type="number"] {
   width: 38px;
   height: 38px;
   border-radius: var(--radius-full);
-  background: var(--color-violet-soft);
-  color: var(--color-accent);
+  background: rgba(165, 139, 104, 0.12);
+  color: var(--color-antique-bronze);
   flex-shrink: 0;
 }
 
@@ -881,7 +851,7 @@ input[type="number"] {
   font-family: var(--font-sans);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   letter-spacing: -0.01em;
 }
 
@@ -932,25 +902,25 @@ input[type="number"] {
   padding: 0.7rem 0.5rem;
   min-height: 54px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.75);
   border: 1px solid var(--color-border-glass);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.04);
+  box-shadow: 0 2px 6px rgba(41, 37, 43, 0.03);
 }
 
 .zen-preset-pill:hover {
   background: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.95);
+  border-color: rgba(255, 255, 255, 0.98);
   transform: translateY(-2px);
   box-shadow: var(--shadow-pill);
 }
 
 .zen-preset-pill.active {
   background: #FFFFFF;
-  border-color: rgba(168, 85, 247, 0.35);
-  box-shadow: var(--shadow-pill), 0 0 16px rgba(168, 85, 247, 0.12);
+  border-color: rgba(112, 83, 107, 0.35);
+  box-shadow: var(--shadow-pill);
 }
 
 .zen-preset-pill:active {
@@ -968,7 +938,7 @@ input[type="number"] {
 
 .zen-preset-pill.active .preset-pill-title,
 .zen-preset-pill.active .zen-preset-intervals {
-  color: var(--color-accent);
+  color: var(--color-charcoal);
 }
 
 .preset-pill-desc,
@@ -980,8 +950,8 @@ input[type="number"] {
 
 .zen-preset-pill.active .preset-pill-desc,
 .zen-preset-pill.active .zen-preset-total {
-  color: var(--color-accent);
-  opacity: 0.85;
+  color: var(--color-muted-plum);
+  font-weight: 600;
 }
 
 /* ==========================================================================
@@ -990,7 +960,7 @@ input[type="number"] {
 .zen-sound-section {
   margin-top: 1.75rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(148, 118, 185, 0.12);
+  border-top: 1px solid rgba(165, 139, 104, 0.15);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -1017,8 +987,8 @@ input[type="number"] {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
-  background: var(--color-violet-soft);
-  color: var(--color-accent);
+  background: rgba(165, 139, 104, 0.12);
+  color: var(--color-antique-bronze);
   flex-shrink: 0;
 }
 
@@ -1044,17 +1014,17 @@ input[type="number"] {
   font-size: 0.78rem;
   font-weight: 600;
   border: 1px solid var(--color-border-glass);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.75);
   color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.04);
+  box-shadow: 0 2px 6px rgba(41, 37, 43, 0.03);
 }
 
 .zen-sound-mute-toggle.active {
   background: #FFFFFF;
-  color: var(--color-accent);
+  color: var(--color-charcoal);
   box-shadow: var(--shadow-pill);
 }
 
@@ -1076,7 +1046,7 @@ input[type="number"] {
 .zen-sound-card {
   padding: 1.05rem 1.15rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--color-border-glass);
   transition: var(--transition-gentle);
   position: relative;
@@ -1085,9 +1055,9 @@ input[type="number"] {
 }
 
 .zen-sound-card.is-playing {
-  border-color: rgba(168, 85, 247, 0.4);
+  border-color: rgba(112, 83, 107, 0.35);
   background: #FFFFFF;
-  box-shadow: 0 6px 20px -2px rgba(168, 85, 247, 0.16);
+  box-shadow: 0 6px 20px -2px rgba(41, 37, 43, 0.08);
 }
 
 .zen-sound-card.is-playing::before {
@@ -1096,8 +1066,8 @@ input[type="number"] {
   top: 0;
   left: 0;
   right: 0;
-  height: 2.5px;
-  background: var(--gradient-aurora);
+  height: 2px;
+  background: linear-gradient(90deg, #70536B, #9D6B84, #A58B68);
   animation: sound-shine 2s infinite ease-in-out;
 }
 
@@ -1126,10 +1096,10 @@ input[type="number"] {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-charcoal);
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.08);
+  box-shadow: 0 2px 6px rgba(41, 37, 43, 0.05);
 }
 
 .zen-sound-card-name {
@@ -1165,9 +1135,9 @@ input[type="number"] {
 }
 
 .zen-test-sound-btn:hover:not(:disabled) {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 6px 16px rgba(41, 37, 43, 0.08);
 }
 
 .zen-test-sound-btn:active:not(:disabled) {
@@ -1175,10 +1145,10 @@ input[type="number"] {
 }
 
 .zen-test-sound-btn.active {
-  background: var(--color-accent);
+  background: var(--color-muted-plum);
   border-color: transparent;
   color: #FFFFFF;
-  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35);
+  box-shadow: 0 4px 14px rgba(112, 83, 107, 0.3);
 }
 
 .zen-test-sound-btn:disabled {
@@ -1197,7 +1167,7 @@ input[type="number"] {
 .zen-sound-card-option {
   margin-top: 0.65rem;
   padding-top: 0.55rem;
-  border-top: 1px dashed rgba(148, 118, 185, 0.12);
+  border-top: 1px dashed rgba(165, 139, 104, 0.15);
 }
 
 .zen-checkbox-label {
@@ -1224,13 +1194,13 @@ input[type="number"] {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   transition: var(--transition-gentle);
-  box-shadow: 0 1px 4px rgba(148, 118, 185, 0.08);
+  box-shadow: 0 1px 4px rgba(41, 37, 43, 0.05);
 }
 
 .zen-checkbox:checked + .zen-checkbox-custom {
-  background: var(--gradient-aurora);
+  background: var(--color-muted-plum);
   border-color: transparent;
   color: #FFFFFF;
 }
@@ -1246,8 +1216,8 @@ input[type="number"] {
   margin-top: 0.35rem;
   padding: 0.75rem 0.95rem;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px dashed rgba(148, 118, 185, 0.15);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px dashed rgba(165, 139, 104, 0.2);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -1275,12 +1245,12 @@ input[type="number"] {
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--color-border-glass);
   color: var(--text-secondary);
   cursor: pointer;
   transition: var(--transition-gentle);
-  box-shadow: 0 1px 3px rgba(148, 118, 185, 0.05);
+  box-shadow: 0 1px 3px rgba(41, 37, 43, 0.04);
 }
 
 .zen-source-pill:hover {
@@ -1290,8 +1260,8 @@ input[type="number"] {
 
 .zen-source-pill.active {
   background: #FFFFFF;
-  border-color: #FFFFFF;
-  color: var(--color-accent);
+  border-color: rgba(112, 83, 107, 0.3);
+  color: var(--color-muted-plum);
   font-weight: 600;
   box-shadow: var(--shadow-pill);
 }
@@ -1303,15 +1273,15 @@ input[type="number"] {
 }
 
 .zen-custom-audio-hint code {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   padding: 1px 5px;
   border-radius: 4px;
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   font-family: monospace;
 }
 
 /* ==========================================================================
-   Primary CTA Button ("Begin Meditation")
+   Primary CTA Button ("Begin Meditation" - Minimal Pill Surface)
    ========================================================================== */
 .zen-start-session-btn {
   width: 100%;
@@ -1322,28 +1292,34 @@ input[type="number"] {
   padding: 1rem 2rem;
   min-height: 54px;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  background: #FFFFFF;
-  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
   font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(148, 118, 185, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 18px rgba(41, 37, 43, 0.05), inset 0 1px 1px rgba(255, 255, 255, 1);
   transition: var(--transition-gentle);
   margin-top: 1.5rem;
   user-select: none;
 }
 
 .zen-start-session-btn svg {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
+  transition: transform 0.25s ease;
 }
 
 .zen-start-session-btn:hover {
   transform: translateY(-2px);
   background: #FFFFFF;
-  color: var(--color-accent);
-  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.18), inset 0 1px 1px rgba(255, 255, 255, 1);
+  color: var(--color-charcoal);
+  box-shadow: 0 8px 24px rgba(41, 37, 43, 0.08), inset 0 1px 1px #FFFFFF;
+}
+
+.zen-start-session-btn:hover svg {
+  transform: scale(1.08);
 }
 
 .zen-start-session-btn:active {
@@ -1375,19 +1351,19 @@ input[type="number"] {
   gap: 0.45rem;
   padding: 0.45rem 0.95rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--color-border-glass);
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-primary);
-  box-shadow: 0 2px 8px rgba(148, 118, 185, 0.05);
+  box-shadow: 0 2px 8px rgba(41, 37, 43, 0.04);
 }
 
 .zen-interval-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--gradient-aurora);
+  background: var(--color-dusty-rose);
 }
 
 .zen-interval-dot.pulsing {
@@ -1405,16 +1381,16 @@ input[type="number"] {
   gap: 0.35rem;
   padding: 0.45rem 0.85rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--color-border-glass);
   color: var(--text-secondary);
   font-size: 0.74rem;
   font-weight: 600;
-  box-shadow: 0 2px 6px rgba(148, 118, 185, 0.05);
+  box-shadow: 0 2px 6px rgba(41, 37, 43, 0.04);
 }
 
 .zen-wakelock-pill svg {
-  color: var(--color-accent);
+  color: var(--color-antique-bronze);
 }
 
 /* Pure Zen Mode Toggle */
@@ -1424,7 +1400,7 @@ input[type="number"] {
   gap: 0.35rem;
   padding: 0.45rem 0.95rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--color-border-glass);
   color: var(--text-secondary);
   font-size: 0.76rem;
@@ -1432,7 +1408,7 @@ input[type="number"] {
   cursor: pointer;
   transition: var(--transition-gentle);
   user-select: none;
-  box-shadow: 0 2px 8px rgba(148, 118, 185, 0.05);
+  box-shadow: 0 2px 8px rgba(41, 37, 43, 0.04);
 }
 
 .zen-zen-mode-toggle:hover {
@@ -1443,15 +1419,15 @@ input[type="number"] {
 
 .zen-zen-mode-toggle.active {
   background: #FFFFFF;
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   box-shadow: var(--shadow-pill);
 }
 
 /* ==========================================================================
-   CENTERPIECE TIMER REDESIGN (Image 1 & Image 2 Synergy)
-   - Sacred Geometry Overlapping Elliptical Rings & Star Sparkle (Image 1)
-   - 3D Pearlescent Iridescent Glowing Orb Centerpiece (Image 2)
-   - Sleek Outer Orbit Progress Arc (Image 2)
+   CENTERPIECE TIMER
+   - Floating 3D Pearlescent Orb with Soft Organic Illumination
+   - Delicate, Thinner SVG Progress Ring (1.5px - 2px)
+   - Refined, Meditative Sacred Geometry Extending Gently Beyond Sphere
    ========================================================================== */
 .zen-dial-wrapper {
   position: relative;
@@ -1471,7 +1447,7 @@ input[type="number"] {
   }
 }
 
-/* Outer Luminous Centerpiece Radial Ambient Glow */
+/* Soft, Diffused Warm-White / Dusty Rose Outer Glow */
 .zen-centerpiece-aura {
   position: absolute;
   top: 50%;
@@ -1480,8 +1456,8 @@ input[type="number"] {
   width: min(72vw, 290px);
   height: min(72vw, 290px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(192, 132, 252, 0.32) 0%, rgba(244, 114, 182, 0.18) 45%, rgba(253, 230, 138, 0.08) 65%, transparent 75%);
-  filter: blur(34px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(245, 240, 230, 0.5) 45%, rgba(157, 107, 132, 0.1) 68%, transparent 75%);
+  filter: blur(30px);
   pointer-events: none;
   z-index: 0;
   transition: filter 0.8s ease, opacity 0.8s ease, transform 0.8s ease;
@@ -1492,8 +1468,8 @@ input[type="number"] {
 }
 
 @keyframes aura-breathe {
-  0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.7; filter: blur(30px); }
-  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; filter: blur(40px); }
+  0% { transform: translate(-50%, -50%) scale(0.94); opacity: 0.65; filter: blur(28px); }
+  100% { transform: translate(-50%, -50%) scale(1.06); opacity: 0.95; filter: blur(36px); }
 }
 
 .zen-centerpiece-aura.flare {
@@ -1502,25 +1478,25 @@ input[type="number"] {
 
 @keyframes aura-flare {
   0% {
-    transform: translate(-50%, -50%) scale(0.95);
-    background: radial-gradient(circle, rgba(253, 230, 138, 0.6) 0%, rgba(244, 114, 182, 0.45) 40%, rgba(192, 132, 252, 0.3) 65%, transparent 75%);
-    filter: blur(35px) brightness(1.6);
+    transform: translate(-50%, -50%) scale(0.96);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(245, 240, 230, 0.6) 40%, rgba(165, 139, 104, 0.2) 65%, transparent 75%);
+    filter: blur(32px) brightness(1.2);
     opacity: 1;
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.22);
-    filter: blur(42px) brightness(1.3);
+    transform: translate(-50%, -50%) scale(1.15);
+    filter: blur(38px) brightness(1.15);
     opacity: 0.95;
   }
   100% {
     transform: translate(-50%, -50%) scale(1);
-    filter: blur(34px) brightness(1);
-    opacity: 0.8;
+    filter: blur(30px) brightness(1);
+    opacity: 0.75;
   }
 }
 
 /* --------------------------------------------------------------------------
-   Sacred Geometry Elliptical SVG Rings (Image 1 Inspiration)
+   Sacred Geometry Elliptical SVG Rings (Extended Gently Beyond Sphere)
    -------------------------------------------------------------------------- */
 .zen-sacred-rings-wrap {
   position: absolute;
@@ -1535,7 +1511,7 @@ input[type="number"] {
 }
 
 .zen-sacred-rings-wrap.rotating {
-  animation: sacred-rings-spin 75s linear infinite;
+  animation: sacred-rings-spin 80s linear infinite;
 }
 
 @keyframes sacred-rings-spin {
@@ -1551,35 +1527,34 @@ input[type="number"] {
 
 .zen-sacred-ellipse {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.58);
+  stroke: rgba(255, 255, 255, 0.65);
   stroke-width: 1px;
   transition: stroke 0.6s ease;
 }
 
 .zen-sacred-rings-wrap.ringing .zen-sacred-ellipse {
-  stroke: rgba(253, 230, 138, 0.85);
-  filter: drop-shadow(0 0 6px rgba(253, 230, 138, 0.7));
+  stroke: rgba(165, 139, 104, 0.75);
 }
 
-/* Delicate 4-Point Celestial Star Sparkle Accent (Image 1 Inspiration) */
+/* Delicate 4-Point Celestial Star Sparkle Accent */
 .zen-sacred-star-accent {
   position: absolute;
   bottom: 22px;
   right: 28px;
-  color: #FFFFFF;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 12px rgba(192, 132, 252, 0.8));
+  color: rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 0 5px rgba(165, 139, 104, 0.5));
   animation: star-sparkle-twinkle 4s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
 @keyframes star-sparkle-twinkle {
   0% { transform: scale(0.85) rotate(0deg); opacity: 0.75; }
-  50% { transform: scale(1.15) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1)); }
+  50% { transform: scale(1.15) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95)); }
   100% { transform: scale(0.9) rotate(0deg); opacity: 0.8; }
 }
 
 /* --------------------------------------------------------------------------
-   3D Iridescent Pearlescent Glowing Orb (Image 2 Inspiration)
+   3D Iridescent Pearlescent Glowing Orb (Floating Dimensional Instrument)
    -------------------------------------------------------------------------- */
 .zen-iridescent-orb {
   position: absolute;
@@ -1589,19 +1564,19 @@ input[type="number"] {
   width: 232px;
   height: 232px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 28%,
+  background: radial-gradient(circle at 35% 26%,
     #FFFFFF 0%,
-    rgba(255, 245, 250, 0.98) 18%,
-    rgba(240, 215, 255, 0.92) 38%,
-    rgba(216, 180, 254, 0.84) 60%,
-    rgba(199, 210, 254, 0.8) 80%,
-    rgba(249, 168, 212, 0.78) 100%);
+    rgba(255, 250, 245, 0.98) 20%,
+    rgba(246, 238, 242, 0.94) 42%,
+    rgba(233, 222, 228, 0.88) 65%,
+    rgba(226, 216, 206, 0.85) 85%,
+    rgba(215, 195, 205, 0.82) 100%);
   box-shadow:
-    inset -10px -14px 28px rgba(129, 140, 248, 0.32),
-    inset 8px 10px 22px rgba(255, 255, 255, 0.98),
-    inset 0 0 18px rgba(236, 72, 153, 0.24),
-    0 20px 50px rgba(147, 51, 234, 0.16),
-    0 0 45px rgba(244, 114, 182, 0.22);
+    inset -8px -12px 24px rgba(165, 139, 104, 0.18),
+    inset 8px 10px 20px rgba(255, 255, 255, 0.98),
+    inset 0 0 14px rgba(157, 107, 132, 0.16),
+    0 20px 45px rgba(41, 37, 43, 0.08),
+    0 0 35px rgba(255, 255, 255, 0.8);
   overflow: hidden;
   pointer-events: none;
   z-index: 1;
@@ -1613,10 +1588,10 @@ input[type="number"] {
   position: absolute;
   top: 7%;
   left: 14%;
-  width: 48%;
-  height: 28%;
+  width: 46%;
+  height: 26%;
   border-radius: 50%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.04) 100%);
   transform: rotate(-25deg);
   filter: blur(1px);
 }
@@ -1628,7 +1603,7 @@ input[type="number"] {
   width: 44%;
   height: 40%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(147, 197, 253, 0.5) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 214, 229, 0.28) 0%, transparent 70%);
   filter: blur(14px);
 }
 
@@ -1639,8 +1614,8 @@ input[type="number"] {
   width: 52%;
   height: 52%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.38) 0%, rgba(192, 132, 252, 0.22) 60%, transparent 80%);
-  filter: blur(14px);
+  background: radial-gradient(circle, rgba(157, 107, 132, 0.22) 0%, rgba(112, 83, 107, 0.12) 60%, transparent 80%);
+  filter: blur(16px);
 }
 
 /* Rhythmic Breathing Animation (4s Inhale, 4s Exhale) */
@@ -1650,20 +1625,20 @@ input[type="number"] {
 
 @keyframes orb-breathing {
   0% {
-    transform: translate(-50%, -50%) scale(0.975);
+    transform: translate(-50%, -50%) scale(0.98);
     box-shadow:
-      inset -9px -12px 26px rgba(129, 140, 248, 0.28),
-      inset 7px 9px 20px rgba(255, 255, 255, 0.95),
-      0 18px 42px rgba(147, 51, 234, 0.14),
-      0 0 32px rgba(244, 114, 182, 0.18);
+      inset -7px -10px 22px rgba(165, 139, 104, 0.16),
+      inset 7px 9px 18px rgba(255, 255, 255, 0.95),
+      0 18px 40px rgba(41, 37, 43, 0.07),
+      0 0 30px rgba(255, 255, 255, 0.7);
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.035);
+    transform: translate(-50%, -50%) scale(1.03);
     box-shadow:
-      inset -12px -16px 34px rgba(129, 140, 248, 0.38),
-      inset 10px 12px 26px rgba(255, 255, 255, 1),
-      0 24px 60px rgba(147, 51, 234, 0.24),
-      0 0 55px rgba(244, 114, 182, 0.32);
+      inset -9px -14px 28px rgba(165, 139, 104, 0.22),
+      inset 9px 11px 24px rgba(255, 255, 255, 1),
+      0 24px 50px rgba(41, 37, 43, 0.1),
+      0 0 45px rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -1673,12 +1648,12 @@ input[type="number"] {
 
 @keyframes orb-chime-flare {
   0% { transform: translate(-50%, -50%) scale(0.98); }
-  30% { transform: translate(-50%, -50%) scale(1.08); filter: brightness(1.25) saturate(1.2); }
+  30% { transform: translate(-50%, -50%) scale(1.06); filter: brightness(1.15); }
   100% { transform: translate(-50%, -50%) scale(1); filter: brightness(1); }
 }
 
 /* --------------------------------------------------------------------------
-   Sleek Outer Orbit Progress Arc (Image 2 Inspiration)
+   Sleek Outer Orbit Progress Arc (Thinner 1.5px - 2px, Softened Stroke)
    -------------------------------------------------------------------------- */
 .zen-svg-ring {
   width: 100%;
@@ -1690,7 +1665,7 @@ input[type="number"] {
 }
 
 .zen-ring-track {
-  stroke: rgba(255, 255, 255, 0.35);
+  stroke: rgba(41, 37, 43, 0.08);
   fill: none;
 }
 
@@ -1699,19 +1674,19 @@ input[type="number"] {
   stroke: url(#zenAuraGradient);
   stroke-linecap: round;
   transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.65));
+  filter: drop-shadow(0 1px 4px rgba(112, 83, 107, 0.2));
 }
 
 .zen-ring-progress.ringing {
   stroke: url(#zenBellPulseGradient) !important;
-  stroke-width: 6.5px;
-  filter: drop-shadow(0 0 22px rgba(253, 230, 138, 0.9)) !important;
+  stroke-width: 3.5px;
+  filter: drop-shadow(0 0 12px rgba(165, 139, 104, 0.6)) !important;
 }
 
 /* Concentric Expanding Soundwave Ripple on Chime */
 .zen-chime-soundwave {
   fill: none;
-  stroke-width: 2.5px;
+  stroke-width: 2px;
   pointer-events: none;
 }
 
@@ -1726,11 +1701,11 @@ input[type="number"] {
 @keyframes soundwave-ripple {
   0% {
     r: 130px;
-    opacity: 0.9;
-    stroke-width: 3.5px;
+    opacity: 0.8;
+    stroke-width: 2.5px;
   }
   50% {
-    opacity: 0.45;
+    opacity: 0.4;
   }
   100% {
     r: 175px;
@@ -1761,21 +1736,21 @@ input[type="number"] {
   font-size: clamp(3.2rem, 11vw, 4.2rem);
   font-weight: 300;
   line-height: 1;
-  color: var(--text-primary);
+  color: var(--color-charcoal);
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.7);
 }
 
 .zen-dial-subtext {
   font-family: var(--font-serif);
   font-size: 0.96rem;
   font-style: italic;
-  color: var(--text-secondary);
+  color: var(--color-slate);
   letter-spacing: 0.02em;
   margin-top: 0.45rem;
   font-weight: 500;
-  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.6);
 }
 
 /* Pure Zen Mode Dial Content */
@@ -1796,18 +1771,18 @@ input[type="number"] {
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 1.5px solid rgba(168, 85, 247, 0.3);
+  border: 1.5px solid rgba(165, 139, 104, 0.3);
   position: relative;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 16px rgba(148, 118, 185, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 16px rgba(41, 37, 43, 0.04);
 }
 
 .zen-breathing-core {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--gradient-aurora);
-  box-shadow: 0 4px 16px rgba(192, 132, 252, 0.5);
+  background: var(--gradient-plum-rose);
+  box-shadow: 0 4px 16px rgba(112, 83, 107, 0.35);
   opacity: 0.9;
 }
 
@@ -1818,18 +1793,18 @@ input[type="number"] {
 @keyframes zen-breath-pulse {
   0%, 100% {
     transform: scale(0.85);
-    opacity: 0.6;
-    box-shadow: 0 2px 8px rgba(192, 132, 252, 0.35);
+    opacity: 0.65;
+    box-shadow: 0 2px 8px rgba(112, 83, 107, 0.25);
   }
   50% {
-    transform: scale(1.55);
+    transform: scale(1.45);
     opacity: 1;
-    box-shadow: 0 6px 24px rgba(244, 114, 182, 0.7);
+    box-shadow: 0 6px 20px rgba(157, 107, 132, 0.45);
   }
 }
 
 /* ==========================================================================
-   Pill-Shaped Controls Bar & Buttons
+   Pill-Shaped Controls Bar & Buttons (Clean Frosted Instrument Controls)
    ========================================================================== */
 .zen-controls-bar {
   display: flex;
@@ -1856,8 +1831,8 @@ input[type="number"] {
 
 .zen-control-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(148, 118, 185, 0.16);
-  color: var(--color-accent);
+  box-shadow: 0 6px 18px rgba(41, 37, 43, 0.08);
+  color: var(--color-muted-plum);
 }
 
 .zen-control-btn:active {
@@ -1869,36 +1844,38 @@ input[type="number"] {
   height: 52px;
   min-width: 52px;
   min-height: 52px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 14px rgba(41, 37, 43, 0.05);
 }
 
 .zen-btn-secondary svg {
   width: 20px;
   height: 20px;
-  color: var(--text-secondary);
+  color: var(--color-slate);
   transition: var(--transition-gentle);
 }
 
 .zen-btn-secondary:hover svg {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
 }
 
-/* Primary Play/Pause Button (Image 2 Clean Pill Style) */
+/* Primary Play/Pause Button (Minimal Frosted Pill Surface) */
 .zen-btn-primary {
   width: 74px;
   height: 74px;
   min-width: 74px;
   min-height: 74px;
-  background: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  color: var(--color-accent);
-  box-shadow: 0 8px 24px rgba(148, 118, 185, 0.16), inset 0 1px 1px rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.98);
+  color: var(--color-charcoal);
+  box-shadow: 0 8px 24px rgba(41, 37, 43, 0.07), inset 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 .zen-btn-primary:hover {
-  transform: scale(1.06) translateY(-2px);
+  transform: scale(1.05) translateY(-2px);
   background: #FFFFFF;
-  color: var(--color-accent);
-  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.25), inset 0 1px 1px #FFFFFF;
+  box-shadow: 0 12px 30px rgba(41, 37, 43, 0.1), inset 0 1px 1px #FFFFFF;
 }
 
 .zen-btn-primary:active {
@@ -1906,9 +1883,14 @@ input[type="number"] {
 }
 
 .zen-btn-primary svg {
-  width: 30px;
-  height: 30px;
-  color: var(--color-accent);
+  width: 28px;
+  height: 28px;
+  color: var(--color-charcoal);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.zen-btn-primary:hover svg {
+  color: var(--color-muted-plum);
 }
 
 /* ==========================================================================
@@ -1926,8 +1908,8 @@ input[type="number"] {
 }
 
 .zen-timer-running .zen-secondary-dim {
-  opacity: 0.22;
-  filter: grayscale(20%);
+  opacity: 0.24;
+  filter: grayscale(15%);
 }
 
 .zen-timer-running .zen-secondary-dim:hover,
@@ -1937,7 +1919,7 @@ input[type="number"] {
 }
 
 .zen-timer-running .zen-secondary-control {
-  opacity: 0.2;
+  opacity: 0.22;
 }
 
 .zen-timer-running .zen-secondary-control:hover,
@@ -1946,7 +1928,7 @@ input[type="number"] {
 }
 
 .zen-timer-running .zen-btn-secondary {
-  opacity: 0.35;
+  opacity: 0.38;
 }
 
 .zen-timer-running .zen-btn-secondary:hover {
@@ -1971,8 +1953,8 @@ input[type="number"] {
   gap: 0.65rem;
   padding: 0.45rem 1rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px dashed rgba(148, 118, 185, 0.18);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px dashed rgba(165, 139, 104, 0.22);
   color: var(--text-secondary);
   font-size: 0.76rem;
   font-weight: 600;
@@ -1984,7 +1966,7 @@ input[type="number"] {
 .zen-dev-testing-trigger:hover {
   background: #FFFFFF;
   color: var(--text-primary);
-  border-color: rgba(168, 85, 247, 0.3);
+  border-color: rgba(112, 83, 107, 0.3);
   box-shadow: var(--shadow-pill);
 }
 
@@ -1995,7 +1977,7 @@ input[type="number"] {
 }
 
 .zen-dev-testing-trigger-label svg {
-  color: var(--color-accent);
+  color: var(--color-slate);
 }
 
 .zen-mock-toolbar {
@@ -2003,8 +1985,8 @@ input[type="number"] {
   width: 100%;
   padding: 1rem 1.2rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.52);
-  border: 1px dashed rgba(148, 118, 185, 0.18);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px dashed rgba(165, 139, 104, 0.22);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -2035,8 +2017,8 @@ input[type="number"] {
 }
 
 .mock-toolbar-badge {
-  background: var(--color-violet-soft);
-  color: var(--color-accent);
+  background: rgba(165, 139, 104, 0.12);
+  color: var(--color-antique-bronze);
   padding: 2px 8px;
   border-radius: var(--radius-full);
   font-size: 0.7rem;
@@ -2061,12 +2043,12 @@ input[type="number"] {
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition-gentle);
-  box-shadow: 0 1px 4px rgba(148, 118, 185, 0.06);
+  box-shadow: 0 1px 4px rgba(41, 37, 43, 0.04);
 }
 
 .mock-toolbar-btn:hover:not(:disabled) {
   background: #FFFFFF;
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   box-shadow: var(--shadow-pill);
 }
 
@@ -2084,12 +2066,12 @@ input[type="number"] {
 
 .mock-slider {
   flex: 1;
-  accent-color: var(--color-accent);
+  accent-color: var(--color-muted-plum);
   cursor: pointer;
 }
 
 /* ==========================================================================
-   Session Completed View (Image 1 & 2 Aesthetic)
+   Session Completed View (Handcrafted Instrument Celebration)
    ========================================================================== */
 .zen-completed-view {
   display: flex;
@@ -2115,13 +2097,13 @@ input[type="number"] {
   height: 86px;
   border-radius: 50%;
   background: var(--gradient-orb-pearl);
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   margin-bottom: 1.5rem;
   box-shadow: 
-    inset -6px -8px 18px rgba(168, 85, 247, 0.25),
-    inset 6px 8px 16px rgba(255, 255, 255, 0.98),
-    0 16px 36px rgba(168, 85, 247, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+    inset -4px -6px 14px rgba(165, 139, 104, 0.16),
+    inset 5px 6px 14px rgba(255, 255, 255, 0.98),
+    0 12px 28px rgba(41, 37, 43, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.95);
 }
 
 .zen-completed-title {
@@ -2148,11 +2130,11 @@ input[type="number"] {
   margin: 0.45rem 0 1.25rem;
   padding: 0.45rem 1.15rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(168, 85, 247, 0.28);
-  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.1), var(--shadow-inner);
+  border: 1px solid rgba(165, 139, 104, 0.25);
+  box-shadow: 0 4px 16px rgba(41, 37, 43, 0.04), var(--shadow-inner);
   font-size: 0.84rem;
   color: var(--text-secondary);
   letter-spacing: 0.01em;
@@ -2165,12 +2147,12 @@ input[type="number"] {
 }
 
 .zen-completed-lifetime-badge svg {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   flex-shrink: 0;
 }
 
 .zen-completed-lifetime-badge strong {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
   font-weight: 700;
 }
 
@@ -2190,27 +2172,26 @@ input[type="number"] {
   gap: 0.6rem;
   padding: 0.9rem 2.2rem;
   border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  background: #FFFFFF;
-  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-charcoal);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   cursor: pointer;
   transition: var(--transition-gentle);
   min-height: 52px;
-  box-shadow: 0 6px 20px rgba(148, 118, 185, 0.14), inset 0 1px 1px rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(41, 37, 43, 0.07), inset 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 .zen-completed-reset-btn svg {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
 }
 
 .zen-completed-reset-btn:hover {
   transform: translateY(-2px);
   background: #FFFFFF;
-  color: var(--color-accent);
-  box-shadow: 0 10px 28px rgba(168, 85, 247, 0.22), inset 0 1px 1px #FFFFFF;
+  box-shadow: 0 10px 28px rgba(41, 37, 43, 0.1), inset 0 1px 1px #FFFFFF;
 }
 
 .zen-completed-reset-btn:active {
@@ -2236,5 +2217,5 @@ input[type="number"] {
 }
 
 .zen-footer a:hover {
-  color: var(--color-accent);
+  color: var(--color-muted-plum);
 }
