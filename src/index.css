@@ -2283,17 +2283,33 @@ input[type="number"] {
   margin-top: auto;
   padding-top: 2.5rem;
   text-align: center;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.zen-footer-heart {
+  display: inline-block;
+  margin: 0 0.2rem;
+  vertical-align: -1px;
+  font-size: 0.85rem;
+  transition: transform 0.25s ease;
+}
+
+.zen-footer-heart:hover {
+  transform: scale(1.25);
 }
 
 .zen-footer a {
-  color: var(--text-secondary);
-  text-decoration: none;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(112, 83, 107, 0.35);
+  font-weight: 600;
   transition: var(--transition-gentle);
 }
 
 .zen-footer a:hover {
   color: var(--color-muted-plum);
+  text-decoration-color: var(--color-muted-plum);
 }

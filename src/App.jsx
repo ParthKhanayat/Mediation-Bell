@@ -371,7 +371,16 @@ export default function App() {
       </main>
 
       <footer className="zen-footer zen-secondary-dim">
-        <p>Distraction-free interval bell with drift-free Web Audio timing and Screen Wake Lock.</p>
+        <p>
+          Made with <span role="img" aria-label="love" className="zen-footer-heart">❤️</span> by Parth Khanayat •{' '}
+          <a
+            href="https://github.com/ParthKhanayat"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+        </p>
       </footer>
     </div>
   );
