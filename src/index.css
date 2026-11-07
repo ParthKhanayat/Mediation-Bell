@@ -1135,10 +1135,10 @@ body {
 }
 
 .zen-test-sound-btn.active {
-  background: var(--gradient-aurora);
+  background: var(--color-accent);
   border-color: transparent;
   color: #FFFFFF;
-  box-shadow: var(--shadow-luminous);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.35);
 }
 
 .zen-test-sound-btn:disabled {
@@ -1282,22 +1282,28 @@ body {
   padding: 1rem 2rem;
   min-height: 54px;
   border-radius: var(--radius-full);
-  border: none;
-  background: var(--gradient-primary-btn);
-  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: #FFFFFF;
+  color: var(--text-primary);
   font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   cursor: pointer;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), var(--shadow-luminous);
+  box-shadow: 0 4px 18px rgba(148, 118, 185, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9);
   transition: var(--transition-gentle);
   margin-top: 1.5rem;
   user-select: none;
 }
 
+.zen-start-session-btn svg {
+  color: var(--color-accent);
+}
+
 .zen-start-session-btn:hover {
   transform: translateY(-2px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.65), 0 14px 34px -2px rgba(168, 85, 247, 0.46);
+  background: #FFFFFF;
+  color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.18), inset 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 .zen-start-session-btn:active {
@@ -1836,22 +1842,23 @@ body {
   color: var(--color-accent);
 }
 
-/* Primary Play/Pause Button (Aurora Gradient Orb) */
+/* Primary Play/Pause Button (Image 2 Clean Pill Style) */
 .zen-btn-primary {
   width: 74px;
   height: 74px;
   min-width: 74px;
   min-height: 74px;
-  background: var(--gradient-aurora);
-  border: none;
-  color: #FFFFFF;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.65), var(--shadow-luminous);
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(148, 118, 185, 0.16), inset 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 .zen-btn-primary:hover {
   transform: scale(1.06) translateY(-2px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 16px 36px rgba(192, 132, 252, 0.55);
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: var(--color-accent);
+  box-shadow: 0 12px 32px rgba(168, 85, 247, 0.25), inset 0 1px 1px #FFFFFF;
 }
 
 .zen-btn-primary:active {
@@ -1861,7 +1868,7 @@ body {
 .zen-btn-primary svg {
   width: 30px;
   height: 30px;
-  color: #FFFFFF;
+  color: var(--color-accent);
 }
 
 /* ==========================================================================
@@ -2143,21 +2150,27 @@ body {
   gap: 0.6rem;
   padding: 0.9rem 2.2rem;
   border-radius: var(--radius-full);
-  border: none;
-  background: var(--gradient-primary-btn);
-  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #FFFFFF;
+  color: var(--text-primary);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   cursor: pointer;
   transition: var(--transition-gentle);
   min-height: 52px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), var(--shadow-luminous);
+  box-shadow: 0 6px 20px rgba(148, 118, 185, 0.14), inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+.zen-completed-reset-btn svg {
+  color: var(--color-accent);
 }
 
 .zen-completed-reset-btn:hover {
   transform: translateY(-2px);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.7), 0 14px 34px -2px rgba(168, 85, 247, 0.48);
+  background: #FFFFFF;
+  color: var(--color-accent);
+  box-shadow: 0 10px 28px rgba(168, 85, 247, 0.22), inset 0 1px 1px #FFFFFF;
 }
 
 .zen-completed-reset-btn:active {
