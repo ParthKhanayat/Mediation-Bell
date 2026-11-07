@@ -1543,7 +1543,9 @@ input[type="number"] {
 }
 
 /* --------------------------------------------------------------------------
-   Sacred Geometry Elliptical SVG Rings (Extended Gently Beyond Sphere)
+   Sacred Geometry Lotus Petal Rings (Image 1 Inspiration)
+   - Continuously breathes, blooms and rotates while timer is running (isPlaying)
+   - Heightened harmonic glow when interval chimes (isBellRinging)
    -------------------------------------------------------------------------- */
 .zen-sacred-rings-wrap {
   position: absolute;
@@ -1558,10 +1560,10 @@ input[type="number"] {
 }
 
 .zen-sacred-rings-wrap.rotating {
-  animation: sacred-rings-spin 80s linear infinite;
+  animation: sacred-lotus-spin 36s linear infinite;
 }
 
-@keyframes sacred-rings-spin {
+@keyframes sacred-lotus-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
@@ -1570,17 +1572,48 @@ input[type="number"] {
   width: 100%;
   height: 100%;
   overflow: visible;
+  transform-origin: center center;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+/* Rhythmic breathing & blooming motion for the lotus petals when timer is running */
+.zen-dial-running .zen-sacred-rings-svg {
+  animation: sacred-lotus-bloom 8s ease-in-out infinite alternate;
+}
+
+@keyframes sacred-lotus-bloom {
+  0% {
+    transform: scale(0.96);
+    filter: drop-shadow(0 0 4px rgba(165, 139, 104, 0.35));
+  }
+  50% {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 10px rgba(165, 139, 104, 0.65)) drop-shadow(0 0 16px rgba(157, 107, 132, 0.35));
+  }
+  100% {
+    transform: scale(0.96);
+    filter: drop-shadow(0 0 4px rgba(165, 139, 104, 0.35));
+  }
 }
 
 .zen-sacred-ellipse {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.65);
+  stroke: rgba(165, 139, 104, 0.3);
   stroke-width: 1px;
-  transition: stroke 0.6s ease;
+  transition: stroke 0.6s ease, stroke-width 0.6s ease, filter 0.6s ease;
 }
 
+/* While timer is running, lotus petals illuminate in warm organic bronze-to-rose light */
+.zen-dial-running .zen-sacred-ellipse {
+  stroke: url(#zenLotusPetalGradient);
+  stroke-width: 1.35px;
+}
+
+/* On bell chime (interval completion), heightened resonant flash */
 .zen-sacred-rings-wrap.ringing .zen-sacred-ellipse {
-  stroke: rgba(165, 139, 104, 0.75);
+  stroke: rgba(165, 139, 104, 0.95);
+  stroke-width: 1.8px;
+  filter: drop-shadow(0 0 14px rgba(165, 139, 104, 0.85)) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -1718,9 +1751,8 @@ input[type="number"] {
 }
 
 /* ==========================================================================
-   Outer Acoustic Soundwave Ripples Around Timer Orb
-   - Continuously ripples when timer is running (isPlaying)
-   - Flares harmonically when interval chimes (isBellRinging)
+   Outer Acoustic Soundwave Pulse on Interval Completion
+   - ONLY triggers when bell chimes upon interval completion (isBellRinging)
    ========================================================================== */
 .zen-chime-soundwaves-layer {
   pointer-events: none;
@@ -1728,65 +1760,31 @@ input[type="number"] {
 
 .zen-chime-soundwave {
   fill: none;
+  stroke-width: 2.5px;
   pointer-events: none;
   transform-origin: center center;
 }
 
-/* Continuous Radiating Soundwave Ripples when Timer is Running */
-.zen-chime-soundwave.running-loop.wave-1 {
-  animation: soundwave-ripple-continuous 4.5s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+.zen-chime-soundwave.wave-1 {
+  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
 }
 
-.zen-chime-soundwave.running-loop.wave-2 {
-  animation: soundwave-ripple-continuous 4.5s cubic-bezier(0.1, 0.8, 0.3, 1) 1.5s infinite;
+.zen-chime-soundwave.wave-2 {
+  animation: soundwave-ripple 2.5s cubic-bezier(0.1, 0.8, 0.3, 1) 0.35s forwards;
 }
 
-.zen-chime-soundwave.running-loop.wave-3 {
-  animation: soundwave-ripple-continuous 4.5s cubic-bezier(0.1, 0.8, 0.3, 1) 3.0s infinite;
-}
-
-@keyframes soundwave-ripple-continuous {
-  0% {
-    r: 138px;
-    opacity: 0.75;
-    stroke-width: 2.5px;
-  }
-  50% {
-    opacity: 0.35;
-    stroke-width: 1.8px;
-  }
-  100% {
-    r: 185px;
-    opacity: 0;
-    stroke-width: 0.5px;
-  }
-}
-
-/* Heightened Chime Flare on Interval Completion */
-.zen-chime-soundwave.chime-pulse {
-  animation: soundwave-chime-flare 2.6s cubic-bezier(0.1, 0.8, 0.25, 1) forwards !important;
-}
-
-.zen-chime-soundwave.chime-pulse.wave-2 {
-  animation-delay: 0.28s !important;
-}
-
-.zen-chime-soundwave.chime-pulse.wave-3 {
-  animation-delay: 0.56s !important;
-}
-
-@keyframes soundwave-chime-flare {
+@keyframes soundwave-ripple {
   0% {
     r: 132px;
     opacity: 0.95;
     stroke-width: 3.5px;
   }
-  40% {
-    opacity: 0.55;
-    stroke-width: 2.5px;
+  50% {
+    opacity: 0.45;
+    stroke-width: 2px;
   }
   100% {
-    r: 195px;
+    r: 190px;
     opacity: 0;
     stroke-width: 0.5px;
   }

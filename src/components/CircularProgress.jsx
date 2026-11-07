@@ -38,7 +38,7 @@ export default function CircularProgress({
         aria-hidden="true"
       />
 
-      {/* Sacred Geometry Elliptical SVG Rings (Extended gently beyond the sphere) */}
+      {/* Sacred Geometry Lotus Petal Rings (Extended gently beyond the sphere; breathes & rotates while running) */}
       <div
         className={`zen-sacred-rings-wrap ${isPlaying ? 'rotating' : ''} ${
           isBellRinging ? 'ringing' : ''
@@ -50,8 +50,16 @@ export default function CircularProgress({
           viewBox={`0 0 ${size} ${size}`}
           fill="none"
         >
+          <defs>
+            {/* Luminous organic bronze to rose petal gradient for the lotus blossom */}
+            <linearGradient id="zenLotusPetalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#A58B68" stopOpacity="0.9" />
+              <stop offset="50%" stopColor="#9D6B84" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#70536B" stopOpacity="0.8" />
+            </linearGradient>
+          </defs>
           <g transform={`translate(${center}, ${center})`}>
-            {/* Overlapping sacred ellipses with delicate semi-transparent white strokes */}
+            {/* Overlapping sacred ellipses forming lotus petals */}
             <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-1" />
             <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-2" transform="rotate(45)" />
             <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-3" transform="rotate(90)" />
@@ -94,35 +102,22 @@ export default function CircularProgress({
           </linearGradient>
         </defs>
 
-        {/* Outer Acoustic Sound Wave Ripples - Active continuously while timer is running; flares on interval chime */}
-        {(isPlaying || isBellRinging) && (
+        {/* Outer Acoustic Chime Sound Wave Pulse - ONLY triggers when bell rings on interval completion */}
+        {isBellRinging && (
           <g className="zen-chime-soundwaves-layer">
             <circle
-              className={`zen-chime-soundwave wave-1 ${isPlaying ? 'running-loop' : ''} ${
-                isBellRinging ? 'chime-pulse' : ''
-              }`}
+              className="zen-chime-soundwave wave-1"
               cx={center}
               cy={center}
               r={radius}
-              stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
+              stroke="url(#zenBellPulseGradient)"
             />
             <circle
-              className={`zen-chime-soundwave wave-2 ${isPlaying ? 'running-loop' : ''} ${
-                isBellRinging ? 'chime-pulse' : ''
-              }`}
+              className="zen-chime-soundwave wave-2"
               cx={center}
               cy={center}
               r={radius}
-              stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
-            />
-            <circle
-              className={`zen-chime-soundwave wave-3 ${isPlaying ? 'running-loop' : ''} ${
-                isBellRinging ? 'chime-pulse' : ''
-              }`}
-              cx={center}
-              cy={center}
-              r={radius}
-              stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
+              stroke="url(#zenBellPulseGradient)"
             />
           </g>
         )}
