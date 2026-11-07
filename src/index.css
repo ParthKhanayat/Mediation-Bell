@@ -1348,12 +1348,6 @@ input[type="number"] {
   flex-wrap: wrap;
 }
 
-.zen-interval-badge-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
 .zen-interval-badge {
   display: inline-flex;
   align-items: center;
@@ -1383,43 +1377,6 @@ input[type="number"] {
 @keyframes dot-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(0.75); }
-}
-
-.zen-interval-pips-row {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding-left: 0.5rem;
-}
-
-.zen-interval-pip {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  transition: var(--transition-gentle);
-}
-
-.zen-interval-pip.completed {
-  background: var(--color-dusty-rose);
-  opacity: 0.85;
-}
-
-.zen-interval-pip.current {
-  width: 7px;
-  height: 7px;
-  background: var(--color-muted-plum);
-  box-shadow: 0 0 6px rgba(112, 83, 107, 0.45);
-  animation: pip-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.zen-interval-pip.upcoming {
-  background: rgba(112, 83, 107, 0.16);
-}
-
-@keyframes pip-pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.15); opacity: 0.85; }
 }
 
 .zen-wakelock-pill {
@@ -1543,9 +1500,10 @@ input[type="number"] {
 }
 
 /* --------------------------------------------------------------------------
-   Sacred Geometry Lotus Petal Rings (Image 1 Inspiration)
-   - Continuously breathes, blooms and rotates while timer is running (isPlaying)
-   - Heightened harmonic glow when interval chimes (isBellRinging)
+   Sacred Geometry (Delicate, Minimal 2-Path Composition)
+   - Sits strictly outside the progress ring without intersecting
+   - Subtle, slow meditative rotation (100s)
+   - Reduced opacity muted plum (0.15–0.25) with delicate stroke (0.8–1px)
    -------------------------------------------------------------------------- */
 .zen-sacred-rings-wrap {
   position: absolute;
@@ -1560,7 +1518,7 @@ input[type="number"] {
 }
 
 .zen-sacred-rings-wrap.rotating {
-  animation: sacred-lotus-spin 36s linear infinite;
+  animation: sacred-lotus-spin 100s linear infinite;
 }
 
 @keyframes sacred-lotus-spin {
@@ -1573,47 +1531,25 @@ input[type="number"] {
   height: 100%;
   overflow: visible;
   transform-origin: center center;
-  transition: transform 0.8s ease, filter 0.8s ease;
-}
-
-/* Rhythmic breathing & blooming motion for the lotus petals when timer is running */
-.zen-dial-running .zen-sacred-rings-svg {
-  animation: sacred-lotus-bloom 8s ease-in-out infinite alternate;
-}
-
-@keyframes sacred-lotus-bloom {
-  0% {
-    transform: scale(0.96);
-    filter: drop-shadow(0 0 4px rgba(165, 139, 104, 0.35));
-  }
-  50% {
-    transform: scale(1.04);
-    filter: drop-shadow(0 0 10px rgba(165, 139, 104, 0.65)) drop-shadow(0 0 16px rgba(157, 107, 132, 0.35));
-  }
-  100% {
-    transform: scale(0.96);
-    filter: drop-shadow(0 0 4px rgba(165, 139, 104, 0.35));
-  }
 }
 
 .zen-sacred-ellipse {
   fill: none;
-  stroke: rgba(165, 139, 104, 0.3);
-  stroke-width: 1px;
-  transition: stroke 0.6s ease, stroke-width 0.6s ease, filter 0.6s ease;
+  stroke: rgba(112, 83, 107, 0.20);
+  stroke-width: 0.85px;
+  transition: stroke 0.6s ease, stroke-width 0.6s ease;
 }
 
-/* While timer is running, lotus petals illuminate in warm organic bronze-to-rose light */
+/* While timer is running, retains delicate muted plum stroke (0.24 opacity) */
 .zen-dial-running .zen-sacred-ellipse {
-  stroke: url(#zenLotusPetalGradient);
-  stroke-width: 1.35px;
+  stroke: rgba(112, 83, 107, 0.24);
+  stroke-width: 0.95px;
 }
 
-/* On bell chime (interval completion), heightened resonant flash */
+/* On bell chime (interval completion), subtle harmonic highlight */
 .zen-sacred-rings-wrap.ringing .zen-sacred-ellipse {
-  stroke: rgba(165, 139, 104, 0.95);
-  stroke-width: 1.8px;
-  filter: drop-shadow(0 0 14px rgba(165, 139, 104, 0.85)) !important;
+  stroke: rgba(194, 138, 58, 0.45);
+  stroke-width: 1.1px;
 }
 
 /* --------------------------------------------------------------------------
@@ -1971,7 +1907,9 @@ input[type="number"] {
 }
 
 /* ==========================================================================
-   Running State - Gentle Dimming of Secondary Controls
+   Running State - Refined Contrast of Secondary Elements
+   - Retains sufficient text and control contrast so configuration stays readable
+   - Avoids disabled or excessively washed-out appearance
    ========================================================================== */
 .zen-header-container,
 .zen-view-switcher,
@@ -1979,33 +1917,38 @@ input[type="number"] {
 .zen-config-wrapper,
 .zen-secondary-dim,
 .zen-secondary-control {
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 1.2s ease,
-              transform 0.4s ease;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.zen-timer-running .zen-secondary-dim {
-  opacity: 0.24;
-  filter: grayscale(15%);
+.zen-timer-running .zen-config-wrapper,
+.zen-timer-running .zen-config-wrapper.zen-secondary-dim {
+  opacity: 0.92;
+  filter: none;
+}
+
+.zen-timer-running .zen-header-container.zen-secondary-dim,
+.zen-timer-running .zen-view-switcher.zen-secondary-dim,
+.zen-timer-running .zen-footer.zen-secondary-dim {
+  opacity: 0.78;
+  filter: none;
 }
 
 .zen-timer-running .zen-secondary-dim:hover,
 .zen-timer-running .zen-secondary-dim:focus-within {
-  opacity: 0.88;
-  filter: grayscale(0%);
+  opacity: 1;
 }
 
 .zen-timer-running .zen-secondary-control {
-  opacity: 0.22;
+  opacity: 0.85;
 }
 
 .zen-timer-running .zen-secondary-control:hover,
 .zen-timer-running .zen-secondary-control:focus-within {
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .zen-timer-running .zen-btn-secondary {
-  opacity: 0.38;
+  opacity: 0.88;
 }
 
 .zen-timer-running .zen-btn-secondary:hover {
