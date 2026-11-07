@@ -1,12 +1,11 @@
 import React from 'react';
-import StarSparkle from './StarSparkle';
 
 /**
  * CircularProgress - Luminous Iridescent Orb + Sacred Geometry Centerpiece
  * Seamlessly integrates:
- * - Sacred geometry elliptical SVG rings & star sparkle (Image 1 Inspiration)
- * - 3D pearlescent iridescent glowing orb (Image 2 Inspiration)
- * - Sleek outer orbit progress arc with harmonic audio pulse (Image 2 Inspiration)
+ * - Sacred geometry elliptical SVG rings
+ * - 3D pearlescent iridescent glowing orb
+ * - Sleek outer orbit progress arc with harmonic audio pulse
  */
 export default function CircularProgress({
   progress = 0.75, // 0 to 1 (1 = full, 0 = depleted)
@@ -59,11 +58,6 @@ export default function CircularProgress({
             <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-4" transform="rotate(135)" />
           </g>
         </svg>
-
-        {/* Delicate celestial 4-point star sparkle accent */}
-        <div className="zen-sacred-star-accent" aria-hidden="true">
-          <StarSparkle size={15} />
-        </div>
       </div>
 
       {/* 3D Iridescent Pearlescent Glowing Orb */}

@@ -287,15 +287,6 @@ body {
   pointer-events: none;
 }
 
-.zen-header-sparkle {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  color: var(--color-antique-bronze);
-  filter: drop-shadow(0 0 4px rgba(165, 139, 104, 0.4));
-  animation: star-sparkle-twinkle 3.5s ease-in-out infinite alternate;
-}
-
 /* Editorial Serif Main Title */
 .zen-title {
   font-family: var(--font-serif);
@@ -1534,23 +1525,6 @@ input[type="number"] {
 
 .zen-sacred-rings-wrap.ringing .zen-sacred-ellipse {
   stroke: rgba(165, 139, 104, 0.75);
-}
-
-/* Delicate 4-Point Celestial Star Sparkle Accent */
-.zen-sacred-star-accent {
-  position: absolute;
-  bottom: 22px;
-  right: 28px;
-  color: rgba(255, 255, 255, 0.95);
-  filter: drop-shadow(0 0 5px rgba(165, 139, 104, 0.5));
-  animation: star-sparkle-twinkle 4s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-@keyframes star-sparkle-twinkle {
-  0% { transform: scale(0.85) rotate(0deg); opacity: 0.75; }
-  50% { transform: scale(1.15) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.95)); }
-  100% { transform: scale(0.9) rotate(0deg); opacity: 0.8; }
 }
 
 /* --------------------------------------------------------------------------
