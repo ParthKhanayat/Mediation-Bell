@@ -1,5 +1,4 @@
 import React from 'react';
-import { Bell } from 'lucide-react';
 import LotusIcon from './LotusIcon';
 
 export default function Header({ completedSessionsCount = 0 }) {
@@ -8,7 +7,7 @@ export default function Header({ completedSessionsCount = 0 }) {
       <div className="zen-header-brand-wrap">
         <div className="zen-logo-mark zen-pearl-orb" aria-hidden="true">
           <div className="zen-pearl-orb-sheen" />
-          <Bell size={20} strokeWidth={1.8} />
+          <LotusIcon size={22} strokeWidth={1.8} />
         </div>
       </div>
       <h1 className="zen-title">Meditation Bell</h1>

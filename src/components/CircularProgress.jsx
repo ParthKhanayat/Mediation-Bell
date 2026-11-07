@@ -14,7 +14,7 @@ export default function CircularProgress({
   children,
 }) {
   const size = 320;
-  const strokeWidth = 1.75; // Delicate 1.5px - 2px stroke per specification
+  const strokeWidth = 5; // Substantive, thicker progress bar circle
   const center = size / 2; // 160
   const radius = 142; // Orbit path radius
   const circumference = 2 * Math.PI * radius;
@@ -94,43 +94,56 @@ export default function CircularProgress({
           </linearGradient>
         </defs>
 
-        {/* Outer Acoustic Chime Sound Wave (triggers when bell rings) */}
-        {isBellRinging && (
-          <>
+        {/* Outer Acoustic Sound Wave Ripples - Active continuously while timer is running; flares on interval chime */}
+        {(isPlaying || isBellRinging) && (
+          <g className="zen-chime-soundwaves-layer">
             <circle
-              className="zen-chime-soundwave wave-1"
+              className={`zen-chime-soundwave wave-1 ${isPlaying ? 'running-loop' : ''} ${
+                isBellRinging ? 'chime-pulse' : ''
+              }`}
               cx={center}
               cy={center}
               r={radius}
-              stroke="url(#zenBellPulseGradient)"
+              stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
             />
             <circle
-              className="zen-chime-soundwave wave-2"
+              className={`zen-chime-soundwave wave-2 ${isPlaying ? 'running-loop' : ''} ${
+                isBellRinging ? 'chime-pulse' : ''
+              }`}
               cx={center}
               cy={center}
               r={radius}
-              stroke="url(#zenBellPulseGradient)"
+              stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
             />
-          </>
+            <circle
+              className={`zen-chime-soundwave wave-3 ${isPlaying ? 'running-loop' : ''} ${
+                isBellRinging ? 'chime-pulse' : ''
+              }`}
+              cx={center}
+              cy={center}
+              r={radius}
+              stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
+            />
+          </g>
         )}
 
-        {/* Inactive progress track - almost invisible rgba(112, 83, 107, 0.12) with delicate 1.5px stroke */}
+        {/* Thicker inactive progress track */}
         <circle
           className="zen-ring-track"
           cx={center}
           cy={center}
           r={radius}
-          strokeWidth={1.5}
+          strokeWidth={4.5}
         />
 
-        {/* Sleek, delicate active countdown progress arc (1.75px stroke) */}
+        {/* Substantive, thicker active countdown progress arc (5px stroke) */}
         <circle
           className={`zen-ring-progress ${isBellRinging ? 'ringing' : ''}`}
           cx={center}
           cy={center}
           r={radius}
           stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
-          strokeWidth={isBellRinging ? 2.5 : strokeWidth}
+          strokeWidth={isBellRinging ? 6 : strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
         />
