@@ -14,9 +14,10 @@ export default function CircularProgress({
   children,
 }) {
   const size = 320;
-  const strokeWidth = 5; // Substantive, thicker progress bar circle
+  const strokeWidth = 1.8; // Thin 1.5px–2px per specification
   const center = size / 2; // 160
-  const radius = 142; // Orbit path radius
+  // Orb radius is 116px (232px diameter). Radius 119px aligns concentrically with a 3px gap.
+  const radius = 119;
   const circumference = 2 * Math.PI * radius;
 
   // Clamped progress (0 to 1)
@@ -38,7 +39,7 @@ export default function CircularProgress({
         aria-hidden="true"
       />
 
-      {/* Sacred Geometry Lotus Petal Rings (Extended gently beyond the sphere; breathes & rotates while running) */}
+      {/* Sacred Geometry Lotus Petal Rings (Positioned around the orb/ring without intersecting progress arc) */}
       <div
         className={`zen-sacred-rings-wrap ${isPlaying ? 'rotating' : ''} ${
           isBellRinging ? 'ringing' : ''
@@ -59,16 +60,16 @@ export default function CircularProgress({
             </linearGradient>
           </defs>
           <g transform={`translate(${center}, ${center})`}>
-            {/* Overlapping sacred ellipses forming lotus petals */}
-            <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-1" />
-            <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-2" transform="rotate(45)" />
-            <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-3" transform="rotate(90)" />
-            <ellipse rx="148" ry="102" className="zen-sacred-ellipse ellipse-4" transform="rotate(135)" />
+            {/* Overlapping sacred ellipses sized (rx=150, ry=124) so they stay entirely outside the 119px progress ring */}
+            <ellipse rx="150" ry="124" className="zen-sacred-ellipse ellipse-1" />
+            <ellipse rx="150" ry="124" className="zen-sacred-ellipse ellipse-2" transform="rotate(45)" />
+            <ellipse rx="150" ry="124" className="zen-sacred-ellipse ellipse-3" transform="rotate(90)" />
+            <ellipse rx="150" ry="124" className="zen-sacred-ellipse ellipse-4" transform="rotate(135)" />
           </g>
         </svg>
       </div>
 
-      {/* 3D Iridescent Pearlescent Glowing Orb */}
+      {/* 3D Iridescent Pearlescent Glowing Orb (Central visual element) */}
       <div
         className={`zen-iridescent-orb ${isBellRinging ? 'orb-flare' : ''} ${
           isPlaying ? 'orb-breathing' : ''
@@ -81,19 +82,13 @@ export default function CircularProgress({
         <div className="zen-orb-magenta-core" />
       </div>
 
-      {/* SVG Orbit Progress Arc & Chime Waves */}
+      {/* SVG Countdown Progress Arc (Stationary orientation; sits precisely along the perimeter of the inner orb) */}
       <svg
         className={`zen-svg-ring ${isBellRinging ? 'ring-pulsing' : ''}`}
         viewBox={`0 0 ${size} ${size}`}
         aria-hidden="true"
       >
         <defs>
-          {/* Muted Plum to Dusty Rose refined organic gradient */}
-          <linearGradient id="zenAuraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#70536B" />
-            <stop offset="100%" stopColor="#9D6B84" />
-          </linearGradient>
-
           {/* Antique Bronze to Dusty Rose harmonic flare gradient when bell chimes */}
           <linearGradient id="zenBellPulseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#A58B68" />
@@ -122,23 +117,23 @@ export default function CircularProgress({
           </g>
         )}
 
-        {/* Thicker inactive progress track */}
+        {/* Inactive Track: Extremely subtle rgba(112, 83, 107, 0.12) */}
         <circle
           className="zen-ring-track"
           cx={center}
           cy={center}
           r={radius}
-          strokeWidth={4.5}
+          strokeWidth={1.5}
         />
 
-        {/* Substantive, thicker active countdown progress arc (5px stroke) */}
+        {/* Active Countdown Progress Arc: Saffron-gold #C28A3A with subtle glow */}
         <circle
           className={`zen-ring-progress ${isBellRinging ? 'ringing' : ''}`}
           cx={center}
           cy={center}
           r={radius}
-          stroke={isBellRinging ? 'url(#zenBellPulseGradient)' : 'url(#zenAuraGradient)'}
-          strokeWidth={isBellRinging ? 6 : strokeWidth}
+          stroke="#C28A3A"
+          strokeWidth={strokeWidth}
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
         />
