@@ -637,24 +637,38 @@ body {
   min-width: 0;
 }
 
+/* Stepper Value Display & Number Input (No Browser Spinners) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
+}
+
 .zen-stepper-input {
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text-primary);
   background: transparent;
   border: none;
   text-align: right;
-  width: 2.8ch;
+  width: 2.2ch;
   outline: none;
   padding: 0;
   font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield !important;
+  appearance: textfield !important;
 }
 
-.zen-stepper-input::-webkit-inner-spin-button,
-.zen-stepper-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.zen-stepper-input::-webkit-outer-spin-button,
+.zen-stepper-input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
 }
 
 .zen-stepper-val-static {
@@ -872,33 +886,41 @@ body {
 }
 
 /* ==========================================================================
-   Quick Select Presets (Frosted Glass Capsule Pills)
+   Quick Select Presets (Frosted Glass Capsule Pills - 3x2 Grid)
    ========================================================================== */
+.presets-section,
 .zen-presets-container {
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
+  width: 100%;
 }
 
+.presets-label,
 .zen-presets-label {
-  font-size: 0.76rem;
+  display: block;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   font-weight: 700;
   color: var(--text-secondary);
   text-align: center;
+  margin-bottom: 0.25rem;
 }
 
+.preset-pills-grid,
 .zen-presets-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.55rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  width: 100%;
 }
 
-@media (min-width: 480px) {
+@media (max-width: 420px) {
+  .preset-pills-grid,
   .zen-presets-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -907,9 +929,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 0.65rem 0.5rem;
+  padding: 0.7rem 0.5rem;
+  min-height: 54px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid var(--color-border-glass);
   cursor: pointer;
   transition: var(--transition-gentle);
@@ -919,29 +942,46 @@ body {
 
 .zen-preset-pill:hover {
   background: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.95);
   transform: translateY(-2px);
   box-shadow: var(--shadow-pill);
 }
 
 .zen-preset-pill.active {
   background: #FFFFFF;
-  border-color: rgba(168, 85, 247, 0.4);
-  box-shadow: var(--shadow-pill), 0 0 16px rgba(168, 85, 247, 0.15);
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: var(--shadow-pill), 0 0 16px rgba(168, 85, 247, 0.12);
 }
 
+.zen-preset-pill:active {
+  transform: scale(0.97);
+}
+
+.preset-pill-title,
 .zen-preset-intervals {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
+.zen-preset-pill.active .preset-pill-title,
 .zen-preset-pill.active .zen-preset-intervals {
   color: var(--color-accent);
 }
 
+.preset-pill-desc,
 .zen-preset-total {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.zen-preset-pill.active .preset-pill-desc,
+.zen-preset-pill.active .zen-preset-total {
+  color: var(--color-accent);
+  opacity: 0.85;
 }
 
 /* ==========================================================================
